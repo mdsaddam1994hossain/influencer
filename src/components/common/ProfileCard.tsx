@@ -1,0 +1,35 @@
+ import React from 'react'
+ import Image from 'next/image'
+ import { Separator } from "@/components/ui/separator"
+ 
+ const ProfileCard = () => {
+   return (
+    <div className='p-4 bg-white rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-4 group' >
+        
+            <div className='flex justify-center items-center flex-col' > 
+            <Image src={"/images/person2.avif"} objectFit="cover" height={70} width={70} alt='e' className='rounded-xl h-[280px] w-full duration-300  transition-transform transform ' />
+
+            </div>
+
+        <div className='flex justify-between mt-4'>
+            <div>
+                <p className='font-medium font-roboto text-black '>1250K</p>
+                <p className='text-sm font-roboto text-gray-500'>Followers</p>
+            </div>
+            <div>
+            <Separator orientation="vertical" />
+            </div>
+            <div>
+                <p className='font-medium font-roboto text-black '>60K</p>
+                <p className='text-sm font-roboto text-gray-500'>Following</p>
+            </div>
+        </div>
+       
+       
+       
+    </div>
+   )
+ }
+ 
+ export default ProfileCard
+ 
