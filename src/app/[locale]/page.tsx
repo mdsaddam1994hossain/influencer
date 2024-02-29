@@ -1,6 +1,7 @@
 import React from 'react';
-import initTranslations from '../i18n';
+
 import HomePage from "@/module/Home/Home"
+import initTranslations from '../i18n';
 
 
 

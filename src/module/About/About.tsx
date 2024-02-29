@@ -1,7 +1,13 @@
 import React from 'react'
 
+import Image from 'next/image'
+import {Check} from "lucide-react"
+
 import ServiceCard from '@/components/common/ServiceCard'
 import { serviceData } from '@/utils/Data'
+import SliderButton from '@/components/ui/slider-button'
+import { Separator } from '@/components/ui/separator'
+import aboutImg from "../../../public/images/about.jpeg"
 
 const About = () => {
   return (
@@ -18,13 +24,56 @@ const About = () => {
           )
         })}
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-12 lg:mt-20'>
-            <div>
-               <p>img part</p>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 mt-12 lg:mt-20'>
+        <div className=' '>
+          <Image src={aboutImg} alt='error' className="rounded-xl " />
+        </div>
+        <div>
+          <p className=' text-xl text-blackDark '>About Moalen</p>
+          <p className="text-2xl lg:text-4xl text-blackDark font-medium mt-2 mb-6">Creative and First Problems Solving</p>
+          <p className='text-blackLight'>A Saudi platform, an advertiser marketing company that brings together the largest influencers in all fields! “Moalan platform helps you choose the most appropriate influencers and social media platforms for your advertising campaign through accurate analytics.</p>
+          {/* business promotion part */}
+          <div className='grid grid-cols-1 lg:grid-cols-2 mt-6'>
+            <div className="flex gap-2 items-center">
+               <div className='w-5 h-5 rounded-full bg-blue-600 flex justify-center items-center'>
+                <Check  color="white" size={14}/> 
+               </div>
+               <p className=" text-blackDark italic ">Promote your business product</p>
             </div>
-            <div>
-               <p>descdription part</p>
+
+            <div className="flex gap-2 items-center mt-4 lg:mt-0">
+               <div className='w-5 h-5 rounded-full bg-blue-600 flex justify-center items-center'>
+                <Check  color="white" size={14}/> 
+               </div>
+               <p className=" text-blackDark italic ">Promote your business product</p>
             </div>
+            
+            <div className="flex gap-2 items-center mt-4">
+               <div className='w-5 h-5 rounded-full bg-blue-600 flex justify-center items-center'>
+                <Check  color="white" size={14}/> 
+               </div>
+               <p className=" text-blackDark italic ">Promote your business product</p>
+            </div>
+          </div>
+          {/* contact btn  */}
+          <SliderButton label='Contact Us' btnStyle="mt-8"/>
+          <Separator color="red"  className="my-6 bg-[#F8CEDD]" />
+          {/* ceo part */}
+          <div className='grid grid-cols-1 lg:grid-cols-2 mt-6 items-center'>
+          <div className="flex gap-2 items-center">
+               <div className='w-20 h-20 rounded-full bg-blue-600 flex justify-center items-center'>
+                 
+               </div>
+               <p className=" text-blackDark ">Promote your business product</p>
+            </div>
+
+            <div className="mt-4 lg:mt-0">
+                <p>Signature</p>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   )

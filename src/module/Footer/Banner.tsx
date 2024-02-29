@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
+import bannerImg from "../../../public/images/in-footer-cta.png"
 
 const Banner = () => {
     return (
@@ -18,7 +19,7 @@ const Banner = () => {
                    <SliderButton label={"Signup Now!"} btnStyle='mt-6'  />
                 </div>
                 <div className='flex col-span-1 justify-center items-center  bg-transparent rounded-lg'>
-                  <Image src="/images/in-footer-cta.png" height={300} width={450} objectFit='cover' className=" h-80 w-[80%]" alt='l'/> 
+                  <Image src={bannerImg}   alt='l'/> 
                 </div>
             </div>
 
