@@ -1,7 +1,10 @@
-import { Separator } from '@/components/ui/separator'
+
+import React from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+
+import { Separator } from '@/components/ui/separator'
 import Banner from './Banner'
 
 const Footer = () => {
@@ -11,7 +14,7 @@ const Footer = () => {
      <Banner />
    
 
-     <div className='bg-black  z-20  text-white px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 pt-8 lg:pt-60'>
+     <div className=' bg-black    text-white px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 pt-8 lg:pt-60'>
       <div className='grid grid-cols-10 gap-4 lg:gap-10 '>
         <div className='col-span-10 lg:col-span-3'>
         <Image src="/images/logo.png" height={15} width={100} className="" alt='l'/>   

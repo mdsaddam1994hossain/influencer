@@ -9,7 +9,10 @@ import {
     ShoppingBag,
     UtensilsCrossed,
     Dumbbell,
-    CandlestickChart
+    CandlestickChart,
+    Rocket,
+    Factory,
+    MessagesSquare
   } from "lucide-react"
 
   import blogImage from "../../public/images/blog-1.jpeg"
@@ -82,4 +85,27 @@ export const blogData = [
       date:"15 January 2024",
       title:"Establishing a content marketing strategy"
      },
+]
+
+export const serviceData =[
+  {title:"No upfront Cost",
+  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  icon:<Factory  color="white" size={30}/>,
+  bgColor:"bg-red-500"
+   },
+  {title:"Verified Creators",
+  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  icon:<Rocket color="white" size={30}/>,
+  bgColor:"bg-blue-600"
+   },
+  {title:"Live Chat",
+  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  icon:<MessagesSquare  color="white" size={30} />,
+  bgColor:"bg-purple-500"
+   },
+  {title:"No upfront Cost",
+  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  icon:<Rocket color="white" size={30}/>,
+  bgColor:"bg-yellow-500"
+   },
 ]

@@ -21,7 +21,7 @@ import {
 const Signup = () => {
     const router = useRouter()
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-16 py-8 lg:py-20 bg-white shadow-lg rounded-xl my-16  lg:my-24 gap-12 lg:gap-12'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-16 py-8 lg:py-20 bg-white shadow-lg rounded-xl my-12  lg:my-24 gap-12 lg:gap-12'>
             <div className='col-span-2 lg:col-span-1'>
                 <div className='grid grid-cols-2 gap-6'>
                     <div className='col-span-2 md:col-span-1'>

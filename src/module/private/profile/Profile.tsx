@@ -1,28 +1,37 @@
 "use client"
 import ProfileCard from '@/components/common/ProfileCard'
 import { Button } from '@/components/ui/button'
+import SliderButton from '@/components/ui/slider-button'
+import Image from 'next/image'
 import React from 'react'
 
 const Profile = () => {
   return (
-    <div className='mb-32 lg:mb-52'>
-      <div className='bg-gradient-to-r from-sky-200 to-pink-100 z-20   px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 pt-8 lg:pt-16 h-72 '>
+    <div className='mb-12'>
+      
+      
+
+      <Image src="/images/in-bread-bg.jpg" objectFit="cover" alt="error" height={400} width={1500} className="w-full h-48 lg:h-72 absolute -z-10 "/>
+      <div  className='  px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 pt-20 '>
+       
        <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-12 lg:col-span-3'>
             <ProfileCard />
           </div>
 
           <div className='col-span-12 lg:col-span-9 grid grid-cols-2'> 
-            <div className='col-span-2 flex justify-between gap-4 mt-10'>
+            <div className='col-span-2 flex justify-between gap-4 mt-4 lg:mt-10'>
                 <div className=''> 
-                    <Button className=' bg-blue-600 h-8  font-roboto '> Photographer</Button>
+                    <Button className=' bg-blue-600 h-8  font-roboto hover:bg-blue-600'> Photographer</Button>
                     <p className='font-roboto text-xl lg:text-4xl font-medium my-2'>Sufankho Jhon</p>
                     <p className='font-roboto'>Member Since: 16 June 2023</p>
-                    <Button className='font-normal bg-red-500 font-roboto h-8 mt-2'>* Review 91</Button>
+                    <Button className='font-normal bg-red-500 font-roboto h-8 mt-2 hover:bg-red-500'>* Review 91</Button>
                 </div>
                 <div className='flex flex-col gap-2'> 
-                    <Button className=' bg-blue-600 h-9 px-8 font-roboto text-lg'> Hire Me Now</Button>
-                    <Button className=' bg-white text-black h-9 px-8  font-roboto text-lg'> Follow Now</Button>
+                    {/* <Button className=' bg-blue-600 h-10 px-8 font-roboto text-lg'> Hire Me Now</Button> */}
+                    <SliderButton label={" Hire Me Now"} btnStyle='bg-blue-600 h-10 px-8 font-roboto text-lg hover:bg-blue-600' />
+                    <SliderButton variant="outline" label={" Follow Now"} labelStyle="text-blackDark group-hover:text-white" btnStyle='hover:border-none bg-white hover:text-white group h-10 px-8 font-roboto text-lg hover:bg-blue-600' />
+                    {/* <Button className=' bg-white text-black h-9 px-8  font-roboto text-lg'> Follow Now</Button> */}
                     <div className='mt-6 flex gap-4'>
                         <p>icon</p>
                         <p>icon</p>
@@ -51,14 +60,15 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className='col-span-12 lg:col-span-3'>
+          {/* <div className='col-span-12 lg:col-span-3'>
             <p>second pard</p>
           </div>
           <div className='col-span-12 lg:col-span-9'>
           <p>second pard</p>
-          </div>
+          </div> */}
        </div>
-    </div>
+
+      </div>
     
     </div>
   )

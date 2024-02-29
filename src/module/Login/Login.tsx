@@ -24,9 +24,7 @@ const Login = () => {
 
 }
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2  px-6 py-8 lg:px-16 lg:py-20   shadow-lg bg-white rounded-xl my-16  lg:my-24 gap-12 lg:gap-12'>
-   
-     
+    <div className='grid grid-cols-1 lg:grid-cols-2  px-6 py-8 lg:px-16 lg:py-20   shadow-lg bg-white rounded-xl my-12  lg:my-24 gap-12 lg:gap-12'> 
        <div className='col-span-2 lg:col-span-1'>
           <div className='grid grid-cols-6'>
              <div className='col-span-6 md:col-span-3'>

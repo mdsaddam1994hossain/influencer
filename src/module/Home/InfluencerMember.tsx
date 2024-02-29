@@ -2,6 +2,7 @@ import React from 'react'
 
 import InfluencerMemberCard from '@/components/common/InfluencerMemberCard'
 import { Button } from '@/components/ui/button'
+import SliderButton from '@/components/ui/slider-button'
 
 const InfluencerMember = () => {
 
@@ -26,10 +27,7 @@ const InfluencerMember = () => {
 
             <div className='flex justify-center items-center my-4 lg:my-12 ' data-aos-duration="1000" data-aos="fade-up"
                 data-aos-anchor-placement="bottom-bottom" data-aos-delay="1000">
-                <Button className="group overflow-hidden flex justify-center items-center relative h-14 px-12 hover:bg-red-500 bg-red-500 text-white cursor-pointer">
-                    <span className="text-lg font-semibold">View All</span>
-                    <span className="absolute top-0 -inset-full h-full w-full z-5 block transform -skew-x-0 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine group-focus-within:animate-shine2 " />
-                </Button>
+                <SliderButton label={"View All"}  />
             </div>
 
 
