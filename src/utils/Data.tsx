@@ -109,3 +109,12 @@ export const serviceData =[
   bgColor:"bg-yellow-500"
    },
 ]
+
+export const navData = [
+  { label: "nav:home", path: "/" },
+  { label: "nav:login", path: "/login" },
+  { label: "nav:contact", path: "/contact" },
+  { label: "nav:join", path: "/join-us" },
+  { label: "nav:who_are", path: "/about" },
+  { label: "nav:blog", path: "/blog" },
+]

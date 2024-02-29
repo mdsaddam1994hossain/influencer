@@ -27,15 +27,9 @@ import {
 } from "../../components/ui/dropdown-menu"
 import ResultFilter from '../../components/common/Filter'
 import Categories from '@/components/common/Categories'
+import { navData } from '@/utils/Data'
 
-export const navData = [
-  { label: "nav:home", path: "/" },
-  { label: "nav:login", path: "/login" },
-  { label: "nav:contact", path: "/contact" },
-  { label: "nav:join", path: "/join-us" },
-  { label: "nav:who_are", path: "/about" },
-  { label: "nav:blog", path: "/blog" },
-]
+
 
 export const catagoryData =[
           {label: "Design and art",
