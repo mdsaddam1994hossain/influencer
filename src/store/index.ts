@@ -4,20 +4,22 @@ import { create, SetState } from 'zustand';
 interface TAppStore {
   bears: number;
   isMobile:boolean;
+  isLogin:boolean;
   setMobile: (payload:boolean) => void;
-  increasePopulation: () => void;
-  removeAllBears: () => void;
-  updateBears: (newBears: number) => void;
+  setIsLogin: (payload:boolean) => void;
+ 
+ 
 }
 
 // Create the store
 const useAppStore = create<TAppStore>((set) => ({
   bears: 0,
   isMobile:false,
+  isLogin:false,
   setMobile: (payload:boolean) => set(() => ({ isMobile : payload })),
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears) => set({ bears: newBears }),
+  setIsLogin: (payload:boolean) => set(() => ({ isLogin : payload })),
+
+ 
 }));
 
 export default useAppStore;

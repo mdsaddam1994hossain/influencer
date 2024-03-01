@@ -22,7 +22,7 @@ const BlogCard = () => {
                 <Card key={index} className="w-full pt-6 group transition duration-500 ease-in-out transform hover:-translate-y-3">
                 <CardContent>
                     <div className='w-full overflow-hidden'>
-                        <Image className='text-4xl group-hover:scale-110 transition duration-500 ease-in-out rounded-t-lg ' objectFit='cover' src={item?.img} alt='error' />
+                        <Image className='text-4xl group-hover:scale-110 transition duration-500 ease-in-out rounded-t-lg w-full ' src={item?.img} alt='error' />
                     </div>
                     <div className='mt-4 flex justify-between '>
                         <div className="flex gap-1 items-center ">

@@ -6,6 +6,7 @@ import TranslationsProvider from "@/components/TranslationsProvider"
 import Header from "@/module/Header/Header";
 import Footer from "@/module/Footer/Footer";
 import QueryProvider from "@/components/query-provider";
+import readUserSession from "@/lib/actions";
 import initTranslations from "../i18n";
 
 import "./globals.css";
@@ -35,6 +36,10 @@ export default async function RootLayout({
 }>) {
 
   const { resources } = await initTranslations(locale, i18nNamespaces);
+ 
+  const {data} = await readUserSession()
+
+ 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} >
       <body className={`${poppins.variable} ${roboto.variable} ${ibm_mono.variable} font-roboto bg-gray-300 `}>
@@ -44,7 +49,7 @@ export default async function RootLayout({
           locale={locale}
           resources={resources}>
           <>
-            <Header />
+            <Header data={data}/>
             {children}
             <Footer />
           </>

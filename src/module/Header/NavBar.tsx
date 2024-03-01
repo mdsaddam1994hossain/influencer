@@ -1,6 +1,6 @@
 
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '../../components/ui/button'
@@ -28,6 +28,9 @@ import {
 import ResultFilter from '../../components/common/Filter'
 import Categories from '@/components/common/Categories'
 import { navData } from '@/utils/Data'
+import { supabaseBrowser } from '@/lib/supabase/brower'
+import useAppStore from '@/store'
+import { userSignOut } from '@/lib/actions'
 
 
 
@@ -63,13 +66,32 @@ export const catagoryData =[
 ]
 
 
-const NavBar = () => {
+const NavBar = ({data}:any) => {
 
   const pathname = usePathname()
   const path = pathname.startsWith("/en") ? pathname.slice(0,1)+pathname.substring(4) : pathname;
   const {t,i18n} = useTranslation()
   const {language} = i18n
+  const isLogin = useAppStore((state) => state.isLogin)
+  const setIsLogin = useAppStore((state) => state.setIsLogin)
+  
 
+  const handleLogOut = async() => {
+     await userSignOut()
+    setIsLogin(false)
+  }
+
+  
+  useEffect(()=>{
+    if(data?.session){
+      setIsLogin(true)
+    }else{
+      setIsLogin(false)
+    }
+  },[])
+
+  console.log({isLogin})
+  console.log({data})
   return (
    <div className='hidden lg:block'>
       <div  className='min-h-[65px] flex justify-between bg-white rounded-2xl px-12 items-center'>
@@ -79,6 +101,7 @@ const NavBar = () => {
             <li key={index}><Link href={item.path} className={`${path === item.path ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400" : ""} `}>{`${t(`${item.label}`)}`} </Link></li>
           )
         })}
+       {isLogin && <li className='cursor-pointer' onClick={handleLogOut}>LogOut</li>}
       </ul>
       <div className='flex gap-4 items-center'>
          <Categories categories='nav:categories' />

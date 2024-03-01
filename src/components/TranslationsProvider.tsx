@@ -5,6 +5,7 @@ import initTranslations from '@/app/i18n';
 import { createInstance } from 'i18next';
 import AOS from 'aos';
 import useAppStore from "@/store";
+import readUserSession from "@/lib/actions";
 
 interface TranslationsProviderProps {
   children: React.ReactNode;
@@ -22,11 +23,13 @@ export default function TranslationsProvider({
   resources
 }: TranslationsProviderProps) {
 
-  const isMobile = useAppStore((state) => state.isMobile)
+ 
   const i18n = createInstance();
   initTranslations(locale, namespaces, i18n, resources);
   const [resWidth, setResWidth] = useState(0);
   const setMobile = useAppStore((state) => state.setMobile)
+
+ 
 
 
   const handleResize = () => {

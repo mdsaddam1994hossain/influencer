@@ -6,11 +6,9 @@ import Image from 'next/image'
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -19,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import SliderButton from '@/components/ui/slider-button'
-import { Label } from '@/components/ui/label';
+
 
 
 const FormSchema = z.object({
@@ -114,9 +112,6 @@ const Contact = () => {
                                             <FormControl>
                                                 <Input placeholder="Enter name" {...field} className='w-full col-span-1 focus:border-red-500' />
                                             </FormControl>
-                                            {/* <FormDescription>
-                                                This is your public display name.
-                                            </FormDescription> */}
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -146,9 +141,6 @@ const Contact = () => {
                                             <FormControl>
                                                 <Input type="email" placeholder="Enter email" {...field} className='w-full col-span-1 focus:border-red-500' />
                                             </FormControl>
-                                            {/* <FormDescription>
-                                                This is your public display name.
-                                            </FormDescription> */}
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -162,9 +154,6 @@ const Contact = () => {
                                             <FormControl>
                                                 <Input placeholder="Your Subject" {...field} className='w-full col-span-1 focus:border-red-500 ' />
                                             </FormControl>
-                                            {/* <FormDescription>
-                                                This is your public display name.
-                                            </FormDescription> */}
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -181,9 +170,6 @@ const Contact = () => {
                                             <FormControl>
                                                 <Textarea  placeholder="Write your message" {...field} className='w-full focus:border-red-500' />
                                             </FormControl>
-                                            {/* <FormDescription>
-                                                This is your public display name.
-                                            </FormDescription> */}
                                             <FormMessage />
                                         </FormItem>
                                     )}
