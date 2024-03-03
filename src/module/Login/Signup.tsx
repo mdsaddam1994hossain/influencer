@@ -1,22 +1,8 @@
 "use client"
 import React from 'react'
-import { Checkbox } from "@/components/ui/checkbox"
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import AuthBanner from '@/components/common/AuthBanner'
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectSeparator
-} from '@/components/ui/select';
 import SignUpForm from './SignUpForm'
 
 const Signup = () => {

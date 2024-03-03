@@ -13,8 +13,6 @@ export default async function readUserSession(){
 export  async function userSignOut(){
 
     const supabase = await supabaseServer()
-    console.log("signout colling..")
-     const {error} = await supabase.auth.signOut();
-     console.log("sign out result=" , error)
+    await supabase.auth.signOut();
      redirect("/")
 }

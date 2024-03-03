@@ -3,12 +3,9 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from '../../components/ui/button'
 import { useTranslation } from 'react-i18next';
 import {
   Settings,
-  LayoutDashboard,
-  ChevronDown,
   Palette,
   CarTaxiFront,
   Music4,
@@ -18,17 +15,9 @@ import {
   Dumbbell,
   CandlestickChart
 } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu"
 import ResultFilter from '../../components/common/Filter'
 import Categories from '@/components/common/Categories'
 import { navData } from '@/utils/Data'
-import { supabaseBrowser } from '@/lib/supabase/brower'
 import useAppStore from '@/store'
 import { userSignOut } from '@/lib/actions'
 
@@ -90,8 +79,7 @@ const NavBar = ({data}:any) => {
     }
   },[])
 
-  console.log({isLogin})
-  console.log({data})
+
   return (
    <div className='hidden lg:block'>
       <div  className='min-h-[65px] flex justify-between bg-white rounded-2xl px-12 items-center'>
