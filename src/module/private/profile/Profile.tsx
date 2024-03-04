@@ -1,11 +1,25 @@
 "use client"
+import React,{useEffect} from 'react'
+import useUser from '@/app/hook/useUser'
 import ProfileCard from '@/components/common/ProfileCard'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
+import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
-import React from 'react'
+
 
 const Profile = () => {
+
+  const queryClient = useQueryClient()
+
+  const {data} = useUser()
+
+  
+
+   useEffect(()=>{
+    queryClient.invalidateQueries({ queryKey: ['user'] })
+   },[])
+
   return (
     <div className='mb-12'>
       
@@ -23,7 +37,7 @@ const Profile = () => {
             <div className='col-span-2 flex justify-between gap-4 mt-4 lg:mt-10'>
                 <div className=''> 
                     <Button className=' bg-blue-600 h-8  font-roboto hover:bg-blue-600'> Photographer</Button>
-                    <p className='font-roboto text-xl lg:text-4xl font-medium my-2'>Sufankho Jhon</p>
+                    <p className='font-roboto text-xl lg:text-4xl font-medium my-2'>{data?.name || "Sufankho Jhon"}</p>
                     <p className='font-roboto'>Member Since: 16 June 2023</p>
                     <Button className='font-normal bg-red-500 font-roboto h-8 mt-2 hover:bg-red-500'>* Review 91</Button>
                 </div>
