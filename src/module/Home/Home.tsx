@@ -1,10 +1,14 @@
 import React from 'react'
+
 import MainCard from '@/components/common/MainCard'
 import InfluencerMember from './InfluencerMember'
 
 
 
+
 const Home = () => {
+
+  
   
   return (
     <div>
@@ -19,7 +23,7 @@ const Home = () => {
         </div> */}
         <InfluencerMember />
 
-      
+    
     </div>
   )
 }

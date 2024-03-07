@@ -57,7 +57,7 @@ const Contact = () => {
     }
 
     return (
-        <div className='my-12'>
+        <div className='my-8 lg:my-14'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6'>
                 <div className='lg:col-span-1  relative lg:my-8' >
                     <Image src={"/images/in-bread-bg.jpg"} alt='error' height={450} width={500} className='w-full h-full absolute -z-10 rounded-xl' objectFit='cover' />

@@ -97,22 +97,22 @@ const ResultFilter: FC<Props> = ({ language }) => {
 
 
           <div className="w-full col-span-1 lg:flex sm:hidden">
-          <Separator orientation="vertical" className="hidden lg:block lg:mr-4" />
-           <div className='w-full'>
-           <p>Platforms</p>
-            <Popover  >
-              <PopoverTrigger asChild>
-                <div className="w-full p-2 mt-2 rounded-sm bg-slate-100 ">All</div>
-              </PopoverTrigger>
-              <PopoverContent align="center" side="bottom" className="w-[300px] lg:w-[160px] max-h-[300px]  p-4 overflow-y-scroll no-scrollbar "  >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((item, index) => {
-                  return (
-                    <p key={index} className="h-8">Items-{item}</p>
-                  )
-                })}
-              </PopoverContent>
-            </Popover>
-           </div>
+            <Separator orientation="vertical" className="hidden lg:block lg:mr-4" />
+            <div className='w-full'>
+              <p>Platforms</p>
+              <Popover  >
+                <PopoverTrigger asChild>
+                  <div className="w-full p-2 mt-2 rounded-sm bg-slate-100 ">All</div>
+                </PopoverTrigger>
+                <PopoverContent align="center" side="bottom" className="w-[300px] lg:w-[160px] max-h-[300px]  p-4 overflow-y-scroll no-scrollbar "  >
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((item, index) => {
+                    return (
+                      <p key={index} className="h-8">Items-{item}</p>
+                    )
+                  })}
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
 
 
@@ -120,22 +120,22 @@ const ResultFilter: FC<Props> = ({ language }) => {
 
 
           <div className="w-full col-span-1 lg:flex sm:hidden">
-          <Separator orientation="vertical" className="hidden lg:block lg:mr-4" />
-           <div className='w-full'>
-           <p>Followers Age</p>
-            <Popover  >
-              <PopoverTrigger asChild>
-                <div className="w-full p-2 mt-2 rounded-sm bg-slate-100 ">All</div>
-              </PopoverTrigger>
-              <PopoverContent align="center" side="bottom" className="w-[300px] lg:w-[160px] max-h-[300px]  p-4  overflow-y-scroll no-scrollbar "  >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
-                  return (
-                    <p key={index} className="h-8">Items-{item}</p>
-                  )
-                })}
-              </PopoverContent>
-            </Popover>
-           </div>
+            <Separator orientation="vertical" className="hidden lg:block lg:mr-4" />
+            <div className='w-full'>
+              <p>Followers Age</p>
+              <Popover  >
+                <PopoverTrigger asChild>
+                  <div className="w-full p-2 mt-2 rounded-sm bg-slate-100 ">All</div>
+                </PopoverTrigger>
+                <PopoverContent align="center" side="bottom" className="w-[300px] lg:w-[160px] max-h-[300px]  p-4  overflow-y-scroll no-scrollbar "  >
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                    return (
+                      <p key={index} className="h-8">Items-{item}</p>
+                    )
+                  })}
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
 
 
@@ -168,19 +168,19 @@ const ResultFilter: FC<Props> = ({ language }) => {
 
         <p className='mt-6 text-lg text-blackLight'>Catagories</p>
         <div className='grid grid-cols-2 lg:grid-cols-5 py-6 gap-4 lg:gap-6 '>
-            {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map((item,index)=>{
-              return(
-                <div className="flex items-center space-x-2 col-span-1">
-      <Checkbox id="terms" />
-      <label
-        htmlFor="terms"
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        Checkbox items
-      </label>
-    </div>
-              )
-            })}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((item, index) => {
+            return (
+              <div key={index} className="flex items-center space-x-2 col-span-1">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Checkbox items
+                </label>
+              </div>
+            )
+          })}
         </div>
 
 

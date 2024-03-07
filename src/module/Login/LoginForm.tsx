@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Button } from '@/components/ui/button'
+import SliderButton from '@/components/ui/slider-button'
 
 
 const FormSchema = z.object({
@@ -70,17 +70,18 @@ const LoginForm = () => {
                             <FormItem>
                                 <FormLabel className='text-blackDark mt-2 text-base'>Password</FormLabel>
                                 <FormControl>
-                                    <Input placeholder='...........' {...field} className=' my-2 focus:border-red-500' type='password' />
+                                    <Input placeholder='●●●●●●●●' {...field} className=' my-2 focus:border-red-500' type='password' />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
                 </div>
-                <div className='flex justify-between my-6 '>
+
+               <div className='flex justify-between my-6 '>
                     <div className='flex gap-2 justify-center'>
                         <div className="flex items-center space-x-2">
-                            <Checkbox id="terms" className='border-blackLight' />
+                            <Checkbox id="terms" className='border-blackLight -mt-[2px] rounded-[2px] ' />
                             <label
                                 htmlFor="terms"
                                 className="text-blackLight "
@@ -91,7 +92,8 @@ const LoginForm = () => {
                     </div>
                     <p className='text-red-500 '>Forgot Password?</p>
                 </div>
-                <Button className='bg-red-500 mt-4 font-medium text-lg w-full h-14 hover:bg-red-600'>Log In</Button>
+                <SliderButton label='Log In' btnStyle="w-full mt-4 font-medium text-lg w-full h-14" />
+                {/* <Button className='bg-red-500 mt-4 font-medium text-lg w-full h-14 hover:bg-red-600'>Log In</Button> */}
             </form>
         </Form>
     )

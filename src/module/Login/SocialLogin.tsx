@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import { supabaseBrowser } from '@/lib/supabase/brower'
+import { browserClient } from '@/lib/supabase/brower'
 import { Button } from '@/components/ui/button'
 
 const SocialLogin = () => {
@@ -9,7 +9,7 @@ const SocialLogin = () => {
     const router = useRouter()
 
     const handleLoginWithOauth = (provider: "google" | "facebook") => {
-      const supabase = supabaseBrowser();
+      const supabase = browserClient();
       supabase.auth.signInWithOAuth({
         provider,
         options: {

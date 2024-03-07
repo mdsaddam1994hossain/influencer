@@ -24,6 +24,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
+import SliderButton from '@/components/ui/slider-button'
 
 
 const SignUpForm = () => {
@@ -189,7 +190,7 @@ const SignUpForm = () => {
                 <div className='flex justify-between my-6 '>
                     <div className='flex gap-2 justify-center'>
                         <div className="flex items-center space-x-2">
-                            <Checkbox id="terms" className='border-blackLight' />
+                            <Checkbox id="terms" className='border-blackLight -mt-[2px]' />
                             <label
                                 htmlFor="terms"
                                 className="text-blackLight "
@@ -200,8 +201,8 @@ const SignUpForm = () => {
                     </div>
                     <p className='text-red-500 '>Forgot Password?</p>
                 </div>
-                <Button className='bg-red-500 hover:bg-red-600 mt-4 font-medium text-lg w-full h-14'>Create Account</Button>
-
+                {/* <Button className='bg-red-500 hover:bg-red-600 mt-4 font-medium text-lg w-full h-14'>Create Account</Button> */}
+                <SliderButton label='Create Account' btnStyle="w-full mt-4 font-medium text-lg w-full h-14" />
 
                 <p className='mt-6 text-center text-blackLight'>Already have an account ? <span className=' text-blackDark cursor-pointer hover:text-red-500' onClick={() => router.push("/login")}>Login</span></p>
 

@@ -82,7 +82,7 @@ const NavBar = ({data}:any) => {
 
   return (
    <div className='hidden lg:block'>
-      <div  className='min-h-[65px] flex justify-between bg-white rounded-2xl px-12 items-center'>
+      <div  className='min-h-[65px] flex justify-between bg-white shadow-custom rounded-2xl px-12 items-center'>
       <ul className='flex  gap-6  py-5  ' >
         {navData.map((item, index) => {
           return (

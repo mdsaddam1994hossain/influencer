@@ -11,7 +11,7 @@ import aboutImg from "../../../public/images/about.jpeg"
 
 const About = () => {
   return (
-    <div className="my-12" >
+    <div className="my-8 lg:my-14" >
       <div className=' flex justify-center items-center flex-col gap-2 px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44'>
         <p className=" text-xl text-blackDark  ">Best Feature</p>
         <p className=" text-2xl lg:text-[42px] text-blackDark font-semibold ">Our Latest Features</p>

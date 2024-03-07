@@ -11,12 +11,7 @@ import Categories from '@/components/common/Categories';
 import { AlignJustify,X } from "lucide-react"
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import logo from "../../../public/images/logo.png"

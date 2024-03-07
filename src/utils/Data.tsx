@@ -118,3 +118,103 @@ export const navData = [
   { label: "nav:who_are", path: "/about" },
   { label: "nav:blog", path: "/blog" },
 ]
+
+export const influencerData = [
+   {
+    id:1,
+    name:"Nawyantong",
+    catagory:"Life Style",
+    followers:1250,
+    following:60,
+    gender:"male"
+   },
+   {
+    id:2,
+    name:"Sufankho Jhon",
+    catagory:"Photographer",
+    followers:1420,
+    following:36,
+    gender:"male"
+   },
+   {
+    id:3,
+    name:"Goltulkjhan",
+    catagory:"Beauty-lifestyle",
+    followers:890,
+    following:18,
+    gender:"female"
+   },
+   {
+    id:4,
+    name:"Alvantan Khan",
+    catagory:"Sport & Fitness",
+    followers:2263,
+    following:32,
+    gender:"male"
+   },
+   {
+    id:5,
+    name:"Murawij Alruhayli",
+    catagory:"Beauty-lifestyle",
+    followers:1050,
+    following:50,
+    gender:"female"
+   },
+   {
+    id:6,
+    name:"Ibrahim Pasha",
+    catagory:"Sport & Fitness",
+    followers:1530,
+    following:24,
+    gender:"male"
+   },
+   {
+    id:7,
+    name:"Nayif hamdan",
+    catagory:"Historical storyteller",
+    followers:3400,
+    following:25,
+    gender:"male"
+   },
+   {
+    id:8,
+    name:"Yara Alnamlah",
+    catagory:"Beauty-lifestyle",
+    followers:3240,
+    following:36,
+    gender:"female"
+   },
+   {
+    id:9,
+    name:"Ahmed Al-Barqi",
+    catagory:"Public figure",
+    followers:4250,
+    following:32,
+    gender:"male"
+   },
+   {
+    id:10,
+    name:"Latifa Turki",
+    catagory:"memoirs",
+    followers:4350,
+    following:21,
+    gender:"female"
+   },
+   {
+    id:11,
+    name:"Donna Al Hussein",
+    catagory:"Lifestyle diary",
+    followers:1240,
+    following:14,
+    gender:"female"
+   },
+   {
+    id:12,
+    name:"Moath Al-Fadaghi",
+    catagory:"a cook",
+    followers:5240,
+    following:42,
+    gender:"male"
+   },
+
+]

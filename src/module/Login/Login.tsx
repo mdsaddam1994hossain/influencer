@@ -11,12 +11,12 @@ import SocialLogin from './SocialLogin'
 const Login = () => {
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2  px-6 py-8 lg:px-16 lg:py-20   shadow-lg bg-white rounded-xl my-12  lg:my-24 gap-12 lg:gap-12'>
+    <div className='grid grid-cols-1 lg:grid-cols-2  px-6 py-8 lg:px-16 lg:py-20   shadow-custom bg-white rounded-xl my-8  lg:my-14 gap-12 lg:gap-12'>
       <div className='col-span-2 lg:col-span-1'>
         <div className='grid grid-cols-6'>
           <div className='col-span-6 md:col-span-3'>
             <p className='font-roboto font-semibold text-4xl  text-blackDark'>Login</p>
-            <p className="my-3 lg:mt-2 text-blackLight">Welcome to Moalen</p>
+            <p className="my-3 lg:mt-3 text-blackLight">Welcome to Moalen</p>
           </div>
           <div className='col-span-6 md:col-span-3 flex lg:justify-end '>
             <Button className="bg-blue-600 hover:bg-blue-600 h-11 px-8 font-roboto text-lg font-medium mr-4">Client</Button>
@@ -33,7 +33,6 @@ const Login = () => {
         </div>
         {/* social login button & route to login page*/}
         <SocialLogin />
-       
       </div>
       <AuthBanner />
 
