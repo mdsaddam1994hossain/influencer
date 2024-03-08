@@ -4,17 +4,19 @@ import { Button } from '../ui/button'
 import { Separator } from "@/components/ui/separator"
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { TInfluencer } from '@/types/influencer'
 
 type Props ={
-    influencer : any;
+    influencer : TInfluencer;
 }
 
 const InfluencerMemberCard:FC<Props> = ({influencer}) => {
 
     const router = useRouter()
 
-    const onViewProfile =()=>{
-       router.push("/profile")
+
+    const onViewProfile =(id:any)=>{
+        router.push(`/influencer/${id}`);
     }
 
   
@@ -23,7 +25,7 @@ const InfluencerMemberCard:FC<Props> = ({influencer}) => {
         <div className='bg-red-100 h-72 rounded-lg w-full p-8'>
             <div className='flex justify-center items-center flex-col' > 
             <Image src={"/images/person2.avif"} objectFit="cover" height={70} width={70} alt='e' className='rounded-lg h-36 w-36 duration-300  transition-transform transform ' />
-             <p className='font-medioum font-roboto text-lg lg:text-xl mt-3 group-hover:text-red-500'>{influencer?.name}</p>
+             <p className='font-medioum font-roboto text-lg lg:text-xl mt-3 group-hover:text-red-500'>{influencer.name}</p>
              <p className='text-gray-500 font-roboto '>Life Style</p>
             </div>
 
@@ -44,7 +46,7 @@ const InfluencerMemberCard:FC<Props> = ({influencer}) => {
         </div>
         <Separator className="my-4" />
        
-       <Button onClick={onViewProfile} className='w-full transition-bg transition-color duration-200 ease-in-out bg-gray-200 text-blackDark hover:text-white font-medium text-lg font-roboto h-11 hover:bg-black mb-4'>View Profile</Button>
+       <Button onClick={()=> onViewProfile(influencer?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-gray-200 text-blackDark hover:text-white font-medium text-lg font-roboto h-11 hover:bg-black mb-4'>View Profile</Button>
     </div>
   )
 }

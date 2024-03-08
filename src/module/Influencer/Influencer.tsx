@@ -1,25 +1,22 @@
 
 "use client"
-import React,{useEffect} from 'react'
-import useUser from '@/app/hook/useInfluencers'
+import React,{FC} from 'react'
 import ProfileCard from '@/components/common/ProfileCard'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
-import { useQueryClient } from '@tanstack/react-query'
+
 import Image from 'next/image'
+import { useInfluencer } from '@/app/hook/useInfluencers'
 
 
+type Props ={id:number}
+const InfluencerProfile:FC<Props> = ({id}) => {
 
-const Profile = () => {
+ 
+  const {data:influencer} = useInfluencer(id)
 
-  const queryClient = useQueryClient()
+   console.log(influencer,"influencer profile data",id)
 
-
-
-
-   useEffect(()=>{
-    queryClient.invalidateQueries({ queryKey: ['influencers'] })
-   },[])
 
   return (
     <div className='mb-12'>
@@ -37,7 +34,7 @@ const Profile = () => {
                 <div className=''> 
                     <Button className=' bg-blue-600 h-8  font-roboto hover:bg-blue-600'> Photographer</Button>
                    
-                    <p className='font-roboto text-xl lg:text-4xl font-medium my-2'>{"Sufankho Jhon"}</p>
+                    <p className='font-roboto text-xl lg:text-4xl font-medium my-2'>{influencer?.name}</p>
                     <p className='font-roboto'>Member Since: 16 June 2023</p>
                     <Button className='font-normal bg-red-500 font-roboto h-8 mt-2 hover:bg-red-500'>* Review 91</Button>
                 </div>
@@ -88,4 +85,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default InfluencerProfile

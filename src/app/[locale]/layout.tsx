@@ -36,25 +36,25 @@ export default async function RootLayout({
 }>) {
 
   const { resources } = await initTranslations(locale, i18nNamespaces);
- 
-  const {data} = await readUserSession()
 
- 
+  const { data } = await readUserSession()
+
+
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} >
       <body className={`${poppins.variable} ${roboto.variable} ${ibm_mono.variable} font-roboto bg-white `}>
-         <QueryProvider>
-         <TranslationsProvider
-          namespaces={i18nNamespaces}
-          locale={locale}
-          resources={resources}>
-          <>
-            <Header data={data}/>
-            {children}
-            <Footer />
-          </>
-        </TranslationsProvider>
-         </QueryProvider>
+        <QueryProvider>
+          <TranslationsProvider
+            namespaces={i18nNamespaces}
+            locale={locale}
+            resources={resources}>
+            <>
+              <Header data={data} />
+              {children}
+              <Footer />
+            </>
+          </TranslationsProvider>
+        </QueryProvider>
       </body>
     </html>
   );

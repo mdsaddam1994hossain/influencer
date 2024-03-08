@@ -3,10 +3,10 @@ import React, { useState ,useEffect} from 'react'
 
 import InfluencerMemberCard from '@/components/common/InfluencerMemberCard'
 import PaginationSection from '@/components/common/PaginationSection'
-import { influencerData } from '@/utils/Data'
-import useInfluencers from '@/app/hook/useUser'
+import useInfluencers from '@/app/hook/useInfluencers'
 import useAppStore from '@/store'
 import SkeletonCard from '@/components/common/SkeletonCard'
+import { TInfluencer } from '@/types/influencer'
 
 const InfluencerMember = () => {
     const { data,isLoading } = useInfluencers()
@@ -31,7 +31,7 @@ const InfluencerMember = () => {
       }
     },[isMobile])
 
-    console.log({currentItems})
+    
 
     return (
         <div className='my-8 lg:my-10 rounded-lg lg:rounded-xl'>
@@ -56,7 +56,7 @@ const InfluencerMember = () => {
                 data-aos-anchor-placement="center-bottom"
                 data-aos-duration="2000"
             >
-                {currentItems?.map((influencer, index) => (
+                {currentItems?.map((influencer:TInfluencer, index:number) => (
                     <InfluencerMemberCard key={index} influencer={influencer} />
                 ))}
             </div>
