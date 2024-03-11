@@ -52,7 +52,7 @@ const InfluencerMember = () => {
 
             <div>
                  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 lg:mt-8'
-                data-aos="fade-up"
+                data-aos={isMobile ? "" :"fade-up"}
                 data-aos-anchor-placement="center-bottom"
                 data-aos-duration="2000"
             >
