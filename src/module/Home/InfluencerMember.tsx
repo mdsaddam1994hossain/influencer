@@ -16,10 +16,32 @@ const InfluencerMember = () => {
     const [itemsPerPage, setItemsPerPage] = useState(8)
 
     const totalItems = data?.length; // Assuming influencerData is your data source
+    const images = ["/images/in-agent1.png",
+     "/images/in-agent2.png",
+      "/images/in-agent3.png",
+      "/images/in-agent4.png"
+    ];
+    const colors = ["bg-red-100", "bg-cyan-200", "bg-lime-100", "bg-purple-100"];
+    const itemsWithImages = data?.map((item, index) => {
+        const imageIndex = index % images.length; // Get the index of the image in a round-robin fashion
+        const imageUrl = images[imageIndex];
+        const colorClass = colors[index % colors.length];
+      
+        return {
+          item,
+          imageUrl,
+          colorClass
+        };
+      });
 
     const lastItemIndex = currentPage * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
-    const currentItems = data?.slice(firstItemIndex, lastItemIndex);
+    const currentItems = itemsWithImages?.slice(firstItemIndex, lastItemIndex);
+
+   
+
+
+
 
  
 
@@ -56,7 +78,7 @@ const InfluencerMember = () => {
                 data-aos-anchor-placement="center-bottom"
                 data-aos-duration="2000"
             >
-                {currentItems?.map((influencer:TInfluencer, index:number) => (
+                {currentItems?.map((influencer:any, index:number) => (
                     <InfluencerMemberCard key={index} influencer={influencer} />
                 ))}
             </div>

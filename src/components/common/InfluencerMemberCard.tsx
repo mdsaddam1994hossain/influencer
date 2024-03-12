@@ -7,7 +7,8 @@ import { useRouter } from 'next/navigation'
 import { TInfluencer } from '@/types/influencer'
 
 type Props ={
-    influencer : TInfluencer;
+    // influencer : TInfluencer;
+    influencer : any;
 }
 
 const InfluencerMemberCard:FC<Props> = ({influencer}) => {
@@ -19,13 +20,17 @@ const InfluencerMemberCard:FC<Props> = ({influencer}) => {
         router.push(`/influencer/${id}`);
     }
 
+    console.log(influencer,"influencer list...")
+
   
   return (
     <div className='p-4 bg-white rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-3 group shadow-custom' >
-        <div className='bg-red-100 h-72 rounded-lg w-full p-8'>
+        <div className={`${influencer?.colorClass}  rounded-lg w-full px-16 py-8`}>
             <div className='flex justify-center items-center flex-col' > 
-            <Image src={"/images/person2.avif"} objectFit="cover" height={70} width={70} alt='e' className='rounded-lg h-36 w-36 duration-300  transition-transform transform ' />
-             <p className='font-medioum font-roboto text-lg lg:text-xl mt-3 group-hover:text-red-500'>{influencer.name}</p>
+              <div className='bg-white  h-[154px] w-[154px] rounded-lg '>
+                <Image src={influencer?.imageUrl} objectFit="cover" height={140} width={140} alt='e' className='rounded-lg  duration-300 h-[144px] w-[154px]  transition-transform transform ' />
+              </div>
+             <p className='font-medioum font-roboto text-lg lg:text-xl mt-3 group-hover:text-red-500'>{influencer?.item.name}</p>
              <p className='text-gray-500 font-roboto '>Life Style</p>
             </div>
 
@@ -46,7 +51,7 @@ const InfluencerMemberCard:FC<Props> = ({influencer}) => {
         </div>
         <Separator className="my-4" />
        
-       <Button onClick={()=> onViewProfile(influencer?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-gray-200 text-blackDark hover:text-white font-medium text-lg font-roboto h-11 hover:bg-black mb-4'>View Profile</Button>
+       <Button onClick={()=> onViewProfile(influencer?.item?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-gray-200 text-blackDark hover:text-white font-medium text-lg font-roboto h-11 hover:bg-black mb-3'>View Profile</Button>
     </div>
   )
 }

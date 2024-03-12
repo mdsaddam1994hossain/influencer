@@ -108,7 +108,7 @@ const NavBar = ({ data }: any) => {
             </Popover></li>
           }
 
-          {data?.session ? <li className='cursor-pointer' onClick={handleLogOut}>LogOut</li> :
+          {data?.session ? <li className='cursor-pointer' onClick={handleLogOut}>{`${t(`nav:logout`)}`}</li> :
             <li ><Link href={"/login"} className={`${path === "/login" || path === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400" : ""} `}>{`${t(`nav:login`)}`} </Link></li>
           }
         </ul>

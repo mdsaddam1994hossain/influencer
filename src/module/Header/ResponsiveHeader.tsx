@@ -27,9 +27,11 @@ import { userSignOut } from '@/lib/actions';
 import useAppStore from '@/store';
 import { usePathname, useRouter } from 'next/navigation';
 
+
 const ResponsiveHeader = ({ data }: any) => {
+  
+  
   const [visible, setVisible] = useState(false)
-  const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname()
   const router = useRouter()
   const { t, i18n } = useTranslation()
@@ -41,11 +43,16 @@ const ResponsiveHeader = ({ data }: any) => {
   }
   const handleCloseDrawer = () => {
     setVisible(false)
+    
   }
 
   const handleLogOut = async () => {
     await userSignOut()
     setIsLogin(false)
+    setVisible(false)
+  }
+  const handleItemClick =  () => {
+    setVisible(false)
   }
 
   const handleJoinClick =(value : "influencer" | "advertiser" )=>{
@@ -53,16 +60,19 @@ const ResponsiveHeader = ({ data }: any) => {
       router.push("/signup")
     }else{
       router.push("/login")
-    }
-    
-    
+    }   
+    setVisible(false)
   }
+
+
+
+
 
   return (
     <div>
       <div className='hidden lg:block'>
         <div className={`flex justify-between items-center h-28 `}>
-          <Image src="/images/logo.png" height={15} width={100} className="" alt='l' />
+          <Image src={logo} height={15} width={100} className="" alt='l' />
           <div className={`flex gap-6 items-center `}>
             <div className='relative'>
               <div className={`h-2.5 w-2.5 rounded-full bg-sky-100 absolute bottom-5 ${language === "ar" ? "mr-6" : "ml-6"} }`}></div>
@@ -74,47 +84,53 @@ const ResponsiveHeader = ({ data }: any) => {
       </div>
       <div className='block lg:hidden'>
         <div className="h-16 flex justify-between items-center ">
-          <Image src={logo} className="" alt='l' />
+          <Image src={logo} objectFit='cover'  alt='l' />
           {/* drawer navbar start hare */}
-          <Drawer open={visible} direction="left"  >
-            <DrawerTrigger asChild className="float-right">
-              <Button onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+          <Drawer open={visible} direction={language === "en" ? "left":"right"} >
+          
+           <DrawerTrigger asChild className="float-right">
+              <Button 
+                
                 onClick={handleOpenDrawer} className='px-2 hover:bg-red-500 transition-all ease-in-out duration-500 '>
-                {isHovered ? <X className="transition-all ease-in-out duration-500" /> : <AlignJustify />}
+                {visible ? <X className="transition-all ease-in-out duration-500" /> : <AlignJustify />}
               </Button>
             </DrawerTrigger>
-            <DrawerContent className="bg-white h-screen w-[80%] p-6">
+         
+            
+            <DrawerContent className="bg-white h-screen w-[70%] p-6">
               <div className='flex justify-between items-center mt-6'>
-                <Image src={logo} className="" alt='l' />
+                <Image src={logo}  className="w-36 h-24" alt='l' />
                 <Button onClick={handleCloseDrawer} className='px-2 hover:bg-red-500'><X /></Button>
               </div>
-              <ul className="mt-6 px-6  ">
+              <div className="flex ">
+              <ul className="mt-6 px-6 flex-grow  ">
                 {navData.map((item, index) => {
                   return (
-                    <Link href={item.path} key={index}>
+                    <Link href={item.path} onClick={handleItemClick} key={index}>
                       <li className={`text-sm mt-2 h-8 text-blackDark  border-b border-blackLight border-opacity-50`}>{`${t(`${item.label}`)}`}</li>
                     </Link>
                   )
                 })}
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
-                    <AccordionTrigger >
-                      <li className="text-sm text-blackDark ">{`${t(`nav:join`)}`}</li>
+                    <AccordionTrigger className="hover:no-underline" >
+                      <li className=" hover:no-underline text-sm text-blackDark">{`${t(`nav:join`)}`}</li>
                     </AccordionTrigger>
                     <AccordionContent>
-                    <p onClick={()=>{handleJoinClick("advertiser")}}   >{`${t(`nav:join_an_adviser`)}`} </p>
-                    <p onClick={()=>{handleJoinClick("influencer")}}  className='mt-2' >{`${t(`nav:join_an_influencer`)}`} </p>
+                    <p onClick={()=>{handleJoinClick("advertiser")}}  className='hover:text-red-500 cursor-pointer '  >{`${t(`nav:join_an_adviser`)}`} </p>
+                    <p onClick={()=>{handleJoinClick("influencer")}}  className='mt-2 hover:text-red-500 cursor-pointer ' >{`${t(`nav:join_an_influencer`)}`} </p>
                     </AccordionContent>
                   </AccordionItem>
-                  
-                 
                 </Accordion>
-                {data?.session ? <li className='cursor-pointer text-sm h-8 text-blackDark mt-2' onClick={handleLogOut}>LogOut</li> :
-                  <li ><Link href={"/login"} className={`${pathname === "/login" || pathname === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400" : ""} `}>{`${t(`nav:login`)}`} </Link></li>
+
+                {data?.session ? <li className='cursor-pointer text-sm h-8 text-blackDark mt-2' onClick={handleLogOut}>{`${t(`nav:logout`)}`}</li> :
+                  <li onClick={handleItemClick}  className={`${pathname === "/login" || pathname === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400 mt-2 text-sm " : "mt-2 text-sm text-blackDark"} `} ><Link href={"/login"} >{`${t(`nav:login`)}`} </Link></li>
                 }
+                
 
               </ul>
+              <div className='h-full bg-gray-100 w-3 flex-shrink border-x my-4 border-gray-200'></div>
+              </div>
             </DrawerContent>
           </Drawer>
         </div>

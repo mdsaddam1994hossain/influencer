@@ -69,7 +69,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <ScrollComponent />
+      {/* <ScrollComponent /> */}
     </div>
   )
 }
