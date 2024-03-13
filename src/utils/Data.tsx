@@ -1,7 +1,5 @@
 import {
     Settings,
-    LayoutDashboard,
-    ChevronDown,
     Palette,
     CarTaxiFront,
     Music4,
@@ -113,10 +111,10 @@ export const serviceData =[
 ]
 
 export const navData = [
-  { label: "nav:home", path: "/" },
-  { label: "nav:contact", path: "/contact" },
-  { label: "nav:who_are", path: "/about" },
-  { label: "nav:blog", path: "/blog" },
+  { label: "nav.home", path: "/" },
+  { label: "nav.contact", path: "/contact" },
+  { label: "nav.who_are", path: "/about" },
+  { label: "nav.blog", path: "/blog" },
 ]
 
 export const influencerData = [

@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import { Button } from '../ui/button'
 import { Separator } from "@/components/ui/separator"
 import Image from 'next/image'
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/navigation'
 import { TInfluencer } from '@/types/influencer'
 
@@ -14,7 +15,7 @@ type Props ={
 const InfluencerMemberCard:FC<Props> = ({influencer}) => {
 
     const router = useRouter()
-
+    const { t} = useTranslation()
 
     const onViewProfile =(id:any)=>{
         router.push(`/influencer/${id}`);
@@ -39,19 +40,19 @@ const InfluencerMemberCard:FC<Props> = ({influencer}) => {
         <div className='flex justify-between mt-4'>
             <div>
                 <p className='font-medium font-roboto '>1250K</p>
-                <p className='text-sm font-roboto text-gray-500'>Followers</p>
+                <p className='text-sm font-roboto text-gray-500'>{t("home.followers")}</p>
             </div>
             <div>
             <Separator orientation="vertical" />
             </div>
             <div>
                 <p className='font-medium font-roboto '>60K</p>
-                <p className='text-sm font-roboto text-gray-500'>Following</p>
+                <p className='text-sm font-roboto text-gray-500'>{t("home.following")}</p>
             </div>
         </div>
         <Separator className="my-4" />
        
-       <Button onClick={()=> onViewProfile(influencer?.item?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-gray-200 text-blackDark hover:text-white font-medium text-lg font-roboto h-11 hover:bg-black mb-3'>View Profile</Button>
+       <Button onClick={()=> onViewProfile(influencer?.item?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-gray-200 text-blackDark hover:text-white font-medium text-lg font-roboto h-11 hover:bg-black mb-3'>{t("home.view_profile")}</Button>
     </div>
   )
 }

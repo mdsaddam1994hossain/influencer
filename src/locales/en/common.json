@@ -1,1 +1,81 @@
-{"send":"send"}
+{
+    "common":{
+        "what_moalen":"What is Moalen?",
+        "moalen_description":"A Saudi platform that brings together the bigest influencers In All fields!",
+        "signup":"Signup Now!",
+         "name":"Name",
+         "phone":"Phone",
+         "email":"Email",
+         "subject":"Subject",
+         "message":"Message",
+         "name_placeholder":"Enter name",
+         "phone_placeholder":"Phone number",
+         "email_placeholder":"Enter email",
+         "subject_placeholder":"Your Subject",
+         "message_placeholder":"Write your message"
+        
+    },
+    "home":{
+        "search":"Find an influencer",
+        "searchmobile":"Search",
+        "influencers":"Influencers",
+        "what_moalen":"Who announced?",
+        "view_profile":"View Profile",
+        "followers":"Followers",
+        "following":"Following"
+    },
+    "nav": {
+        "blog":"Blog",
+        "home":"Home",
+        "join":"Join Us",
+        "login":"Sign in",
+        "filter":"Filter",
+        "contact":"Contact us",
+        "who_are":"Who Are We",
+        "logout":"Logout",
+        "categories":"View categories",
+        "categories_mobile":"categories",
+        "join_an_adviser":"Join as an advertiser",
+        "join_an_influencer":"Join as an Influencer"
+    },
+    "footer":{
+        "working_hour_label":"Working Hour",
+        "working_hour":"Mon-Fri: 7.00am-6.00pm",
+         "address_label":"Our Address",
+         "address":"Kingdom of Saudi Arabia",
+         "info":"Info",
+         "call_us":"Call Us",
+         "my_request":"My Requests",
+         "quick_links":"Quick Links",
+         "terms_conditions":"Terms and Conditions",
+         "about_moalen":"Moalen helps you choose the most appropriate influencers for your advertising campaign through accurate analyzes that help you identify them and your target audience",
+         "get_touch":"Get in Touch..",
+         "copy_write":"Copyright @2023 All right reserved Moalen"
+         
+         
+
+    },
+    "filter" :{
+        "options":"Options",
+        "reset": "reset",
+        "influencer_gender": "Influencer gender",
+        "female":"Female",
+        "male": "Male",
+        "followers": "Followers",
+        "impact_location": "Impact location",
+        "platforms": "Platforms",
+        "followers_age":"Followers Age",
+        "followers_count":"Followers Count",
+        "all":"All",
+        "catagories":"Catagories"
+    },
+    "contact":{
+        "contact_info": "Contact Info",
+        "contact_description":"Our Contact Info and we'll respond as soon as possible",
+        "location":"Kingdom of Saudi Arabia",
+        "feel_free":"Feel Free to Get in Touch"
+        
+
+    }
+
+}

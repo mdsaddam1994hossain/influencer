@@ -1,1 +1,78 @@
-{"send":"إرسال"}
+{
+    "common":{
+        "what_moalen":"ما هو مولين؟",
+        "moalen_description":"منصة سعودية تجمع أكبر المؤثرين في كافة المجالات",
+        "signup":"سجل الآن",
+        "name":"اسم",
+         "phone":"هاتف",
+         "email":"بريد إلكتروني",
+         "subject":"موضوع",
+         "message":"رسالة",
+         "name_placeholder":"أدخل الاسم",
+         "phone_placeholder":"رقم التليفون",
+         "email_placeholder":"أدخل البريد الإلكتروني",
+         "subject_placeholder":"الموضوع الخاص بك",
+         "message_placeholder":"اكتب رسالتك"
+
+    },
+    "home":{
+        "search":"البحث عن المؤثر",
+        "searchmobile":"بحث",
+        "influencers":"المؤثرين",
+        "what_moalen":"مين معلن؟",
+        "view_profile":"عرض ملف التعريف",
+        "followers":"متابعون",
+        "following":"الآتي"
+    },
+    "nav" : {
+        "blog":"مدونة",
+        "home":" الرئيسية",
+        "join":"انضم إلينا",
+        "login":"تسجيل الدخول",
+        "filter":"تنقية",
+        "contact":"تواصل معنا",
+        "who_are":"من نحن",
+        "logout":"تسجيل الخروج",
+        "categories":"عرض الفئات",
+        "categories_mobile":"الفئات",
+        "join_an_adviser":"انضم كمعلن",
+        "join_an_influencer":"انضم كمؤثر"
+    },
+    "footer":{
+        "working_hour_label":"ساعة العمل",
+        "working_hour":"الإثنين-الجمعة: 7.00 صباحًا - 6.00 مساءً",
+         "address_label":"عنواننا",
+         "address":"المملكة العربية السعودية",
+         "info":"معلومات",
+         "call_us":"اتصل بنا",
+         "my_request":"طلباتي",
+         "quick_links":"روابط سريعة",
+         "terms_conditions":"الأحكام والشروط",
+         "about_moalen":"تساعدك منصة معلن على اختيار أنسب المؤثرين لحملتك الإعلانية من خلال التحليلات الدقيقة التي تساعدك على التعرف عليهم وعلى جمهورك المستهدف",
+         "get_touch":"ابقى على تواصل..",
+         "copy_write":"حقوق الطبع والنشر @2023 جميع الحقوق محفوظة لمولين"
+
+    },
+    "filter" :{
+        "options":"الخيارات",
+        "reset": "إعادة ضبط",
+        "influencer_gender": "الجنس المؤثر",
+        "female":"أنثى",
+        "male": "ذكر",
+        "followers": "متابعون",
+        "impact_location": "موقع التأثير",
+        "platforms": "المنصات",
+        "followers_age":"عمر المتابعين",
+        "followers_count":"عدد المتابعين",
+        "all":"الكل",
+        "catagories":"مجالات"
+    },
+    "contact":{
+        "contact_info": "معلومات الاتصال",
+        "contact_description":"معلومات الاتصال الخاصة بنا وسوف نقوم بالرد في أقرب وقت ممكن",
+        "location":"المملكة العربية السعودية",
+        "feel_free":"لا تتردد في الحصول على اتصال"
+       
+
+    }
+}

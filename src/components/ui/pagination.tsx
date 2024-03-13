@@ -70,6 +70,7 @@ const PaginationPrevious = ({
     className={cn("gap-1  h-[50px] w-[50px]  ", className)}
     {...props}
   >
+
     <ChevronLeft className="h-4 w-4  g "  strokeWidth={3}  />
     
   </PaginationLink>

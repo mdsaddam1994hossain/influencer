@@ -63,7 +63,9 @@ const PaginationSection: FC<Props> = ({
                 ))}
 
                 <PaginationItem>
-                    <PaginationNext onClick={handleNextPage} className={`text-red-500 border border-red-500 ${currentPage === totalPages ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-red-500 hover:text-white hover:bg-red-500 cursor-pointer'}`}/>
+                    <PaginationNext onClick={handleNextPage} className={`text-red-500 border border-red-500 ${currentPage === totalPages ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-red-500 hover:text-white hover:bg-red-500 cursor-pointer'}`}>
+                        next
+                    </PaginationNext>
                 </PaginationItem>
             </PaginationContent>
         </Pagination>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import HomePage from "@/module/Home/Home"
-import readUserSession from '@/lib/actions';
 import initTranslations from '../i18n';
 
 

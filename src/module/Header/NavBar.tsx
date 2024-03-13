@@ -28,8 +28,7 @@ const NavBar = ({ data }: any) => {
   const [joinus,setJoinus] = useState(false)
   const router = useRouter()
   const path = pathname.startsWith("/en") ? pathname.slice(0, 1) + pathname.substring(4) : pathname;
-  const { t, i18n } = useTranslation()
-  const { language } = i18n
+  const { t} = useTranslation()
   const isLogin = useAppStore((state) => state.isLogin)
   const setIsLogin = useAppStore((state) => state.setIsLogin)
 
@@ -79,7 +78,7 @@ const NavBar = ({ data }: any) => {
             <li> <Popover open={joinus} onOpenChange={handleClosePopover}>
               <PopoverTrigger asChild onClick={handleJoinUs}>
               <p className=' cursor-pointer '>
-                {`${t(`nav:join`)}`}
+                {`${t(`nav.join`)}`}
               </p>
             </PopoverTrigger>
               <PopoverContent className="w-56 mt-5 p-0">
@@ -88,7 +87,7 @@ const NavBar = ({ data }: any) => {
                   <div className="hover:bg-red-500  w-full h-12 flex  items-center px-4 group   ">
                     <div className="flex gap-2 cursor-pointer transition duration-500 ease-in-out transform group-hover:translate-x-3 group-hover:text-white">
                       <UserPlus  size={18} />
-                      <p onClick={()=>{handleJoinClick("advertiser")}}   >{`${t(`nav:join_an_adviser`)}`} </p>
+                      <p onClick={()=>{handleJoinClick("advertiser")}}   >{`${t(`nav.join_an_adviser`)}`} </p>
                     </div>               
                   </div>
 
@@ -97,7 +96,7 @@ const NavBar = ({ data }: any) => {
                   <div className="hover:bg-red-500  w-full h-12 flex  items-center px-4 group   ">
                    <div className="flex gap-2 cursor-pointer transition duration-500 ease-in-out transform group-hover:translate-x-3 group-hover:text-white">
                       <UserCheck   size={18} />
-                      <p onClick={()=>{handleJoinClick("influencer")}}   >{`${t(`nav:join_an_influencer`)}`} </p>
+                      <p onClick={()=>{handleJoinClick("influencer")}}   >{`${t(`nav.join_an_influencer`)}`} </p>
                     </div>  
                   </div>
 
@@ -108,13 +107,13 @@ const NavBar = ({ data }: any) => {
             </Popover></li>
           }
 
-          {data?.session ? <li className='cursor-pointer' onClick={handleLogOut}>{`${t(`nav:logout`)}`}</li> :
-            <li ><Link href={"/login"} className={`${path === "/login" || path === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400" : ""} `}>{`${t(`nav:login`)}`} </Link></li>
+          {data?.session ? <li className='cursor-pointer' onClick={handleLogOut}>{`${t(`nav.logout`)}`}</li> :
+            <li ><Link href={"/login"} className={`${path === "/login" || path === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400" : ""} `}>{`${t(`nav.login`)}`} </Link></li>
           }
         </ul>
         <div className='flex gap-4 items-center'>
-          <Categories categories='nav:categories' />
-          <ResultFilter language={language} />
+          <Categories categories='nav.categories' />
+          <ResultFilter  />
         </div>
       </div>
     </div>

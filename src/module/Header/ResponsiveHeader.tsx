@@ -76,7 +76,7 @@ const ResponsiveHeader = ({ data }: any) => {
           <div className={`flex gap-6 items-center `}>
             <div className='relative'>
               <div className={`h-2.5 w-2.5 rounded-full bg-sky-100 absolute bottom-5 ${language === "ar" ? "mr-6" : "ml-6"} }`}></div>
-              <Input type="email" placeholder={t("home:search")} className={`rounded-full w-60 h-[54px] ${language === "ar" ? "pr-10" : "pl-10"} "}`} />
+              <Input type="email" placeholder={t("home.search")} className={`rounded-full w-60 h-[54px] ${language === "ar" ? "pr-10" : "pl-10"} "}`} />
             </div>
             <LanguageChanger />
           </div>
@@ -114,17 +114,17 @@ const ResponsiveHeader = ({ data }: any) => {
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="hover:no-underline" >
-                      <li className=" hover:no-underline text-sm text-blackDark">{`${t(`nav:join`)}`}</li>
+                      <li className=" hover:no-underline text-sm text-blackDark">{`${t(`nav.join`)}`}</li>
                     </AccordionTrigger>
                     <AccordionContent>
-                    <p onClick={()=>{handleJoinClick("advertiser")}}  className='hover:text-red-500 cursor-pointer '  >{`${t(`nav:join_an_adviser`)}`} </p>
-                    <p onClick={()=>{handleJoinClick("influencer")}}  className='mt-2 hover:text-red-500 cursor-pointer ' >{`${t(`nav:join_an_influencer`)}`} </p>
+                    <p onClick={()=>{handleJoinClick("advertiser")}}  className='hover:text-red-500 cursor-pointer '  >{`${t(`nav.join_an_adviser`)}`} </p>
+                    <p onClick={()=>{handleJoinClick("influencer")}}  className='mt-2 hover:text-red-500 cursor-pointer ' >{`${t(`nav.join_an_influencer`)}`} </p>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
 
-                {data?.session ? <li className='cursor-pointer text-sm h-8 text-blackDark mt-2' onClick={handleLogOut}>{`${t(`nav:logout`)}`}</li> :
-                  <li onClick={handleItemClick}  className={`${pathname === "/login" || pathname === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400 mt-2 text-sm " : "mt-2 text-sm text-blackDark"} `} ><Link href={"/login"} >{`${t(`nav:login`)}`} </Link></li>
+                {data?.session ? <li className='cursor-pointer text-sm h-8 text-blackDark mt-2' onClick={handleLogOut}>{`${t(`nav.logout`)}`}</li> :
+                  <li onClick={handleItemClick}  className={`${pathname === "/login" || pathname === "/login/en" ? "underline decoration-[3px] underline-offset-[15px] text-yellow-400 mt-2 text-sm " : "mt-2 text-sm text-blackDark"} `} ><Link href={"/login"} >{`${t(`nav.login`)}`} </Link></li>
                 }
                 
 
@@ -136,11 +136,11 @@ const ResponsiveHeader = ({ data }: any) => {
         </div>
         <Separator className='w-full mb-3' />
         <div className='flex justify-between gap-2 pb-3'>
-          <div className='flex-1 overflow-y-auto'><Categories categories='nav:categories_mobile' /></div>
-          <div className='flex-1 overflow-y-auto'> <ResultFilter language={language} /></div>
+          <div className='flex-1 overflow-y-auto'><Categories categories='nav.categories_mobile' /></div>
+          <div className='flex-1 overflow-y-auto'> <ResultFilter  /></div>
           <div className='relative flex-1 overflow-y-auto w-full '>
             <div className={`h-2 lg:h-2.5 w-2 lg:w-2.5 rounded-full bg-sky-100 absolute bottom-3 lg:bottom-5 ${language === "ar" ? "mr-1.5 lg:mr-6" : "ml-1.5 lg:ml-6"} }`}></div>
-            <Input type="email" placeholder={t("home:searchmobile")} className={`rounded-full w-full h-8 lg:h-[54px] ${language === "ar" ? "pr-4 lg:pr-10" : "pl-4 lg:pl-10"} "}`} />
+            <Input type="email" placeholder={t("home.searchmobile")} className={`rounded-full w-full h-8 lg:h-[54px] ${language === "ar" ? "pr-4 lg:pr-10" : "pl-4 lg:pl-10"} "}`} />
           </div>
           <div className='flex-1 overflow-y-auto '><LanguageChanger /></div>
         </div>
