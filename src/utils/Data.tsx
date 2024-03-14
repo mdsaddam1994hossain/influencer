@@ -88,25 +88,40 @@ export const blogData = [
 ]
 
 export const serviceData =[
-  {title:"No upfront Cost",
-  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  {
+  id:1,
+  title:"about.influencer_marketing",
+  description:"about.marketing_description",
   icon:<Factory  color="white" size={30}/>,
   bgColor:"bg-red-500"
    },
-  {title:"Verified Creators",
-  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  {
+  id:2,
+  title:"about.digital_marketing",
+  description:"about.digital_description",
   icon:<Rocket color="white" size={30}/>,
   bgColor:"bg-blue-600"
    },
-  {title:"Live Chat",
-  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  {
+  id:3,  
+  title:"about.manage_social_site",
+  description:"about.social_site_description",
   icon:<MessagesSquare  color="white" size={30} />,
   bgColor:"bg-purple-500"
    },
-  {title:"No upfront Cost",
-  description:"Nulla eget metus mauris. Sed in ips um mollis, sagittis ligula.",
+  {
+  id:4,
+  title:"about.marketing_strategies",
+  description:"about.strategies_description",
   icon:<Rocket color="white" size={30}/>,
   bgColor:"bg-yellow-500"
+   },
+  {
+  id:5,
+  title:"about.idea",
+  description:"about.idea_description",
+  icon:<Rocket color="white" size={30}/>,
+  bgColor:"bg-green-500"
    },
 ]
 

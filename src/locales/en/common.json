@@ -12,7 +12,16 @@
          "phone_placeholder":"Phone number",
          "email_placeholder":"Enter email",
          "subject_placeholder":"Your Subject",
-         "message_placeholder":"Write your message"
+         "message_placeholder":"Write your message",
+         "password":"Password",
+         "welcome_moalen":"Welcome to Moalen",
+         "client":"Client",
+         "influencer":"Influencer",
+         "remember_me":"Remember Me",
+         "forgot_password":"Forgot Password?",
+         "or":"OR",
+         "donot_account":"Don't have an account?",
+         "create_account":"Create Account"
         
     },
     "home":{
@@ -73,9 +82,50 @@
         "contact_info": "Contact Info",
         "contact_description":"Our Contact Info and we'll respond as soon as possible",
         "location":"Kingdom of Saudi Arabia",
-        "feel_free":"Feel Free to Get in Touch"
-        
-
+        "feel_free":"Feel Free to Get in Touch"     
+    },
+    "notfound":{
+        "button_label":"Back to Home Page",
+        "message":"Oops! Page not Found."
+    },
+    "about":{
+        "services":"Our Services",
+        "services_description":"A Saudi platform that brings together the largest influencers in all fields and electronic marketing through social media platforms.",
+        "influencer_marketing":"Influencer Marketing",
+        "marketing_description":"A service that brings together different types of influencers you trust and their content on social media under one umbrella. To connect them with advertisers in government agencies, brand owners, small and medium enterprises, and others; To benefit from the wide spread of influencers more than others in traditional advertising media.",
+        "digital_marketing":"Digital Marketing and Marketing Campaigns",
+        "digital_description":"We provide the most effective digital marketing services that will help your brand and products reach full visibility in the target market and achieve your goals on all digital platforms and social media sites.",
+        "manage_social_site":"Manage accounts on social media sites",
+        "social_site_description":"We help you build your brand on social media and reach your target audience in an effective and innovative way.",
+        "marketing_strategies":"Marketing plan and strategies",
+        "strategies_description":"Preparing and implementing marketing plans based on understanding the nature of the target market and the type of customers, using appropriate and clear messages for marketing, and setting goals and the appropriate budget for the customer.",
+        "idea":"Idea",
+        "idea_description":"We believe that marketing is an idea! We provide marketing ideas in a scientific manner and based on experiences and expertise.",
+        "about_moalen":"About Moalen",
+        "moalen_title":"Creative and First Problems Solving",
+        "moalen_description":"A Saudi platform, an advertiser marketing company that brings together the largest influencers in all fields! “Moalan platform helps you choose the most appropriate influencers and social media platforms for your advertising campaign through accurate analytics.",
+        "ceo":"CEO of Moalen"  
+    },
+    "login" : {
+        "login" : "Login",
+        "button_label":"Log In",
+        "signin_google":"Sign In with Google",
+        "signin_facebook":"Sign In with Facebook",
+        "email_error_message":"email must be at least 8 characters.",
+        "password_error_message":"password must be at least 6 characters."
+    },
+    "signup":{
+        "signup":"SignUp",
+        "first_name":"First Name",
+        "last_name":"Last Name",
+        "country":"Country",
+        "address":"Address",
+        "town":"Town/City",
+        "post":"Post Code",
+        "already_account":"Already have an account?" ,
+        "fname_error":"first name must be at least 6 characters.",
+        "lname_error":"last name must be at least 6 characters.",
+        "phone_error":"phone must be at least 11 characters." 
     }
 
 }

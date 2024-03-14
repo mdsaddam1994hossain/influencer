@@ -11,12 +11,8 @@ import { useInfluencer } from '@/app/hook/useInfluencers'
 
 type Props ={id:number}
 const InfluencerProfile:FC<Props> = ({id}) => {
-
- 
+   
   const {data:influencer} = useInfluencer(id)
-
-   console.log(influencer,"influencer profile data",id)
-
 
   return (
     <div className='mb-12'>

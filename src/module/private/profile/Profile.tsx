@@ -1,25 +1,23 @@
 
 "use client"
-import React,{useEffect} from 'react'
-import useUser from '@/app/hook/useInfluencers'
+import React from 'react'
 import ProfileCard from '@/components/common/ProfileCard'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
-import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 
 
 
 const Profile = () => {
 
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
 
 
 
-   useEffect(()=>{
-    queryClient.invalidateQueries({ queryKey: ['influencers'] })
-   },[])
+  //  useEffect(()=>{
+  //   queryClient.invalidateQueries({ queryKey: ['influencers'] })
+  //  },[])
 
   return (
     <div className='mb-12'>

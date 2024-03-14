@@ -25,24 +25,29 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
+import { useTranslation } from 'react-i18next'
 
 
 const SignUpForm = () => {
+    const {t,i18n} = useTranslation()
+    const {language} = i18n;
     const router = useRouter()
     const FormSchema = z.object({
 
         fName: z.string().min(8, {
-            message: "first name must be at least 4 characters.",
+            message: `${t("signup.fname_error")}`,
         }),
         lName: z.string().min(8, {
-            message: "last name must be at least 4 characters.",
+            message: `${t("signup.lname_error")}`,
         }),
         email: z.string().min(8, {
-            message: "email must be at least 8 characters.",
+            message: `${t("login.email_error_message")}`,
         }),
         phone: z.string().min(6, {
-            message: "phone must be at least 11 characters.",
+            message: `${t("signup.phone_error")}`,
         }),
+
+       
     
     })
 
@@ -77,9 +82,9 @@ const SignUpForm = () => {
                         name="fName"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='text-blackDark text-base'>First Name</FormLabel>
+                                <FormLabel className='text-blackDark text-base'>{t("signup.first_name")}</FormLabel>
                                 <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder='First Name' />
+                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.first_name")}`} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -93,9 +98,9 @@ const SignUpForm = () => {
                         name="lName"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='text-blackDark text-base'>Last Name</FormLabel>
+                                <FormLabel className='text-blackDark text-base'>{t("signup.last_name")}</FormLabel>
                                 <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder='Last Name' />
+                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.last_name")}`} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -112,9 +117,9 @@ const SignUpForm = () => {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='text-blackDark text-base'>Email</FormLabel>
+                                <FormLabel className='text-blackDark text-base'>{t("common.email")}</FormLabel>
                                 <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder='Email Address' />
+                                    <Input className='my-2 focus:border-red-500' {...field} placeholder='infoyour@gmail.com' />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -129,9 +134,9 @@ const SignUpForm = () => {
                         name="phone"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='text-blackDark text-base'>Phone</FormLabel>
+                                <FormLabel className='text-blackDark text-base'>{t("common.phone")}</FormLabel>
                                 <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder='Phone Number' />
+                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.phone_placeholder")}`}/>
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -142,9 +147,9 @@ const SignUpForm = () => {
 
                 <div className='col-span-2 mt-6'>
                     <div className='col-span-2 md:col-span-1'>
-                        <p>Country</p>
+                        <p>{t("signup.country")}</p>
                         <Select >
-                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-12 `}>
+                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
                                 <SelectValue defaultValue={"saudiarabia"} placeholder="Saudi Arabia" />
                             </SelectTrigger>
                             <SelectContent className='bg-white hover:bg-red-500 '>
@@ -159,18 +164,18 @@ const SignUpForm = () => {
                 </div>
                 <div className='col-span-2 mt-6'>
                     <div className='col-span-2 '>
-                        <p>Address</p>
-                        <Input placeholder='Address' className='mt-2' />
+                        <p>{t("signup.address")}</p>
+                        <Input placeholder={`${t('signup.address')}`} className='mt-2' />
                     </div>
 
                 </div>
 
                 <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
                     <div className='col-span-2 md:col-span-1'>
-                        <p>Town/City</p>
+                        <p>{t("signup.town")}</p>
                         <Select >
-                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-12 `}>
-                                <SelectValue defaultValue={"riad"} placeholder="Riad" />
+                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                <SelectValue defaultValue={"riad"} placeholder="Riad"  />
                             </SelectTrigger>
                             <SelectContent className='bg-white hover:bg-red-500 '>
                                 <SelectGroup className='my-2 w-full '>
@@ -182,29 +187,29 @@ const SignUpForm = () => {
                         </Select>
                     </div>
                     <div className='col-span-2 md:col-span-1'>
-                        <p>Post Code</p>
-                        <Input placeholder='Phone number' className='mt-2' />
+                        <p>{t("signup.post")}</p>
+                        <Input placeholder={t("signup.post")} className='mt-2' />
                     </div>
                 </div>
 
                 <div className='flex justify-between my-6 '>
                     <div className='flex gap-2 justify-center'>
-                        <div className="flex items-center space-x-2">
-                            <Checkbox id="terms" className='border-blackLight -mt-[2px]' />
+                        <div className="flex items-center ">
+                            <Checkbox id="terms" className={`border-blackLight -mt-[2px] ${language === "en" ? "mr-2" : "ml-2"}`} />
                             <label
                                 htmlFor="terms"
                                 className="text-blackLight "
                             >
-                                Remember Me
+                                {t("common.remember_me")}
                             </label>
                         </div>
                     </div>
-                    <p className='text-red-500 '>Forgot Password?</p>
+                    <p className='text-red-500 '> {t("common.forgot_password")}</p>
                 </div>
                 {/* <Button className='bg-red-500 hover:bg-red-600 mt-4 font-medium text-lg w-full h-14'>Create Account</Button> */}
-                <SliderButton label='Create Account' btnStyle="w-full mt-4 font-medium text-lg w-full h-14" />
+                <SliderButton label="common.create_account" btnStyle="w-full mt-4 font-medium text-lg w-full h-14" />
 
-                <p className='mt-6 text-center text-blackLight'>Already have an account ? <span className=' text-blackDark cursor-pointer hover:text-red-500' onClick={() => router.push("/login")}>Login</span></p>
+                <p className='mt-6 text-center text-blackLight'>{t("signup.already_account")} <span className=' text-blackDark cursor-pointer hover:text-red-500' onClick={() => router.push("/login")}>{t("login.login")}</span></p>
 
             </form>
 
