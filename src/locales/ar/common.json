@@ -76,6 +76,36 @@
         "all":"الكل",
         "catagories":"مجالات"
     },
+    "categories":{
+        "design_art":"تصميم وفن",
+        "car":"سيارات",
+        "beauty_makeup":"التجميل والمكياج",
+        "trade_entrep":"التجارة وريادة الأعمال",
+        "interior_design":"التصميم الداخلي والحدائق",
+        "music":"موسيقى",
+        "shopping":"تسوق",
+        "sports":"رياضات",
+        "physical_fitness":"اللياقة البدنية والصحة",
+        "food_drinks":"الطعام و الشراب",
+        "games":"ألعاب",
+        "health_care":"الصحة والرعاية",
+        "movies_series":"الافلام والمسلسلات",
+        "travel_tourism":"سياحة و سفر",
+        "technology":"تكنولوجيا",
+        "photography_cameras":"التصوير الفوتوغرافي والكاميرات",
+        "family":"العائلة",
+        "fashion":"موضة",
+        "entertainment":"ترفيه",
+        "offers_discounts":"العروض والخصومات",
+        "trainers":"المدربون",
+        "media_television":"الإعلام والتلفزيون",
+        "home":"بيت",
+        "press":"الصحافة",
+        "actors":"الممثلون",
+        "education":"تعليم",
+        "performing":"الفنون التمثيلية",
+        "restaurants_cafes":"مطاعم ومقاهي"
+    },
     "contact":{
         "contact_info": "معلومات الاتصال",
         "contact_description":"معلومات الاتصال الخاصة بنا وسوف نقوم بالرد في أقرب وقت ممكن",
@@ -126,5 +156,6 @@
         "lname_error":"يجب أن يتكون الاسم الأخير من 6 أحرف على الأقل.",
         "phone_error":"يجب أن يتكون الهاتف من 11 حرفًا على الأقل."   
     }
+    
 
 }

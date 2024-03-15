@@ -1,3 +1,4 @@
+"use client"
 import React, { FC } from 'react'
 
 import { Filter, RotateCw } from "lucide-react"
@@ -13,12 +14,14 @@ import {
 } from "@/components/ui/popover"
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
+import useAppStore from '@/store'
 
 
 
 const ResultFilter = () => {
   const { t ,i18n} = useTranslation()
   const { language } = i18n
+  const setInfluencerGender = useAppStore((state)=>state.setInfluencerGender)
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -43,13 +46,13 @@ const ResultFilter = () => {
         <div className='grid grid-cols-1 lg:grid-cols-3 py-6 gap-4 lg:gap-6  '>
           <div >
             <p className=' text-base text-blackDark '>{t("filter.influencer_gender")}</p>
-            <RadioGroup className="flex gap-4 justify-around my-2" >
+            <RadioGroup onValueChange={(v)=>setInfluencerGender(v)} className="flex gap-4 justify-around my-2" >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="female" id="r1" />
+                <RadioGroupItem value="female" id="r1"  />
                 <Label htmlFor="r1 text-blackLight">{t("filter.female")}</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="male" id="r2" />
+                <RadioGroupItem value="male" id="r2"  />
                 <Label htmlFor="r2 text-blackLight">{t("filter.male")}</Label>
               </div>
 

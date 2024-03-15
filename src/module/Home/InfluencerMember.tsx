@@ -10,11 +10,15 @@ import { TInfluencer } from '@/types/influencer'
 import { useTranslation } from 'react-i18next'
 
 const InfluencerMember = () => {
-    const { data,isLoading } = useInfluencers()
+   
     const isMobile = useAppStore((state) => state.isMobile)
     const [numberOfDisplayPages,setNumberOfDisplayPages] = useState(4)
     const [currentPage, setCurrentPage] = useState(1)
     const [itemsPerPage, setItemsPerPage] = useState(8)
+    const influencerGender = useAppStore((state)=>state.influencerGender)
+    console.log({influencerGender})
+    const { data,isLoading } = useInfluencers(influencerGender)
+
     const { t } = useTranslation()
 
     const totalItems = data?.length; // Assuming influencerData is your data source
@@ -53,7 +57,7 @@ const InfluencerMember = () => {
       }else{
         setNumberOfDisplayPages(10)
       }
-    },[isMobile])
+    },[isMobile,influencerGender])
 
     
 

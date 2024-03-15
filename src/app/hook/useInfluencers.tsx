@@ -2,16 +2,24 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { browserClient } from "@/lib/supabase/brower";
 
-export default function useInfluencers() {
+export default function useInfluencers(genderFilter:string) {
     return useQuery({
-        queryKey: ["influencers"],
+        queryKey: ["influencers",genderFilter],
         queryFn: async () => {
             const supabase = browserClient();
-            const { data: influencers } = await supabase.from("influencers").select("*");
+            let query = supabase.from("influencers").select("*");
+            if (genderFilter !== 'all') {
+                query = query.eq("gender", genderFilter);
+            }
+            const { data: influencers } = await query;
+            
             return influencers || [];
-        }
+        },
+        enabled: !!genderFilter,
     });
 }
+
+
 
 export function useInfluencer(id: number) {
     const queryClient = useQueryClient();
