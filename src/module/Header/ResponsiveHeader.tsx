@@ -20,7 +20,7 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import logo from "../../../public/images/logo.png"
+import logo from "../../../public/images/logo2.png"
 import { navData } from '@/utils/Data'
 import Link from 'next/link';
 import { userSignOut } from '@/lib/actions';
@@ -72,7 +72,9 @@ const ResponsiveHeader = ({ data }: any) => {
     <div>
       <div className='hidden lg:block'>
         <div className={`flex justify-between items-center h-28 `}>
+          
           <Image src={logo} height={15} width={100} className="" alt='l' />
+          
           <div className={`flex gap-6 items-center `}>
             <div className='relative'>
               <div className={`h-2.5 w-2.5 rounded-full bg-sky-100 absolute bottom-5 ${language === "ar" ? "mr-6" : "ml-6"} }`}></div>

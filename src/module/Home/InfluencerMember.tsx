@@ -8,6 +8,7 @@ import useAppStore from '@/store'
 import SkeletonCard from '@/components/common/SkeletonCard'
 import { TInfluencer } from '@/types/influencer'
 import { useTranslation } from 'react-i18next'
+import { Button } from '@/components/ui/button'
 
 const InfluencerMember = () => {
    
@@ -22,10 +23,14 @@ const InfluencerMember = () => {
     const { t } = useTranslation()
 
     const totalItems = data?.length; // Assuming influencerData is your data source
-    const images = ["/images/in-agent1.png",
-     "/images/in-agent2.png",
-      "/images/in-agent3.png",
-      "/images/in-agent4.png"
+    const images = ["/images/p1.png",
+     "/images/p2.png",
+      "/images/p3.png",
+      "/images/p4.png",
+      "/images/p5.png",
+     "/images/p6.png",
+      "/images/p7.png",
+      "/images/p8.png"
     ];
     const colors = ["bg-red-100", "bg-cyan-200", "bg-lime-100", "bg-purple-100"];
     const itemsWithImages = data?.map((item, index) => {
@@ -62,10 +67,10 @@ const InfluencerMember = () => {
     
 
     return (
-        <div className='my-8 lg:my-10 rounded-lg lg:rounded-xl'>
+        <div className='my-8  rounded-lg lg:rounded-xl'>
             
             <p className="lg:text-2xl text-blackDark font-medium ">{t("home.influencers")}</p>
-             {/* <p className="text-2xl lg:text-4xl font-bold font-roboto mt-2">Talented Influencer Member</p> */}
+             {/* <p className="text-2xl lg:text-4xl font-bold font-montserrat mt-2">Talented Influencer Member</p> */}
            
 
             {isLoading ? 
@@ -89,14 +94,18 @@ const InfluencerMember = () => {
                 ))}
             </div>
 
-            <div className='my-6 lg:my-12'>
-                <PaginationSection
+            <div className='my-6 lg:my-8 flex justify-center items-center' data-aos={"fade-up"}
+                data-aos-anchor-placement="center-bottom"
+                data-aos-duration="2500">
+
+              <Button variant="outline" className="rounded-full border border-blackDark h-[45px] hover:bg-blackDark text-blackDark font-medium text-sm px-4"> {t("home.show_more")}</Button>
+                {/* <PaginationSection
                     totalItems={totalItems}
                     itemsPerPage={itemsPerPage}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     pageRangeDisplayed={numberOfDisplayPages} // This prop controls the range of pages displayed
-                />
+                /> */}
             </div>
                 
             </div>}

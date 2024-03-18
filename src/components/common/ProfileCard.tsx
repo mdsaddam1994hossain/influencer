@@ -15,15 +15,15 @@
 
         <div className='flex justify-between mt-4'>
             <div>
-                <p className='font-medium font-roboto text-black '>1250K</p>
-                <p className='text-sm font-roboto text-gray-500'>Followers</p>
+                <p className='font-medium font-montserrat text-black '>1250K</p>
+                <p className='text-sm font-montserrat text-gray-500'>Followers</p>
             </div>
             <div>
             <Separator orientation="vertical" />
             </div>
             <div>
-                <p className='font-medium font-roboto text-black '>60K</p>
-                <p className='text-sm font-roboto text-gray-500'>Following</p>
+                <p className='font-medium font-montserrat text-black '>60K</p>
+                <p className='text-sm font-montserrat text-gray-500'>Following</p>
             </div>
         </div>  
     </div>

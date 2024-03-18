@@ -26,7 +26,7 @@ const MainCard = () => {
             <div className='px-4 flex items-center gap-5'>
                 <Image src={"/images/person2.avif"} objectFit="cover" height={90} width={90} alt='e' className='rounded-full h-24 w-24' />
                 <div>
-                    <p className='font-roboto'>Yasser Al-Shahrani</p>
+                    <p className='font-montserrat'>Yasser Al-Shahrani</p>
                     <div>
                         <p>Icon</p>
                     </div>

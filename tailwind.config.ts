@@ -20,7 +20,7 @@ const config = {
     extend: {
       fontFamily: {
         poppins: ["var(--font-poppins)"],
-        roboto: ["var(--font-roboto)"],
+        montserrat: ["var(--font-montserrat)"],
         ibmmono: ["var(--font-ibm_mono)"],
       },
       boxShadow: {
@@ -28,7 +28,10 @@ const config = {
       },
       colors: {
         blackLight: "#647082",
-        blackDark:"#333333",   
+        blackDark:"#3C3744", 
+        blackMedium:"#252E48",
+        grayLight :"#999999",
+        grayBorder:"#E2E8F0", 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

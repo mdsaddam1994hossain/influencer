@@ -31,7 +31,9 @@
         "what_moalen":"Who announced?",
         "view_profile":"View Profile",
         "followers":"Followers",
-        "following":"Following"
+        "following":"Following",
+        "fitness":"Fitness",
+        "show_more":"Show more"
     },
     "nav": {
         "blog":"Blog",
@@ -59,7 +61,7 @@
          "terms_conditions":"Terms and Conditions",
          "about_moalen":"Moalen helps you choose the most appropriate influencers for your advertising campaign through accurate analyzes that help you identify them and your target audience",
          "get_touch":"Get in Touch..",
-         "copy_write":"Copyright @2023 All right reserved Moalen"
+         "copy_write":"© 2024 - All rights reserved"
          
          
 

@@ -18,8 +18,8 @@ const Signup = () => {
                         <p className="my-3 lg:mt-3 text-blackLight">{t("common.welcome_moalen")}</p>
                     </div>
                     <div className='col-span-2 md:col-span-1 flex lg:justify-end '>
-                        <Button variant={"outline"} className={`h-11 px-8 font-roboto text-lg font-medium text-blackDark ${language === "en" ? "mr-4" :"ml-4"}`}>{t("common.client")}</Button>
-                        <Button  className='h-11 px-10 font-roboto bg-blue-600 hover:bg-blue-600 text-lg font-medium '>{t("common.influencer")}</Button>
+                        <Button variant={"outline"} className={`h-11 px-8 font-montserrat text-lg font-medium text-blackDark ${language === "en" ? "mr-4" :"ml-4"}`}>{t("common.client")}</Button>
+                        <Button  className='h-11 px-10 font-montserrat bg-blue-600 hover:bg-blue-600 text-lg font-medium '>{t("common.influencer")}</Button>
 
                     </div>
                 </div>

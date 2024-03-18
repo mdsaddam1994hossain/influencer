@@ -35,7 +35,7 @@ const BlogCard = () => {
                                 </div>
                             </div>
                             <Separator className="my-4" />
-                            <p className="group-hover:text-red-500 text-base lg:text-2xl hover:cursor-pointer text-blackDark font-roboto font-bold duration-1000 ease-in-out hover:underline">{item.title}</p>
+                            <p className="group-hover:text-red-500 text-base lg:text-2xl hover:cursor-pointer text-blackDark font-montserrat font-bold duration-1000 ease-in-out hover:underline">{item.title}</p>
                         </CardContent>
                     </Card>
                 )
