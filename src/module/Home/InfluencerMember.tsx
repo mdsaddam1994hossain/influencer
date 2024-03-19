@@ -7,8 +7,12 @@ import useInfluencers from '@/app/hook/useInfluencers'
 import useAppStore from '@/store'
 import SkeletonCard from '@/components/common/SkeletonCard'
 import { TInfluencer } from '@/types/influencer'
+import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+import filter from "../../../public/images/filter.png"
+import widget from "../../../public/images/widget.png"
 import { Button } from '@/components/ui/button'
+
 
 const InfluencerMember = () => {
    
@@ -67,14 +71,39 @@ const InfluencerMember = () => {
     
 
     return (
-        <div className='my-8  rounded-lg lg:rounded-xl'>
+        <div className='my-8 lg:my-12  rounded-lg lg:rounded-xl'>
             
-            <p className="lg:text-2xl text-blackDark font-medium ">{t("home.influencers")}</p>
-             {/* <p className="text-2xl lg:text-4xl font-bold font-montserrat mt-2">Talented Influencer Member</p> */}
-           
+            {/* <p className="lg:text-2xl text-blackDark font-medium ">{t("home.influencers")}</p> */}
+            
+           <div className="flex gap-4 lg:gap-8 items-center">
+            <div className="flex-grow flex gap-4 justify-between">
+                <Button   className={` rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}>
+                  <Image src={widget} alt='W' className="px-1" />
+                  {t("categories.all_categories")} 
+                </Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> 
+                {t("categories.arts")} 
+                </Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.music")} </Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.cars")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.sports")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.fitness")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.commerce")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.eat_drinking")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.beauty_health")}</Button>
+                
+                
+            </div>
+            <div className=" flex-shrink ">
+               <Button className='bg-[#F5F5F5] hover:bg-[#F5F5F5] h-[50px] w-[50px] rounded-full '>
+               <Image src={filter} alt="F" />
+               </Button>
+            </div>
+
+           </div>
 
             {isLoading ? 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 lg:mt-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 lg:mt-12'>
                 {[1,2,3,4,5,6,7,8].map((item)=>{
                     return(
                         <SkeletonCard key={item}/>
@@ -84,8 +113,7 @@ const InfluencerMember = () => {
             :
 
             <div>
-                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 lg:mt-8'
-                data-aos={isMobile ? "" :"fade-up"}
+                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 lg:mt-12'
                 data-aos-anchor-placement="center-bottom"
                 data-aos-duration="2000"
             >

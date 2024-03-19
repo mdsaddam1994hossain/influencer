@@ -1,7 +1,7 @@
 {
     "common":{
-        "what_moalen":"ما هو مولين؟",
-        "moalen_description":"منصة سعودية تجمع أكبر المؤثرين في كافة المجالات",
+        "what_moalen":"منصة سعودية تجمع أكبر المؤثرين في كافة المجالات!",
+        "moalen_description":"استمتع بتجربة جديدة من الاستشارات من أهم المؤثرين في العالم العربي!",
         "signup":"سجل الآن",
         "name":"اسم",
          "phone":"هاتف",
@@ -47,7 +47,10 @@
         "categories":"عرض الفئات",
         "categories_mobile":"الفئات",
         "join_an_adviser":"انضم كمعلن",
-        "join_an_influencer":"انضم كمؤثر"
+        "join_an_influencer":"انضم كمؤثر",
+        "package":"حزم واجهات",
+        "icons":"ايقونات",
+        "privacy_policy":"ساسية الخصوصية"
     },
     "footer":{
         "working_hour_label":"ساعة العمل",
@@ -61,7 +64,10 @@
          "terms_conditions":"الأحكام والشروط",
          "about_moalen":"تساعدك منصة معلن على اختيار أنسب المؤثرين لحملتك الإعلانية من خلال التحليلات الدقيقة التي تساعدك على التعرف عليهم وعلى جمهورك المستهدف",
          "get_touch":"ابقى على تواصل..",
-         "copy_write":"© 2024 - جميع الحقوق محفوظة "
+         "copy_write":"© 2024 - جميع الحقوق محفوظة ",
+         "improtant_link":"وابط مهمة",
+         "follow_us":"تابعنا على",
+         "tech_support":"الدعم الفنى"
 
     },
     "filter" :{
@@ -84,9 +90,7 @@
         "beauty_makeup":"التجميل والمكياج",
         "trade_entrep":"التجارة وريادة الأعمال",
         "interior_design":"التصميم الداخلي والحدائق",
-        "music":"موسيقى",
         "shopping":"تسوق",
-        "sports":"رياضات",
         "physical_fitness":"اللياقة البدنية والصحة",
         "food_drinks":"الطعام و الشراب",
         "games":"ألعاب",
@@ -106,7 +110,16 @@
         "actors":"الممثلون",
         "education":"تعليم",
         "performing":"الفنون التمثيلية",
-        "restaurants_cafes":"مطاعم ومقاهي"
+        "restaurants_cafes":"مطاعم ومقاهي",
+        "all_categories":"كل الفئات",
+        "arts":"فنون",
+        "music":"موسيقى",
+        "cars":"سيارات",
+        "sports":"رياضة",
+        "fitness":"لياقة بدنية",
+        "commerce":"تجارة",
+        "eat_drinking":"الاكل والشرب",
+        "beauty_health":"الجمال والصحة"
     },
     "contact":{
         "contact_info": "معلومات الاتصال",

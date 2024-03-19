@@ -16,7 +16,7 @@ export default async function Home({params: { locale }}: any) {
 
   return (
 
-    <main className="px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44">  
+    <main >  
        <HomePage />
     </main>
   );

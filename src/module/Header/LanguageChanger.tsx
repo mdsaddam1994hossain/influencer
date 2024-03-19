@@ -3,7 +3,15 @@
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import arabic from "../../../public/images/saudi_flag.jpeg"
+import english from "../../../public/images/Flags.png"
 import i18nConfig from '@/i18nConfig';
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
+ 
 import { 
     Select,  
     SelectTrigger, 
@@ -13,6 +21,7 @@ import {
     SelectItem,
     SelectSeparator
 } from '@/components/ui/select';
+import Image from 'next/image';
 
 
 export default function LanguageChanger() {
@@ -46,17 +55,32 @@ export default function LanguageChanger() {
 
     return (
 
-        <Select onValueChange={handleChange}>
-            <SelectTrigger className={`w-full h-8 gap-1 px-2 lg:h-10 lg:w-[100px] bg-transparent ${currentLocale == "en" && "flex-row-reverse"}`}>
-                <SelectValue placeholder={currentLocale == "ar" ? "العربية" : "English"} />
-            </SelectTrigger>
-            <SelectContent className='lg:mt-6 bg-secondary '>
-                <SelectGroup className='my-2 w-[170px] '>
-                    <SelectItem className='p-4 text-center' value="ar">العربية</SelectItem>
-                    <SelectSeparator className='mx-2'></SelectSeparator>
-                    <SelectItem className='p-4' value="en">English</SelectItem>
-                </SelectGroup>
-            </SelectContent>
-        </Select>
+        <Popover >
+            <PopoverTrigger className={`w-full flex items-center gap-2   bg-transparent ${currentLocale == "en" && "flex-row-reverse"} `}>   
+               
+                {
+                    currentLocale === "en" ?  <Image objectFit="cover" src={arabic} height={28} width={28} className="h-[28px] w-[28px] rounded-full" alt='l' />:
+                    <Image src={english} height={28} width={28} objectFit="cover" className="h-[28px] w-[28px] rounded-full" alt='l' />
+                  
+                }
+                 <p > {currentLocale == "en" ? "العربية" : "English"} </p>
+                
+            </PopoverTrigger>
+            <PopoverContent className='lg:mt-6 bg-secondary w-52 '>
+               
+                    <div className="flex items-center gap-4 cursor-pointer " onClick={()=>{handleChange("ar")}}>
+                      <Image src={arabic} height={28} width={28} objectFit="cover" className="h-[28px] w-[28px] rounded-full" alt='l' />
+                      <p  className=' w-full' >العربية</p>
+                    </div>
+                    {/* <SelectSeparator className='mx-2'></SelectSeparator> */}
+                    
+                    <div className="flex items-center gap-4 bg-transparent mt-4 cursor-pointer" onClick={()=>{handleChange("en")}}>
+                      <Image src={english} height={28} width={28} objectFit="cover" className="h-[28px] w-[28px] rounded-full" alt='l' />
+                       <span  className='w-full ' >English</span>
+                    </div>
+                    
+                
+            </PopoverContent>
+        </Popover>
     );
 }

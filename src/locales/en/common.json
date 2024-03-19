@@ -1,7 +1,7 @@
 {
     "common":{
-        "what_moalen":"What is Moalen?",
-        "moalen_description":"A Saudi platform that brings together the bigest influencers In All fields!",
+        "what_moalen":"A Saudi platform that brings together the largest influencers in all fields!",
+        "moalen_description":"Enjoy a new experience of consulting from the most important influencers in the Arab world!",
         "signup":"Signup Now!",
          "name":"Name",
          "phone":"Phone",
@@ -47,7 +47,11 @@
         "categories":"View categories",
         "categories_mobile":"categories",
         "join_an_adviser":"Join as an advertiser",
-        "join_an_influencer":"Join as an Influencer"
+        "join_an_influencer":"Join as an Influencer",
+        "package":"Interface packages",
+        "icons":"Icons",
+        "privacy_policy":"Privacy Policy"
+        
     },
     "footer":{
         "working_hour_label":"Working Hour",
@@ -61,7 +65,10 @@
          "terms_conditions":"Terms and Conditions",
          "about_moalen":"Moalen helps you choose the most appropriate influencers for your advertising campaign through accurate analyzes that help you identify them and your target audience",
          "get_touch":"Get in Touch..",
-         "copy_write":"© 2024 - All rights reserved"
+         "copy_write":"© 2024 - All rights reserved",
+         "improtant_link":"Important links",
+         "follow_us":"Follow us",
+         "tech_support":"Technical Support"
          
          
 
@@ -86,9 +93,7 @@
         "beauty_makeup":"Beauty and makeup",
         "trade_entrep":"Trade and entrepreneurship",
         "interior_design":"Interior and garden design",
-        "music":"Music",
         "shopping":"Shopping",
-        "sports":"Sports",
         "physical_fitness":"Physical fitness and health",
         "food_drinks":"Food and drinks",
         "games":"Games",
@@ -108,7 +113,17 @@
         "actors":"The actors",
         "education":"Education",
         "performing":"Performing arts",
-        "restaurants_cafes":"Restaurants and cafes"
+        "restaurants_cafes":"Restaurants and cafes",
+        "all_categories":"All categories",
+        "arts":"Arts",
+        "music":"Music",
+        "cars":"Cars",
+        "sports":"Sports",
+        "fitness":"Fitness",
+        "commerce":"Commerce",
+        "eat_drinking":"Eating and drinking", 
+        "beauty_health":"Beauty and health"
+       
     },
     "contact":{
         "contact_info": "Contact Info",

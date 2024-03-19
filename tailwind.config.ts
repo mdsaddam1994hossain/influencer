@@ -29,8 +29,10 @@ const config = {
       colors: {
         blackLight: "#647082",
         blackDark:"#3C3744", 
+        blackDark_2:"#333333", 
         blackMedium:"#252E48",
         grayLight :"#999999",
+        grayDark :"#666666",
         grayBorder:"#E2E8F0", 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
