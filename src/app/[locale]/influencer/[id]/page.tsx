@@ -3,7 +3,10 @@
 
 import React, { FC } from 'react'
 
-import Influencer from '@/module/Influencer/Influencer'
+import InfluencerProfile from '@/module/Influencer/InfluencerProfile'
+import readUserSession from "@/lib/actions";
+
+// import Influencer from '@/module/Influencer/Influencer'
 
 type Props ={
     params:{
@@ -11,12 +14,13 @@ type Props ={
     }
 }
 
-const InfluencerPage:FC<Props> = ({params}) => {
-
+const InfluencerPage:FC<Props> = async({params}) => {
+  const { data } = await readUserSession()
          
   return (
-    <main className="lg:mt-10"> 
-      <Influencer id={params?.id}/>      
+    <main > 
+      {/* <Influencer id={params?.id}/>       */}
+      <InfluencerProfile id={params?.id} data={data}/>      
     </main>
   )
 }

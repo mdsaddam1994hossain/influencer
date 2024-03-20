@@ -30,6 +30,7 @@ const config = {
         blackLight: "#647082",
         blackDark:"#3C3744", 
         blackDark_2:"#333333", 
+        blackDark_3:"#0F172A", 
         blackMedium:"#252E48",
         grayLight :"#999999",
         grayDark :"#666666",

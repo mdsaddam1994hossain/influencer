@@ -75,8 +75,8 @@ const InfluencerMember = () => {
             
             {/* <p className="lg:text-2xl text-blackDark font-medium ">{t("home.influencers")}</p> */}
             
-           <div className="flex gap-4 lg:gap-8 items-center">
-            <div className="flex-grow flex gap-4 justify-between">
+           <div className="flex gap-4 lg:gap-8 items-center flex-wrap">
+            <div className="flex-grow flex gap-4 flex-wrap">
                 <Button   className={` rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}>
                   <Image src={widget} alt='W' className="px-1" />
                   {t("categories.all_categories")} 

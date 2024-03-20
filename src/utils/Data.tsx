@@ -48,6 +48,11 @@ import actors from "../../public/images/actors.png"
 import education from "../../public/images/education.png"
 import performing from "../../public/images/performing.png"
 import restaurants from "../../public/images/restaurants.png"
+import activity1 from "../../public/images/activity1.png"
+import activity2 from "../../public/images/activity2.png"
+import activity3 from "../../public/images/activity3.png"
+import activity4 from "../../public/images/activity4.png"
+import activity5 from "../../public/images/activity5.png"
 
 
 export const catagoryData = [
@@ -374,4 +379,32 @@ export const influencerData = [
     gender: "male"
   },
 
+]
+
+export const activitiesData =[
+  {
+    id:1,
+    img:activity1,
+    link:""
+  },
+  {
+    id:2,
+    img:activity2,
+    link:""
+  },
+  {
+    id:3,
+    img:activity3,
+    link:""
+  },
+  {
+    id:4,
+    img:activity4,
+    link:""
+  },
+  {
+    id:5,
+    img:activity5,
+    link:""
+  }
 ]
