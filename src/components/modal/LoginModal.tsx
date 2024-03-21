@@ -69,7 +69,7 @@ const LoginModal:FC<Props> = ({isOpen}) => {
       <AlertDialogContent className="w-[448px]">
 
      
-      <p className='font-bolder text-xl text-blackDark_3'> {t("login.title")}</p>
+      <p className=' font-extrabold text-xl text-blackDark_3 font-montserratArabic'> {t("login.title")}</p>
       
       <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Montserrat, Poppins, Roboto } from "next/font/google";
+import { IBM_Plex_Mono, Montserrat, Poppins, Roboto,Cairo } from "next/font/google";
 
 import i18nConfig from '@/i18nConfig';
 import TranslationsProvider from "@/components/TranslationsProvider"
@@ -13,8 +13,9 @@ import "./globals.css";
 import 'aos/dist/aos.css';
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-poppins" });
-const montserrat = Montserrat({ subsets: ["cyrillic"], weight: ["400", "500", "700"], variable: "--font-montserrat" });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-montserrat" });
 const ibm_mono = IBM_Plex_Mono({ subsets: ["vietnamese"], weight: ["400", "500", "700"], variable: "--font-ibm_mono" });
+const cairo = Cairo({ subsets: ["latin"], weight: ["400", "500", "700","800"], variable: "--font-cairo" });
 // `cyrillic`, `cyrillic-ext`, `latin`, `latin-ext`, `vietnamese`
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -42,7 +43,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} >
-      <body className={`${poppins.variable} ${montserrat.variable} ${ibm_mono.variable} font-montserrat bg-white `}>
+      <body className={`${poppins.variable} ${montserrat.variable} ${ibm_mono.variable} ${cairo.variable} font-montserratArabic bg-white `}>
         <QueryProvider>
           <TranslationsProvider
             namespaces={i18nNamespaces}

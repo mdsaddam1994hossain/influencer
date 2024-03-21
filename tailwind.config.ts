@@ -21,7 +21,9 @@ const config = {
       fontFamily: {
         poppins: ["var(--font-poppins)"],
         montserrat: ["var(--font-montserrat)"],
-        ibmmono: ["var(--font-ibm_mono)"],
+        ibmmono: ["var(--font-ibm_mono)"], 
+        cairo: ["var(--font-cairo)"], 
+        montserratArabic:['Montserrat-Arabic',"Montserrat"]
       },
       boxShadow: {
         custom: '0px 0px 40px 0px rgba(0, 0, 0, 0.10)',

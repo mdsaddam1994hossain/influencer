@@ -23,8 +23,8 @@ const Banner = () => {
                 <Image src={circle3}   alt='c3' className=' absolute top-0 left-0 z-20'/> 
                 <Image src={circle4}   alt='c4' className=' absolute top-0 left-0 z-20'/> 
                 <div className='z-30 flex-1'>
-                 <p className='text-2xl  lg:text-4xl font-montserrat font-semibold text-blackDark lg:leading-10 '>{t("common.moalen_description")}</p>
-                 <p className='text-lg text-blackDark mt-2'>{t("common.what_moalen")}</p>
+                 <p className='text-2xl  lg:text-4xl  font-medium text-blackDark leading-loose font-montserratArabic '>{t("common.moalen_description")}</p>
+                 <p className='text-lg text-blackDark mt-3 font-montserratArabic '>{t("common.what_moalen")}</p>
                 
                 </div>
                 <div className={`bg-transparent rounded-lg z-30 flex-1 flex justify-end`}>

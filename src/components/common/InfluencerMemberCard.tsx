@@ -41,19 +41,19 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
           <div className='flex gap-2 items-center'>
 
             <Image src={star} alt='error' />
-            <p className='font-medium font-montserrat text-sm '>(450) 4.2</p>
+            <p className='font-medium  text-sm '>(450) 4.2</p>
           </div>
           <div>
 
           </div>
           <div className='flex gap-2 items-center'>
             <Image src={user} alt='error' />
-            <p className='font-medium font-montserrat text-sm text-blackMedium '> 145 {t("home.followers")} </p>
+            <p className='font-medium  text-sm text-blackMedium '> 145 {t("home.followers")} </p>
           </div>
         </div>
 
 
-        <Button onClick={() => onViewProfile(influencer?.item?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-blackDark text-white hover:text-white font-norlam rounded-lg text-sm font-montserrat h-[45px] hover:bg-black mt-4'>{t("home.view_profile")}</Button>
+        <Button onClick={() => onViewProfile(influencer?.item?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-blackDark text-white hover:text-white font-norlam rounded-lg text-sm font-normal h-[45px] hover:bg-black mt-4'>{t("home.view_profile")}</Button>
       </div>
     </div>
   )

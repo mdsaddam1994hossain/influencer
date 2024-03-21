@@ -21,7 +21,7 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
     const { t } = useTranslation()
     const {data:influencer} = useInfluencer(id)
     const [isOpen,setIsOpen] = useState(false)
-    console.log({influencer})
+    
 
     useEffect(()=>{
       if(!data?.session){

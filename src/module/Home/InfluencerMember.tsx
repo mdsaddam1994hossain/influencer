@@ -77,20 +77,20 @@ const InfluencerMember = () => {
             
            <div className="flex gap-4 lg:gap-8 items-center flex-wrap">
             <div className="flex-grow flex gap-4 flex-wrap">
-                <Button   className={` rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}>
+                <Button   className={` rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}>
                   <Image src={widget} alt='W' className="px-1" />
                   {t("categories.all_categories")} 
                 </Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> 
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> 
                 {t("categories.arts")} 
                 </Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.music")} </Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.cars")}</Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.sports")}</Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.fitness")}</Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.commerce")}</Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.eat_drinking")}</Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5`}> {t("categories.beauty_health")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.music")} </Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.cars")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.sports")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.fitness")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.commerce")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.eat_drinking")}</Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.beauty_health")}</Button>
                 
                 
             </div>
