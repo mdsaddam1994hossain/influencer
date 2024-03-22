@@ -45,7 +45,7 @@
         "who_are":"Who Are We",
         "logout":"Logout",
         "categories":"View categories",
-        "categories_mobile":"categories",
+        "categories_mobile":"Categories",
         "join_an_adviser":"Join as an advertiser",
         "join_an_influencer":"Join as an Influencer",
         "package":"Interface packages",
@@ -85,7 +85,13 @@
         "followers_age":"Followers Age",
         "followers_count":"Followers Count",
         "all":"All",
-        "catagories":"Catagories"
+        "catagories":"Catagories",
+        "filter_by":"Filter By",
+        "ratings":"Ratings",
+        "to":"To"
+       
+    
+       
     },
     "categories":{
         "design_art":"Design and art",

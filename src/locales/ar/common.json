@@ -45,7 +45,7 @@
         "who_are":"من نحن",
         "logout":"تسجيل الخروج",
         "categories":"عرض الفئات",
-        "categories_mobile":"الفئات",
+        "categories_mobile":"الفئة",
         "join_an_adviser":"انضم كمعلن",
         "join_an_influencer":"انضم كمؤثر",
         "package":"حزم واجهات",
@@ -82,7 +82,10 @@
         "followers_age":"عمر المتابعين",
         "followers_count":"عدد المتابعين",
         "all":"الكل",
-        "catagories":"مجالات"
+        "catagories":"مجالات",
+        "filter_by":"تصفية حسب",
+        "ratings":"التقييم",
+        "to":"إلى"
     },
     "categories":{
         "design_art":"تصميم وفن",

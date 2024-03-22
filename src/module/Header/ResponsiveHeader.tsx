@@ -33,6 +33,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import SearchComponent from './SearchComponent';
 
 
 const ResponsiveHeader = ({ data }: any) => {
@@ -42,6 +43,7 @@ const ResponsiveHeader = ({ data }: any) => {
   const pathname = usePathname()
   const router = useRouter()
   const [joinus,setJoinus] = useState(false)
+  const [edit, setEdit] = useState(false);
 
   const path = pathname.startsWith("/en") ? pathname.slice(0, 1) + pathname.substring(4) : pathname;
   const { t, i18n } = useTranslation()
@@ -95,7 +97,7 @@ console.log( data?.session? "session true.." : "session false...")
       <div className='hidden lg:block '>
         <div className="h-[90px] flex justify-between items-center border-b border-[#F2F2F2] px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44">
            <div className="flex items-center ">
-             <Image src={logo} height={40} width={100} className="" alt='l' />
+              <Image src={logo} height={40} width={100} className="" alt='l' />
               <ul className={`flex items-center ${language === "en" ? 'ml-12' : 'mr-12'}`}>
               {navData.map((item, index) => {
             return (
@@ -138,7 +140,7 @@ console.log( data?.session? "session true.." : "session false...")
               </ul>
            </div>
            <div className="flex items-center gap-4">
-            <Image src={serach} height={20} width={20} className="h-[20px] w-[20px]" alt='l' />
+           <SearchComponent />
             <LanguageChanger />
              {
               data?.session ? <Button onClick={handleLogOut} className="bg-blackDark rounded-md text-sm font-normal px-4 h-10">{t("nav.logout")}</Button>:

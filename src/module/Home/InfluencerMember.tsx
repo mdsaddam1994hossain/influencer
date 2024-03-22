@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import filter from "../../../public/images/filter.png"
 import widget from "../../../public/images/widget.png"
 import { Button } from '@/components/ui/button'
+import FilterOptions from './FilterOptions'
 
 
 const InfluencerMember = () => {
@@ -21,11 +22,37 @@ const InfluencerMember = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [itemsPerPage, setItemsPerPage] = useState(8)
     const influencerGender = useAppStore((state)=>state.influencerGender)
-    console.log({influencerGender})
     const { data,isLoading } = useInfluencers(influencerGender)
-
     const { t } = useTranslation()
 
+     const processedData = data?.map((influencer: any) => {
+        const uniquePlatforms = Array.from(
+          new Map(
+            influencer.influencer_platform.map((item: any) => [
+              item?.platforms?.id,
+              item.platforms,
+            ])
+          ).values()
+        );
+
+        const uniqueTags = Array.from(
+          new Map(
+            influencer.influencer_tag.map((item: any) => [
+              item?.tags?.id,
+              item.tags,
+            ])
+          ).values()
+        );
+
+        return {
+          ...influencer,
+          influencer_platform: uniquePlatforms,
+          influencer_tag: uniqueTags,
+        };
+      });
+
+    console.log(data,"iniii")
+    console.log(processedData,"processedData")
     const totalItems = data?.length; // Assuming influencerData is your data source
     const images = ["/images/p1.png",
      "/images/p2.png",
@@ -84,7 +111,7 @@ const InfluencerMember = () => {
                 <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> 
                 {t("categories.arts")} 
                 </Button>
-                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.music")} </Button>
+                <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal `}> {t("categories.music")} </Button>
                 <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.cars")}</Button>
                 <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.sports")}</Button>
                 <Button variant="outline"  className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal`}> {t("categories.fitness")}</Button>
@@ -95,9 +122,11 @@ const InfluencerMember = () => {
                 
             </div>
             <div className=" flex-shrink ">
-               <Button className='bg-[#F5F5F5] hover:bg-[#F5F5F5] h-[50px] w-[50px] rounded-full '>
+               {/* <Button className='bg-[#F5F5F5] hover:bg-[#F5F5F5] h-[50px] w-[50px] rounded-full '>
                <Image src={filter} alt="F" />
-               </Button>
+               </Button> */}
+
+               <FilterOptions />
             </div>
 
            </div>

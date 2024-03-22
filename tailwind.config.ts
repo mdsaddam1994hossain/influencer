@@ -26,7 +26,7 @@ const config = {
         montserratArabic:['Montserrat-Arabic',"Montserrat"]
       },
       boxShadow: {
-        custom: '0px 0px 40px 0px rgba(0, 0, 0, 0.10)',
+        custom: '0px 4px 35px 0px rgba(0, 0, 0, 0.3);',
       },
       colors: {
         blackLight: "#647082",

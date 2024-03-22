@@ -4,18 +4,32 @@ import { browserClient } from "@/lib/supabase/brower";
 
 export default function useInfluencers(genderFilter:string) {
     return useQuery({
-        queryKey: ["influencers",genderFilter],
+        queryKey: ["influencers"],
         queryFn: async () => {
             const supabase = browserClient();
-            let query = supabase.from("influencers").select("*");
-            if (genderFilter !== 'all') {
-                query = query.eq("gender", genderFilter);
-            }
-            const { data: influencers } = await query;
+            const { data, error } = await supabase.from("influencers").select(`
+            name,
+            specialization,
+            name_en,
+            name_ar,
+            id,
+            gender,
+            country,
+            nickname,
+            categories(*),
+            influencer_tag!inner(tags(*)),
+            influencer_platform!inner(platforms(*))
+          `);
+          return data;
+        //     let query = supabase.from("influencers").select("*");
+        //     if (genderFilter !== 'all') {
+        //         query = query.eq("gender", genderFilter);
+        //     }
+        //     const { data: influencers } = await query;
             
-            return influencers || [];
+        //     return influencers || [];
         },
-        enabled: !!genderFilter,
+        // enabled: !!genderFilter,
     });
 }
 

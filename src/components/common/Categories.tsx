@@ -31,15 +31,15 @@ const Categories: FC<Props> = ({ categories }) => {
   return (
     <div >
       <DropdownMenu>
-        <DropdownMenuTrigger asChild className='w-full  lg:w-[300px]'>
-          <div className="flex items-center justify-between gap-0  lg:gap-4 bg-sky-100 rounded-xl px-1 lg:px-6 h-8 lg:h-12 " >
-            <LayoutDashboard size={isMobile ? 12 : 16} />
-            <p className="text-[11px] lg:text-sm opacity-50" >{t(categories)}</p>
+        <DropdownMenuTrigger asChild className='w-full'>
+          <div className="flex items-center justify-between gap-0  rounded-0 mt-4   border border-[#F5F5F5] px-2  h-[45px] " >
+            {/* <LayoutDashboard size={isMobile ? 12 : 16} /> */}
+            <p className="text-sm  text-blackMedium" >{t(categories)}</p>
             <ChevronDown size={isMobile ? 16 : 20} />
           </div>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-60 lg:w-[305px] mr-0 py-2 px-0 gap-8 max-h-[500px]  overflow-y-scroll no-scrollbar">
+        <DropdownMenuContent className="w-full mr-0 px-0 gap-8 max-h-[500px]  overflow-y-scroll no-scrollbar">
           <DropdownMenuGroup dir={`${language === "en" ? 'ltr' : 'rtl'}`}>
 
             {catagoryData.map((item, index) => {

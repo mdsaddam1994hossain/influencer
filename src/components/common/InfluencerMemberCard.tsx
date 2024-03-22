@@ -23,8 +23,6 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
     router.push(`/influencer/${id}`);
   }
 
-  console.log(influencer, "influencer list...")
-
 
   return (
     <div className=' bg-white  transition duration-500 ease-in-out transform hover:-translate-y-3 group ' >
@@ -36,7 +34,8 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
 
       <div className='p-4 border-x border-b border-grayBorder'>
         <p className='font-semibold text-blackMedium'>{influencer?.item.name}</p>
-        <p className='font-normal text-grayLight text-sm mt-[2px]'>{t("home.fitness")}</p>
+        {/* <p className='font-normal text-grayLight text-sm mt-[2px]'>{t("home.fitness")}</p> */}
+        <p className='font-normal text-grayLight text-sm mt-[2px]'>{influencer?.item.specialization}</p>
         <div className='flex justify-between items-center  mt-3'>
           <div className='flex gap-2 items-center'>
 

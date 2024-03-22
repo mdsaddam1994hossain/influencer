@@ -408,3 +408,26 @@ export const activitiesData =[
     link:""
   }
 ]
+
+export const ratingData =[
+  {id:1,
+   numberOfRating:[1],
+   rating:1
+  },
+  {id:2,
+   numberOfRating:[1,2],
+   rating:2
+  },
+  {id:3,
+   numberOfRating:[1,2,3],
+   rating:3
+  },
+  {id:4,
+   numberOfRating:[1,2,3,4],
+   rating:4
+  },
+  {id:5,
+   numberOfRating:[1,2,3,4,5],
+   rating:5
+  },
+]
