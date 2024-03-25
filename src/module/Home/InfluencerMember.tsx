@@ -26,9 +26,7 @@ const InfluencerMember = () => {
   const influencerGender = useAppStore((state) => state.influencerGender)
   const setCategoriesId = useAppStore((state)=>state.setCategoriesId)
   const categoriesId = useAppStore((state) => state.categoriesId)
-  const [from,setFrom] = useState(0)
-  const [to,setTo] = useState(8)
-  const { data, isLoading } = useInfluencers(categoriesId,from,to)
+  const { data, isLoading } = useInfluencers(categoriesId)
   const { t,i18n } = useTranslation()
   const {language} = i18n;
 
