@@ -13,6 +13,7 @@ import Categories from '@/components/common/Categories'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from '@/components/ui/input'
 import { ratingData } from '@/utils/Data'
+import { useCategories } from '@/app/hook/useCategories'
 import filter from "../../../public/images/filter.png"
 import star from "../../../public/images/star_rating.png"
 
@@ -20,6 +21,7 @@ import star from "../../../public/images/star_rating.png"
 const FilterOptions = () => {
     const { t,i18n } = useTranslation()
     const {language} = i18n;
+   
     return (
         <Popover >
             <PopoverTrigger asChild className='w-16'>

@@ -17,13 +17,22 @@ type Props = {
 const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
 
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t,i18n } = useTranslation();
+  const { language } = i18n;
+ 
 
   const onViewProfile = (id: any) => {
     router.push(`/influencer/${id}`);
   }
 
+  let totalFollowers = influencer?.item?.influencer_platform.reduce((acc: number, item: any) => {
+    return acc + item.followers_count;
+  }, 0);
+  
 
+
+   console.log(influencer?.item?.name_en || influencer?.item?.name ,"en")
+ 
   return (
     <div className=' bg-white  transition duration-500 ease-in-out transform hover:-translate-y-3 group ' >
       <div className={`rounded-lg w-full `}>
@@ -33,9 +42,10 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
       </div>
 
       <div className='p-4 border-x border-b border-grayBorder'>
-        <p className='font-semibold text-blackMedium'>{influencer?.item.name}</p>
-        {/* <p className='font-normal text-grayLight text-sm mt-[2px]'>{t("home.fitness")}</p> */}
-        <p className='font-normal text-grayLight text-sm mt-[2px]'>{influencer?.item.specialization}</p>
+        <p className='font-semibold text-blackMedium'>{language === "en" ? (influencer?.item?.name_en || influencer?.item?.name) : (influencer?.item?.name_ar || influencer?.item?.name)}</p>
+       
+        
+        <p className='font-normal text-grayLight text-sm mt-[2px]'>{language ==="en"? influencer?.item.specialization_en : influencer?.item.specialization_ar}</p>
         <div className='flex justify-between items-center  mt-3'>
           <div className='flex gap-2 items-center'>
 
@@ -47,7 +57,7 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
           </div>
           <div className='flex gap-2 items-center'>
             <Image src={user} alt='error' />
-            <p className='font-medium  text-sm text-blackMedium '> 145 {t("home.followers")} </p>
+            <p className='font-medium  text-sm text-blackMedium '> {((totalFollowers / 1000000).toFixed(1))}m {t("home.followers")} </p>
           </div>
         </div>
 

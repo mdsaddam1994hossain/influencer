@@ -2,38 +2,48 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { browserClient } from "@/lib/supabase/brower";
 
-export default function useInfluencers(genderFilter:string) {
+
+export default function useInfluencers(category_id?: number) {
     return useQuery({
-        queryKey: ["influencers"],
+        queryKey: ["influencers", category_id],
         queryFn: async () => {
             const supabase = browserClient();
-            const { data, error } = await supabase.from("influencers").select(`
-            name,
-            specialization,
-            name_en,
-            name_ar,
-            id,
-            gender,
-            country,
-            nickname,
-            categories(*),
-            influencer_tag!inner(tags(*)),
-            influencer_platform!inner(platforms(*))
-          `);
-          return data;
-        //     let query = supabase.from("influencers").select("*");
-        //     if (genderFilter !== 'all') {
-        //         query = query.eq("gender", genderFilter);
-        //     }
-        //     const { data: influencers } = await query;
+            let query =  supabase
+              .from("influencers")
+              .select(`
+                name,
+                specialization,
+                specialization_en,
+                specialization_ar,
+                name_en,
+                name_ar,
+                id,
+                gender,
+                country,
+                nickname,
+                categories: category_influencer!inner(category_id(id,name)),
+                influencer_tag!inner(tags(*)),
+                influencer_platform(*,platforms(*))
+              `)
+              .not("specialization", "eq", null)
+              .not("specialization_ar", "eq", null)
+              .not("specialization_en", "eq", null)
             
-        //     return influencers || [];
+                if (category_id) {
+               
+                query =  query.filter("category_influencer.category_id", "eq", category_id);
+            }
+            
+
+            const { data,error } = await query;
+          
+            
+            return data 
         },
-        // enabled: !!genderFilter,
     });
 }
 
-
+ // enabled: !!genderFilter,
 
 export function useInfluencer(id: number) {
     const queryClient = useQueryClient();

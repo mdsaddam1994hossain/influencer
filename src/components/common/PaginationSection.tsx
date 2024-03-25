@@ -48,22 +48,22 @@ const PaginationSection: FC<Props> = ({
 
 
     return (
-        <Pagination className='flex justify-center lg:justify-start'>
+        <Pagination className='flex justify-center lg:justify-start mt-6 lg:mt-12'>
             <PaginationContent className="gap-3">
                 <PaginationItem>
-                    <PaginationPrevious onClick={handlePrevPage} className={`text-red-500 border border-red-500 ${currentPage === 1 ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-red-500 hover:text-white hover:bg-red-500 cursor-pointer'}`} />
+                    <PaginationPrevious onClick={handlePrevPage} className={`text-blackDark border border-blackDark ${currentPage === 1 ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-blackDark hover:text-white hover:bg-blackDark cursor-pointer'}`} />
                 </PaginationItem>
 
                 {pages.slice(startPage - 1, endPage).map((page) => (
-                    <PaginationItem key={page} className={`${currentPage === page ? "bg-red-500 text-white hover:bg-red-500 w-[50px]" : ""} border border-red-500 rounded-md h-[50px] w-[48px] group overflow-hidden cursor-pointer`}>
-                        <PaginationLink onClick={() => setCurrentPage(page)} className='hover:bg-red-500 group-hover:border-0 h-12 w-12 rounded-sm hover:text-white'>
+                    <PaginationItem key={page} className={`${currentPage === page ? "bg-blackDark text-white hover:bg-blackDark w-[50px]" : ""} border border-blackDark rounded-md h-[50px] w-[48px] group overflow-hidden cursor-pointer`}>
+                        <PaginationLink onClick={() => setCurrentPage(page)} className='hover:bg-blackDark group-hover:border-0 h-12 w-12 rounded-sm hover:text-white'>
                             {page}
                         </PaginationLink>
                     </PaginationItem>
                 ))}
 
                 <PaginationItem>
-                    <PaginationNext onClick={handleNextPage} className={`text-red-500 border border-red-500 ${currentPage === totalPages ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-red-500 hover:text-white hover:bg-red-500 cursor-pointer'}`}>
+                    <PaginationNext onClick={handleNextPage} className={`text-blackDark border border-blackDark ${currentPage === totalPages ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-blackDark hover:text-white hover:bg-blackDark cursor-pointer'}`}>
                         next
                     </PaginationNext>
                 </PaginationItem>

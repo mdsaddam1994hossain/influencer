@@ -21,7 +21,8 @@
          "forgot_password":"Forgot Password?",
          "or":"OR",
          "donot_account":"Don't have an account?",
-         "create_account":"Create Account"
+         "create_account":"Create Account",
+         "not_found":"There are no influencers for this option, please try another option."
         
     },
     "home":{

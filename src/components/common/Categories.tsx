@@ -8,6 +8,7 @@ import {
 import Image from 'next/image';
 
 import useAppStore from '@/store';
+import { useCategories } from '@/app/hook/useCategories';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,10 +28,18 @@ const Categories: FC<Props> = ({ categories }) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n;
   const isMobile = useAppStore((state) => state.isMobile)
+  const setCategoriesId = useAppStore((state)=>state.setCategoriesId)
+  const {data:categorie}= useCategories()
+
+  const handleCategorySelect = (id:number) => {
+    setCategoriesId(id)   
+  }
+
+  console.log({categorie})
 
   return (
     <div >
-      <DropdownMenu>
+      <DropdownMenu >
         <DropdownMenuTrigger asChild className='w-full'>
           <div className="flex items-center justify-between gap-0  rounded-0 mt-4   border border-[#F5F5F5] px-2  h-[45px] " >
             {/* <LayoutDashboard size={isMobile ? 12 : 16} /> */}
@@ -39,16 +48,16 @@ const Categories: FC<Props> = ({ categories }) => {
           </div>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-full mr-0 px-0 gap-8 max-h-[500px]  overflow-y-scroll no-scrollbar">
-          <DropdownMenuGroup dir={`${language === "en" ? 'ltr' : 'rtl'}`}>
+        <DropdownMenuContent  className="w-full mr-0 px-0 gap-8 max-h-[500px]  overflow-y-scroll no-scrollbar">
+          <DropdownMenuGroup  dir={`${language === "en" ? 'ltr' : 'rtl'}`}>
 
-            {catagoryData.map((item, index) => {
+            {categorie?.map((item, index) => {
               return (
-                <DropdownMenuItem key={index} className='p-5 focus:bg-yellow-500 focus:rounded-none focus:text-white '>
+                <DropdownMenuItem onClick={()=>handleCategorySelect(item?.id)}  key={index} className='p-5 focus:bg-yellow-500 focus:rounded-none focus:text-white '>
                   <div className={`${language === "en" ? 'mr-3' : 'ml-3'}`}>
-                    <Image src={item?.icon} alt="P" objectFit="cover" className=" h-5 w-5 "/>
+                    <Image src={item?.icon} alt="P" width={5} height={5} objectFit="cover" className=" h-5 w-5 "/>
                   </div>
-                  <span >{t(item.label)}</span>
+                  <span >{language === "en" ? item.name_en : item.name_ar}</span>
                 </DropdownMenuItem>
               )
             })}

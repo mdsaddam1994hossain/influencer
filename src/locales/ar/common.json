@@ -21,7 +21,8 @@
          "forgot_password":"هل نسيت كلمة السر؟",
          "or":"أو",
          "donot_account":"ليس لديك حساب؟",
-         "create_account":"إنشاء حساب"
+         "create_account":"إنشاء حساب",
+         "not_found":"لا يوجد أي مؤثرين لهذا الخيار، يرجى تجربة خيار آخر."
 
     },
     "home":{
