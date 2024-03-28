@@ -7,6 +7,7 @@ import Header from "@/module/Header/Header";
 import Footer from "@/module/Footer/Footer";
 import QueryProvider from "@/components/query-provider";
 import readUserSession from "@/lib/actions";
+import { Toaster } from "@/components/ui/toaster"
 import initTranslations from "../i18n";
 
 import "./globals.css";
@@ -53,6 +54,7 @@ export default async function RootLayout({
               <Header data={data} />
               {children}
               <Footer />
+              <Toaster  />
             </>
           </TranslationsProvider>
         </QueryProvider>

@@ -25,27 +25,27 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
     router.push(`/influencer/${id}`);
   }
 
-  let totalFollowers = influencer?.item?.influencer_platform.reduce((acc: number, item: any) => {
-    return acc + item.followers_count;
+  let totalFollowers = influencer?.platforms.reduce((acc: number, item: any) => {
+    return acc + item?.followers_count;
   }, 0);
   
 
 
-   console.log(influencer?.item?.name_en || influencer?.item?.name ,"en")
+ console.log(influencer,"influencer")
  
   return (
-    <div className=' bg-white  transition duration-500 ease-in-out transform hover:-translate-y-3 group ' >
-      <div className={`rounded-lg w-full `}>
-        <Image src={influencer?.imageUrl} objectFit="cover" height={276} width={276} alt='e' className=' w-full  duration-300   transition-transform transform ' />
+    <div className=' bg-white  transition duration-500 ease-in-out transform hover:-translate-y-3 group  ' >
+      <div className={`rounded-lg w-full h-68 `}>
+        <Image src={influencer?.media?.avatar} objectFit="cover" height={250} width={276} alt='e' className=' w-full h-72 duration-300   transition-transform transform ' />
 
 
       </div>
 
       <div className='p-4 border-x border-b border-grayBorder'>
-        <p className='font-semibold text-blackMedium'>{language === "en" ? (influencer?.item?.name_en || influencer?.item?.name) : (influencer?.item?.name_ar || influencer?.item?.name)}</p>
+        <p className='font-semibold text-blackMedium'>{language === "en" ? (influencer?.name_en || influencer?.name) : (influencer?.name_ar || influencer?.name)}</p>
        
         
-        <p className='font-normal text-grayLight text-sm mt-[2px]'>{language ==="en"? influencer?.item.specialization_en : influencer?.item.specialization_ar}</p>
+        <p className='font-normal text-grayLight text-sm mt-[2px]'>{language ==="en"? influencer?.specialization_en || influencer?.specialization : influencer?.specialization_ar || influencer?.specialization}</p>
         <div className='flex justify-between items-center  mt-3'>
           <div className='flex gap-2 items-center'>
 
@@ -62,7 +62,7 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
         </div>
 
 
-        <Button onClick={() => onViewProfile(influencer?.item?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-blackDark text-white hover:text-white font-norlam rounded-lg text-sm font-normal h-[45px] hover:bg-black mt-4'>{t("home.view_profile")}</Button>
+        <Button onClick={() => onViewProfile(influencer?.id)} className='w-full transition-bg transition-color duration-200 ease-in-out bg-blackDark text-white hover:text-white font-norlam rounded-lg text-sm font-normal h-[45px] hover:bg-black mt-4'>{t("home.view_profile")}</Button>
       </div>
     </div>
   )

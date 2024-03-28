@@ -29,6 +29,7 @@ const NavBar = ({ data }: any) => {
   const router = useRouter()
   const path = pathname.startsWith("/en") ? pathname.slice(0, 1) + pathname.substring(4) : pathname;
   const { t} = useTranslation()
+  const setUserType = useAppStore((state)=>state.setUserType)
   const isLogin = useAppStore((state) => state.isLogin)
   const setIsLogin = useAppStore((state) => state.setIsLogin)
 
@@ -42,12 +43,14 @@ const NavBar = ({ data }: any) => {
      setJoinus(true)
   }
   const handleJoinClick =(value : "influencer" | "advertiser" )=>{
+  
     if(value === "advertiser"){
-      router.push("/signup")
+      setUserType("advertiser")
+      
     }else{
-      router.push("/login")
+      setUserType("influencer")   
     }
-    
+    router.push("/signup")
      setJoinus(false)
   }
 
@@ -85,18 +88,18 @@ const NavBar = ({ data }: any) => {
                 <div className='flex flex-col gap-2  w-full my-2 overflow-hidden '>
 
                   <div className="hover:bg-red-500  w-full h-12 flex  items-center px-4 group   ">
-                    <div className="flex gap-2 cursor-pointer transition duration-500 ease-in-out transform group-hover:translate-x-3 group-hover:text-white">
+                    <div onClick={()=>{handleJoinClick("advertiser")}}  className="flex gap-2 cursor-pointer transition duration-500 ease-in-out transform group-hover:translate-x-3 group-hover:text-white">
                       <UserPlus  size={18} />
-                      <p onClick={()=>{handleJoinClick("advertiser")}}   >{`${t(`nav.join_an_adviser`)}`} </p>
+                      <p   >{`${t(`nav.join_an_adviser`)}`} </p>
                     </div>               
                   </div>
 
                   <Separator className="my-0"/>
 
                   <div className="hover:bg-red-500  w-full h-12 flex  items-center px-4 group   ">
-                   <div className="flex gap-2 cursor-pointer transition duration-500 ease-in-out transform group-hover:translate-x-3 group-hover:text-white">
+                   <div onClick={()=>{handleJoinClick("influencer")}} className="flex gap-2 cursor-pointer transition duration-500 ease-in-out transform group-hover:translate-x-3 group-hover:text-white">
                       <UserCheck   size={18} />
-                      <p onClick={()=>{handleJoinClick("influencer")}}   >{`${t(`nav.join_an_influencer`)}`} </p>
+                      <p    >{`${t(`nav.join_an_influencer`)}`} </p>
                     </div>  
                   </div>
 

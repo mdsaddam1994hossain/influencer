@@ -6,11 +6,15 @@ interface TAppStore {
   isMobile:boolean;
   isLogin:boolean;
   influencerGender:string;
-  categoriesId:number;
+  categoriesId: number | null;
+  userType:string;
+  isLoading:boolean;
   setMobile: (payload:boolean) => void;
   setIsLogin: (payload:boolean) => void;
   setInfluencerGender: (payload:string) => void;
-  setCategoriesId: (payload:number) => void;
+  setCategoriesId: (payload:number|null) => void;
+  setUserType: (payload:string) => void;
+  setIsLoading: (payload:boolean) => void;
  
  
 }
@@ -21,11 +25,16 @@ const useAppStore = create<TAppStore>((set) => ({
   isMobile:false,
   isLogin:false,
   influencerGender:"all",
-  categoriesId:0,
+  categoriesId:null,
+  userType:"advertiser",
+  isLoading:false,
   setMobile: (payload:boolean) => set(() => ({ isMobile : payload })),
   setIsLogin: (payload:boolean) => set(() => ({ isLogin : payload })),
   setInfluencerGender: (payload:string) => set(() => ({ influencerGender : payload })),
-  setCategoriesId: (payload:number) => set(() => ({ categoriesId : payload })),
+  setCategoriesId: (payload:number|null) => set(() => ({ categoriesId : payload })),
+  setUserType: (payload:string) => set(() => ({ userType : payload })),
+  setIsLoading: (payload:boolean) => set(() => ({ isLoading : payload })),
+
 
  
 }));

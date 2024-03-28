@@ -15,14 +15,15 @@
          "message_placeholder":"Write your message",
          "password":"Password",
          "welcome_moalen":"Welcome to Moalen",
-         "client":"Client",
+         "advertiser":"Advertiser",
          "influencer":"Influencer",
          "remember_me":"Remember Me",
          "forgot_password":"Forgot Password?",
          "or":"OR",
          "donot_account":"Don't have an account?",
          "create_account":"Create Account",
-         "not_found":"There are no influencers for this option, please try another option."
+         "not_found":"There are no influencers for this option, please try another option.",
+         "confirm_password":"Confirm Password"
         
     },
     "home":{
@@ -183,7 +184,10 @@
         "already_account":"Already have an account?" ,
         "fname_error":"first name must be at least 6 characters.",
         "lname_error":"last name must be at least 6 characters.",
-        "phone_error":"phone must be at least 11 characters." 
+        "phone_error":"phone must be at least 11 characters.",
+        "password_error": "password must be at least 6 characters.",
+        "confirm_password_error":"confirm password must be matched with the password"
+        
     },
     "profile":{
         "activities":"Activities",

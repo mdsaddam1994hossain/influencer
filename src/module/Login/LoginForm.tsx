@@ -3,6 +3,7 @@ import React from 'react'
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from 'next/navigation'
 import {
     Form,
     FormControl,
@@ -11,10 +12,13 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import { toast } from "@/components/ui/use-toast"
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
+import { signInWithCradential } from '@/lib/actions'
+import useAppStore from '@/store'
 
 
 
@@ -22,7 +26,10 @@ import { useTranslation } from 'react-i18next'
 const LoginForm = () => {
     const {t,i18n} = useTranslation()
     const {language} = i18n;
-
+    const isLoading = useAppStore((state)=>state.isLoading)
+    const setIsLogin = useAppStore((state)=>state.setIsLogin)
+    const setIsLoading = useAppStore((state)=>state.setIsLoading)
+    const router = useRouter()
     const FormSchema = z.object({
 
         email: z.string().min(8, {
@@ -42,12 +49,24 @@ const LoginForm = () => {
     })
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-
-
-        console.log(data, "submit data...")
-
+      
+       const result:any = await signInWithCradential(data.email,data.password) 
+        if(result.status === 400){
+            toast({
+                duration:1000,
+                 description: (
+                     <pre  >
+                      {result.message}
+                     </pre>
+                 ),
+             })
+        }else{
+            setIsLogin(true)
+            router.push("/")
+           }
 
     }
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">

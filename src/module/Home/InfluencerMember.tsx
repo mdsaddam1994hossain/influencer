@@ -30,63 +30,18 @@ const InfluencerMember = () => {
   const { t,i18n } = useTranslation()
   const {language} = i18n;
 
-  const processedData = data?.map((influencer: any) => {
-    const uniquePlatforms = Array.from(
-      new Map(
-        influencer.influencer_platform.map((item: any) => [
-          item?.platforms?.id,
-          item.platforms,
-        ])
-      ).values()
-    );
+ console.log(data,"-----------")
 
-    const uniqueTags = Array.from(
-      new Map(
-        influencer.influencer_tag.map((item: any) => [
-          item?.tags?.id,
-          item.tags,
-        ])
-      ).values()
-    );
 
-    return {
-      ...influencer,
-      influencer_platform: uniquePlatforms,
-      influencer_tag: uniqueTags,
-    };
-  });
-
-  console.log(data, "iniii")
-  console.log(processedData, "processedData")
+ 
   const totalItems = data?.length; // Assuming influencerData is your data source
-  const images = ["/images/p1.png",
-    "/images/p2.png",
-    "/images/p3.png",
-    "/images/p4.png",
-    "/images/p5.png",
-    "/images/p6.png",
-    "/images/p7.png",
-    "/images/p8.png"
-  ];
-  const colors = ["bg-red-100", "bg-cyan-200", "bg-lime-100", "bg-purple-100"];
-  const itemsWithImages = data?.map((item, index) => {
-    const imageIndex = index % images.length; // Get the index of the image in a round-robin fashion
-    const imageUrl = images[imageIndex];
-    const colorClass = colors[index % colors.length];
-
-    return {
-      item,
-      imageUrl,
-      colorClass
-    };
-  });
 
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
-  const currentItems = itemsWithImages?.slice(firstItemIndex, lastItemIndex);
+  const currentItems = data?.slice(firstItemIndex, lastItemIndex);
 
  const handleReset =()=>{
-  setCategoriesId(0)
+  setCategoriesId(null)
  }
 
   const handleCategorySelect = (id:number) => {
@@ -112,9 +67,9 @@ const InfluencerMember = () => {
 
       <div className="flex gap-4 lg:gap-8 items-center flex-wrap">
         <div className="flex-grow flex gap-4 flex-wrap">
-          <Button onClick={handleReset} className={`group rounded-full border-grayBorder h-[50px] focus:bg-blackDark hover:bg-blackDark hover:text-white px-5 font-normal ${categoriesId > 0 && ' bg-transparent text-blackDark border rounded-full border-grayBorder '}`}>
+          <Button onClick={handleReset} className={`group rounded-full border-grayBorder h-[50px] focus:bg-blackDark hover:bg-blackDark hover:text-white px-5 font-normal ${categoriesId != null && ' bg-transparent text-blackDark border rounded-full border-grayBorder '}`}>
             {/* <Image src={widget} alt='W' className="px-1" /> */}
-            <RxDashboard className={`${categoriesId === 0 ? ' text-white' : "text-blackDark" } h-4 w-4 group-hover:text-white`}/>
+            <RxDashboard className={`${categoriesId === null ? ' text-white' : "text-blackDark" } h-4 w-4 group-hover:text-white`}/>
             {t("categories.all_categories")}
           </Button>
           {categorie?.slice(0,5)?.map((item,index)=>{

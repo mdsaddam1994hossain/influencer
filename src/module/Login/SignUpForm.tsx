@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "@/components/ui/use-toast"
 import {
     Form,
     FormControl,
@@ -26,18 +27,25 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
+import { signUpWithCradential } from '@/lib/actions'
+import useAppStore from '@/store'
+import PageLoading from '@/components/common/PageLoading'
+
 
 
 const SignUpForm = () => {
     const {t,i18n} = useTranslation()
     const {language} = i18n;
+    const setIsLogin = useAppStore((state)=>state.setIsLogin)
+    const isLoading = useAppStore((state)=>state.isLoading)
+    const setIsLoading = useAppStore((state)=>state.setIsLoading)
     const router = useRouter()
     const FormSchema = z.object({
 
-        fName: z.string().min(8, {
+        fName: z.string().min(4, {
             message: `${t("signup.fname_error")}`,
         }),
-        lName: z.string().min(8, {
+        lName: z.string().min(4, {
             message: `${t("signup.lname_error")}`,
         }),
         email: z.string().min(8, {
@@ -46,6 +54,13 @@ const SignUpForm = () => {
         phone: z.string().min(6, {
             message: `${t("signup.phone_error")}`,
         }),
+        password: z.string().min(6, {
+            message: `${t("signup.password_error")}`,
+        }),
+        confirm_password: z.string().min(6, {
+            message: `${t("signup.confirm_password_error")}`,
+        }),
+        
 
        
     
@@ -57,17 +72,33 @@ const SignUpForm = () => {
             fName: "",
             lName: "",
             email:"",
-            phone:""
+            phone:"",
+            password:"",
+            confirm_password:""
         },
     })
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-
-
-        console.log(data, "submit data...")
-
+        
+       const result:any = await signUpWithCradential(data?.email,data?.password)
+       
+       if(result.status === 400){
+        toast({
+            duration:2000,
+             description: (
+                 <pre  >
+                  <p className='text-red-500 font-medium  text-center'>{result.message}</p>
+                 </pre>
+             ),
+         })
+       }else{
+        setIsLogin(true)
+        router.push("/")
+       }
 
     }
+
+   
   return (
     <div>
         <Form {...form}>
@@ -147,7 +178,7 @@ const SignUpForm = () => {
 
                 <div className='col-span-2 mt-6'>
                     <div className='col-span-2 md:col-span-1'>
-                        <p>{t("signup.country")}</p>
+                        <p className="text-blackDark">{t("signup.country")}</p>
                         <Select >
                             <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
                                 <SelectValue defaultValue={"saudiarabia"} placeholder="Saudi Arabia" />
@@ -164,13 +195,13 @@ const SignUpForm = () => {
                 </div>
                 <div className='col-span-2 mt-6'>
                     <div className='col-span-2 '>
-                        <p>{t("signup.address")}</p>
+                        <p className="text-blackDark">{t("signup.address")}</p>
                         <Input placeholder={`${t('signup.address')}`} className='mt-2' />
                     </div>
 
                 </div>
 
-                <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
+                {/* <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
                     <div className='col-span-2 md:col-span-1'>
                         <p>{t("signup.town")}</p>
                         <Select >
@@ -189,6 +220,41 @@ const SignUpForm = () => {
                     <div className='col-span-2 md:col-span-1'>
                         <p>{t("signup.post")}</p>
                         <Input placeholder={t("signup.post")} className='mt-2' />
+                    </div>
+                </div> */}
+
+                <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
+                    <div className='col-span-2 md:col-span-1'>
+                        {/* <p className="text-blackDark">{t("common.password")}</p>
+                        <Input type='password' placeholder={t("common.password")} className='mt-2' /> */}
+                        <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='text-blackDark text-base'>{t("common.password")}</FormLabel>
+                                <FormControl>
+                                    <Input type="password" className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.password")}`} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    </div>
+                    <div className='col-span-2 md:col-span-1'>
+                    <FormField
+                        control={form.control}
+                        name="confirm_password"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='text-blackDark text-base'>{t("common.confirm_password")}</FormLabel>
+                                <FormControl>
+                                    <Input type="password" className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.confirm_password")}`} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                     </div>
                 </div>
 
