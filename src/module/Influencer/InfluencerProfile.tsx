@@ -21,14 +21,18 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
     const { t } = useTranslation()
     const {data:influencer} = useInfluencer(id)
     const [isOpen,setIsOpen] = useState(false)
-    
-    console.log(data,"influencer==============")
+     console.log(influencer,"influencer...")
+
 
     useEffect(()=>{
-      if(!data?.session){
+      if(data?.session){
+        setIsOpen(false)
+      }else{
         setIsOpen(true)
       }
-    })
+    },[data?.session])
+ 
+
   return (
     <div className='mb-6 lg:mb-12' >
        <Image src={profilebg} alt='B'/>
@@ -85,7 +89,7 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
          
        </div>
 
-       <LoginModal isOpen={isOpen}/>
+       <LoginModal isOpen={isOpen} setIsOpen={setIsOpen}/>
     </div>
   )
 }

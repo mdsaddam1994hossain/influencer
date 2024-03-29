@@ -15,3 +15,42 @@ export  function useCategories() {
        
     });
 }
+
+export  function useTags() {
+   
+
+    return useQuery({
+        queryKey: ["tags"],
+        queryFn: async () => {
+            const supabase = browserClient();
+            const { data,error } = await supabase.from("tags").select("*").not('name_en', 'is', null).not("name_ar","is",null)
+            return data || null;
+        },
+       
+    });
+}
+
+export  function useCountry() {
+   
+    return useQuery({
+        queryKey: ["countries"],
+        queryFn: async () => {
+            const supabase = browserClient();
+            const { data,error } = await supabase.from("countries").select("*").not('name', 'is', null)
+            return data || null;
+        },
+       
+    });
+}
+export  function useRegions() {
+   
+    return useQuery({
+        queryKey: ["regions"],
+        queryFn: async () => {
+            const supabase = browserClient();
+            const { data,error } = await supabase.from("regions").select("*").not('name_ar', 'is', null).not("name_ar","is",null)
+            return data || null;
+        },
+       
+    });
+}

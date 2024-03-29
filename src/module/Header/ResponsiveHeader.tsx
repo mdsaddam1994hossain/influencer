@@ -92,7 +92,6 @@ const ResponsiveHeader = ({ data }: any) => {
  }
 
 
-console.log( data?.session? "session true.." : "session false...")
 
 
   return (

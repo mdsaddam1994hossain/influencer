@@ -35,8 +35,6 @@ const Categories: FC<Props> = ({ categories }) => {
     setCategoriesId(id)   
   }
 
-  console.log({categorie})
-
   return (
     <div >
       <DropdownMenu >

@@ -2,7 +2,7 @@
 const nextConfig = {
 
     images: {
-        domains: ['i.pinimg.com','png.pngtree.com','img.lovepik.com','backend.moalen.sa'],
+        domains: ['i.pinimg.com','png.pngtree.com','img.lovepik.com','backend.moalen.sa','www.shutterstock.com'],
       },
    
 };

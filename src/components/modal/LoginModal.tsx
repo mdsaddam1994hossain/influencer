@@ -4,6 +4,7 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslation } from 'react-i18next'
+import { toast } from "@/components/ui/use-toast"
 
 import {
     Form,
@@ -27,13 +28,20 @@ import {
   } from "@/components/ui/alert-dialog"
 import LoginForm from '@/module/Login/LoginForm'
 import { Button } from '../ui/button'
+import { signInWithCradential } from '@/lib/actions'
+import useAppStore from '@/store'
+import Link from 'next/link'
 
 type Props = {
-    isOpen:boolean
+    isOpen:boolean,
+    setIsOpen:(v:boolean)=>void;
 }
-const LoginModal:FC<Props> = ({isOpen}) => {
+const LoginModal:FC<Props> = ({isOpen,setIsOpen}) => {
     const {t,i18n} = useTranslation()
     const {language} = i18n;
+    const isLoading = useAppStore((state)=>state.isLoading)
+    const setIsLoading = useAppStore((state)=>state.setIsLoading)
+    const setIsLogin = useAppStore((state)=>state.setIsLogin)
     const FormSchema = z.object({
 
         email: z.string().min(8, {
@@ -53,12 +61,26 @@ const LoginModal:FC<Props> = ({isOpen}) => {
     })
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+        setIsLoading(true)
+        const result:any = await signInWithCradential(data?.email,data?.password)
+        setIsLoading(false)
 
-
-        console.log(data, "submit data...")
-
-
+        if(result.status === 400){
+            console.log("print if block")
+            toast({
+                duration:2000,
+                 description: (
+                     <pre  >
+                      {result?.message}
+                     </pre>
+                 ),
+             })
+        }else{
+            setIsLogin(true)
+            setIsOpen(false)
+           } 
     }
+ 
   return (
     <AlertDialog open={isOpen} >
 
@@ -106,10 +128,10 @@ const LoginModal:FC<Props> = ({isOpen}) => {
 
                <p className={`${language === "ar" ? " text-left " : "text-right"}`}>{t("login.password_forgot")}</p>
                 
-               <Button className="bg-blackDark rounded-md text-base font-bold w-full h-10"> {t("login.login")}</Button>
+               <Button className="bg-blackDark rounded-md text-base font-bold w-full h-10">{isLoading ? "Loading..." : `${t("login.login")}`} </Button>
             </form>
         </Form>
-        <p className="text-center text-blackDark">{t("common.donot_account")} <span className='font-bold'>{t("nav.join")} </span></p>
+        <p className="text-center text-blackDark">{t("common.donot_account")}<Link href="/login"> <span className='font-bold'>{t("nav.join")} </span></Link> </p>
         
       </AlertDialogContent>
     </AlertDialog>

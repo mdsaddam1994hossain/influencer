@@ -19,7 +19,7 @@ const Footer = () => {
   const pathname = usePathname()
   const path = pathname.startsWith("/en") ? pathname.slice(0, 1) + pathname.substring(4) : pathname;
 
-  console.log(path,"p")
+
 
   return (
     <div >

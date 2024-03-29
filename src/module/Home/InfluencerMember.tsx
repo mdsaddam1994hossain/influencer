@@ -30,8 +30,6 @@ const InfluencerMember = () => {
   const { t,i18n } = useTranslation()
   const {language} = i18n;
 
- console.log(data,"-----------")
-
 
  
   const totalItems = data?.length; // Assuming influencerData is your data source
@@ -106,7 +104,7 @@ const InfluencerMember = () => {
           :
 
           <div>
-          {data && data?.length === 0 ? <div className="flex justify-center items-center h-60">
+          { data?.length <= 0 ? <div className="flex justify-center items-center h-60">
               {t("common.not_found")}
              </div>
              : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 lg:mt-12'

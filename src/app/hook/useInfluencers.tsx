@@ -46,7 +46,7 @@ export default function useInfluencers(category_id?: any) {
 
             // const { data,error } = await query;
           
-            console.log(data,"ifluencer data",error)
+            
             return data 
         },
     });

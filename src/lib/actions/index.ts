@@ -36,7 +36,6 @@ export async function signUpWithCradential(email:string,password:string) {
         email: email,
         password: password,
       });
-     console.log(password,email,"server")
     if(error){
         return error
     }else{

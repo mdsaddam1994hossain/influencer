@@ -25,19 +25,18 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
     router.push(`/influencer/${id}`);
   }
 
-  let totalFollowers = influencer?.platforms.reduce((acc: number, item: any) => {
+  let totalFollowers = influencer?.platforms?.reduce((acc: number, item: any) => {
     return acc + item?.followers_count;
   }, 0);
   
 
 
- console.log(influencer,"influencer")
+
  
   return (
     <div className=' bg-white  transition duration-500 ease-in-out transform hover:-translate-y-3 group  ' >
       <div className={`rounded-lg w-full h-68 `}>
-        <Image src={influencer?.media?.avatar} objectFit="cover" height={250} width={276} alt='e' className=' w-full h-72 duration-300   transition-transform transform ' />
-
+        <Image src={influencer?.media?.avatar || "https://www.shutterstock.com/shutterstock/photos/548848999/display_1500/stock-vector-man-in-the-shirt-and-tie-businessman-avatar-or-male-face-icon-vector-illustration-548848999.jpg"} objectFit="cover" height={250} width={276} alt='E' className=' w-full h-72 duration-300   transition-transform transform ' />
 
       </div>
 
