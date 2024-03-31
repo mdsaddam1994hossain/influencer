@@ -59,7 +59,7 @@ export function useInfluencer(id: number) {
 
     return useQuery({
         queryKey: ["influencer", id],
-        enabled:id? true:false,
+        enabled: id ? true :false,
         initialData: () => {
           // Attempt to find the influencer from the cached list of influencers
           const influencers = queryClient.getQueryData<any[]>(["influencers"]);
@@ -68,8 +68,16 @@ export function useInfluencer(id: number) {
       },
         queryFn: async () => {
             const supabase = browserClient();
-            const { data: influencer } = await supabase.from("influencers").select("*").eq("id", id).single();
-            return influencer || null;
+            const { data: influencer,error } =  await supabase
+            .rpc('fetch_single_influencer_details', {
+              influencer_id_param: id
+            });
+            
+            if(error){
+                return error
+            }else{ 
+                return influencer
+            }
         },
        
     });

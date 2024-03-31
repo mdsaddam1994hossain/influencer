@@ -11,6 +11,7 @@ import { activitiesData } from '@/utils/Data'
 import { Button } from '@/components/ui/button'
 import MoreOptions from './MoreOptions'
 import LoginModal from '@/components/modal/LoginModal'
+import PageLoadingPage from '@/components/common/PageLoading'
 
 
 type Props ={
@@ -19,8 +20,11 @@ type Props ={
 }
 const InfluencerProfile:FC<Props> = ({id,data}) => {
     const { t } = useTranslation()
-    const {data:influencer} = useInfluencer(id)
+    const {data:influencer,isLoading} = useInfluencer(id)
     const [isOpen,setIsOpen] = useState(false)
+    let totalFollowers = influencer?.platforms?.reduce((acc: number, item: any) => {
+        return acc + item?.followers_count;
+      }, 0);
      console.log(influencer,"influencer...")
 
 
@@ -32,7 +36,7 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
       }
     },[data?.session])
  
-
+ 
   return (
     <div className='mb-6 lg:mb-12' >
        <Image src={profilebg} alt='B'/>
@@ -42,7 +46,7 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
                 
                 <div>
                     <p className='text-xs text-grayLight'>{t("filter.followers")}</p>
-                    <p className="text-[26px] font-semibold text-blackMedium mt-1">12.452</p>
+                    <p className="text-[26px] font-semibold text-blackMedium mt-1">{((totalFollowers / 1000000).toFixed(1))}m</p>
                 </div>
                 <div>
                     <p className='text-xs text-grayLight'>{t("profile.follow")}</p>

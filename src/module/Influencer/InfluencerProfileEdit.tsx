@@ -2,7 +2,8 @@
 import React from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { FaUpload } from "react-icons/fa";
+import { FaYoutube,FaTiktok,FaSnapchatSquare,FaInstagram,FaTwitter} from "react-icons/fa";
+
 import { Textarea } from '@/components/ui/textarea'
 import {
     Select,
@@ -14,6 +15,7 @@ import {
   } from "@/components/ui/select"
 import { useQueryClient } from '@tanstack/react-query'
 import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCategories'
+import CustomFileUpload from '@/components/common/CustomFileUpload';
 
 
 const InfluencerProfileEdit = () => {
@@ -22,7 +24,7 @@ const InfluencerProfileEdit = () => {
     const {data:tags}= useTags()
     const {data:countries}= useCountry()
     const {data:regions}= useRegions()
-    console.log(regions,"regions")
+    console.log(tags,"tags")
   return (
     <div className=' px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 my-12'>
 
@@ -142,29 +144,415 @@ const InfluencerProfileEdit = () => {
             <div className="flex gap-3 items-center ">
                 <p className="flex-shrink basis-1/5">Cover</p>
                
-                <div className="flex-grow border border-grayBorder rounded-md flex w-full h-32 items-center justify-center " >
-                    <Button >Choose a picture</Button>
+                <div className="flex-grow   rounded-md flex w-full  items-center justify-center " >
+                  <div className="w-full h-full mt-6">
+                   <CustomFileUpload />
+                    </div>
                 </div>
             </div>
             <div className="flex gap-3 items-center ">
                  <p className="flex-shrink basis-1/5">Sample content</p>
                  <div className="flex-grow grid grid-cols-2 lg:grid-cols-3 gap-4 " >
-                    <div className="border border-grayBorder rounded-md flex flex-col gap-4 w-full h-32 items-center justify-center">
-                      <FaUpload />
-                      <Button >Choose a picture</Button>
-                    </div>
-                    <div className="border border-grayBorder rounded-md flex flex-col gap-4 w-full h-32 items-center justify-center">
-                      <FaUpload />
-                      <Button >Choose a picture</Button>
-                    </div>
+                  <CustomFileUpload />
+
+                  <CustomFileUpload />
+
                 </div>
            
             </div>
        </div>
-       <p className="text-blackDark mt-6">Platforms</p>
-       <div>
-         <p className="text-blackDark text-center">Please choose the platform through which you want to receive advertisements and fill out all the required data</p>
-       </div>
+
+
+       <div className="flex mt-6 gap-6">
+          <p className="  text-center lg:text-left">Platforms</p>
+          <div className="flex-grow mt-6">
+           <p className="text-blackDark text-center">Please choose the platform through which you want to receive advertisements and fill out all the required data</p>
+ 
+                            {/* Youtype section */}
+           <div className="grid grid-cols-1 lg:grid-cols-2 justify-between   gap-6 mt-6 ">
+
+             <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
+                <div className="flex items-center justify-center gap-6">
+                   <FaYoutube size={36} className="text-red-500 text-lg" />
+                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                </div>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
+                <p className='text-center mt-6'>Publication type and price</p>
+
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Product/service review video</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Indirect advertising</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Care</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Live advertisement</Button>
+                    </div>
+                </div>
+
+            </div>
+
+            {/* Tiktok section */}
+            <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
+              <div className="flex items-center justify-center gap-6">
+                   <FaTiktok  size={36} className="text-blackDark  text-lg" />
+                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                </div>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
+                <p className='text-center mt-6'>Publication type and price</p>
+
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Care</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Cover with presence</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Coverage without attendance</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Indirect video</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Live video</Button>
+                    </div>
+                </div>
+
+            </div>
+
+            {/* snapchat section */}
+
+            <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
+              <div className="flex items-center justify-center gap-6">
+                   <FaSnapchatSquare  size={36} className="text-yellow-300  text-lg" />
+                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                </div>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
+                <p className='text-center mt-6'>Publication type and price</p>
+
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Video</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Picture</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Care</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Cover with presence</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Coverage without attendance</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Coverage outside the influencer's city</Button>
+                    </div>
+                </div>
+                {/* percentage of influence section */}
+                <div className="mt-10">
+                    <p className="text-center">Percentage of influence</p>
+                    <div className="flex justify-between gap-6 mt-2">
+                        <div className="flex gap-2 items-center">
+                            <Input className="h-10"/>
+                            <p>Men</p>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <Input className=" h-10"/>
+                            <p>Women</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-6">
+                    <p className="text-center">Percentage for each country</p>
+                    <div className="flex justify-between gap-6 mt-2">
+                        <div className="flex gap-2 items-center">
+                        <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-10 ">
+                        <SelectValue placeholder="Please select a country" />
+                    </SelectTrigger>
+                    <SelectContent className="flex-grow p-4">
+                        <SelectGroup >
+                        {countries?.map((item)=>{
+                                return(
+                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                )
+                            })}
+                        </SelectGroup>
+                    </SelectContent>
+                   </Select>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                         <p  className="w-full">The Percentage</p>
+                            <Input className=" h-10" placeholder="%"/>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-6">
+                    <p className="text-center">Relating all interests</p>
+                
+                    <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-10 mt-2 ">
+                        <SelectValue placeholder="Please select a country" />
+                    </SelectTrigger>
+                    <SelectContent className="flex-grow p-4 ">
+                        <SelectGroup >
+                        {tags?.map((item)=>{
+                                return(
+                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                )
+                            })}
+                        </SelectGroup>
+                    </SelectContent>
+                   </Select>
+                    
+                </div>
+
+                <div className="mt-6">
+                    <p className="text-center">Interests Percentage</p>
+                    <div className="flex justify-between gap-6 mt-2">
+                        <div className="flex gap-2 items-center">
+                        <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-10 ">
+                        <SelectValue placeholder="Please select a country" />
+                    </SelectTrigger>
+                    <SelectContent className="flex-grow p-4">
+                        <SelectGroup >
+                        {tags?.map((item)=>{
+                                return(
+                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                )
+                            })}
+                        </SelectGroup>
+                    </SelectContent>
+                   </Select>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                         <p  className="w-full">The Percentage</p>
+                            <Input className=" h-10" placeholder="%"/>
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {/* instagram section  start*/}
+
+            <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
+              <div className="flex items-center justify-center gap-6">
+                   <FaInstagram  size={36} className="text-pink-600" />
+                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                </div>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
+                <p className='text-center mt-6'>Publication type and price</p>
+
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Video</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Picture</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Care</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Story</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>High light</Button>
+                    </div>
+                </div>
+
+            </div>
+             {/* instragram section  end*/}
+              {/* twitter section start */}
+             <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
+              <div className="flex items-center justify-center gap-6">
+                   <FaTwitter  size={32} className="text-sky-500  text-lg" />
+                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                </div>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
+                <p className='text-center mt-6'>Publication type and price</p>
+
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Care</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Tweet</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Retweet</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Quote Tweet</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Pinned tweet</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Installed header</Button>
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 mt-4 gap-4">
+                    <div className='col-span-1'>
+                    <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
+                    </div>
+                    <div className='col-span-3'>
+                     <Button className='h-10 w-full'>Mention</Button>
+                    </div>
+                </div>
+
+            </div>
+
+            {/* twiter section end  */}
+
+           </div>
+
+           <div className="flex flex-col lg:flex-row gap-6 justify-between mt-6">
+                <Button className="w-full bg-yellow-500 text-white">Save changes </Button>
+       
+                <Button className="w-full bg-yellow-500 text-blackDark hover:text-white">Save and continue later </Button>
+            </div>
+           
+          </div>  
+     
+                
+        </div>
+      
+      
+
 
 
 
