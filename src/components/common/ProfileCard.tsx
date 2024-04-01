@@ -9,7 +9,7 @@
     <div className='p-4 bg-white rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-4 group shadow-custom' >
         
             <div className='flex justify-center items-center flex-col' > 
-            <Image src={"/images/person2.avif"} objectFit="cover" height={70} width={70} alt='e' className='rounded-xl h-[280px] w-full duration-300  transition-transform transform ' />
+            <Image src={"/images/person2.avif"} objectFit="cover" height={200} width={150} alt='e' className='rounded-xl  duration-300  transition-transform transform ' />
 
             </div>
 

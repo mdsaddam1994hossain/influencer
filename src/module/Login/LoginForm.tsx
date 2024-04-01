@@ -61,7 +61,6 @@ const LoginForm = () => {
                  ),
              })
         }else{
-            setIsLogin(true)
             router.push("/")
            }
 

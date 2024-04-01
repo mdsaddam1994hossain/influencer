@@ -13,13 +13,11 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import { useQueryClient } from '@tanstack/react-query'
 import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCategories'
 import CustomFileUpload from '@/components/common/CustomFileUpload';
 
 
 const InfluencerProfileEdit = () => {
-    const queryClient = useQueryClient();
     const {data:categorie}= useCategories()
     const {data:tags}= useTags()
     const {data:countries}= useCountry()
@@ -71,9 +69,9 @@ const InfluencerProfileEdit = () => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4 w-full">
                         <SelectGroup >
-                            {categorie?.map((item)=>{
+                            {categorie?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         
@@ -92,7 +90,7 @@ const InfluencerProfileEdit = () => {
                         <SelectGroup >
                         {tags?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         
@@ -111,9 +109,9 @@ const InfluencerProfileEdit = () => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4">
                         <SelectGroup >
-                        {countries?.map((item)=>{
+                        {countries?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         </SelectGroup>
@@ -129,9 +127,9 @@ const InfluencerProfileEdit = () => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4">
                         <SelectGroup >
-                        {regions?.map((item)=>{
+                        {regions?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         </SelectGroup>
@@ -184,7 +182,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Product/service review video</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Product/service review video</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -192,7 +190,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Indirect advertising</Button>
+                    <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Indirect advertising</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -200,7 +198,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Care</Button>
+                    <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Care</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -208,7 +206,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Live advertisement</Button>
+                    <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Live advertisement</div>
                     </div>
                 </div>
 
@@ -228,7 +226,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Care</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Care</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -236,7 +234,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Cover with presence</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Cover with presence</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -244,7 +242,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Coverage without attendance</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Coverage without attendance</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -252,7 +250,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Indirect video</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Indirect video</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -260,7 +258,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Live video</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Live video</div>
                     </div>
                 </div>
 
@@ -281,7 +279,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Video</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Video</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -289,7 +287,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Picture</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Picture</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -297,7 +295,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Care</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Care</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -305,7 +303,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Cover with presence</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Cover with presence</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -313,7 +311,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Coverage without attendance</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Coverage without attendance</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -321,7 +319,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Coverage outside the influencer's city</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Coverage outside the influencer's city</div>
                     </div>
                 </div>
                 {/* percentage of influence section */}
@@ -349,9 +347,9 @@ const InfluencerProfileEdit = () => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4">
                         <SelectGroup >
-                        {countries?.map((item)=>{
+                        {countries?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         </SelectGroup>
@@ -375,9 +373,9 @@ const InfluencerProfileEdit = () => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4 ">
                         <SelectGroup >
-                        {tags?.map((item)=>{
+                        {tags?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         </SelectGroup>
@@ -396,9 +394,9 @@ const InfluencerProfileEdit = () => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4">
                         <SelectGroup >
-                        {tags?.map((item)=>{
+                        {tags?.map((item,index)=>{
                                 return(
-                                    <SelectItem className="py-1" value={item.name}>{item.name}</SelectItem>
+                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
                             })}
                         </SelectGroup>
@@ -430,7 +428,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Video</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Video</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -438,7 +436,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Picture</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Picture</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -446,7 +444,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Care</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Care</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -454,7 +452,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Story</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Story</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -462,7 +460,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>High light</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>High light</div>
                     </div>
                 </div>
 
@@ -482,7 +480,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Care</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Care</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -490,7 +488,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Tweet</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Tweet</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -498,7 +496,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Retweet</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Retweet</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -506,7 +504,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Quote Tweet</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Quote Tweet</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -514,7 +512,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Pinned tweet</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Pinned tweet</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -522,7 +520,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Installed header</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Installed header</div>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 mt-4 gap-4">
@@ -530,7 +528,7 @@ const InfluencerProfileEdit = () => {
                     <Input className="w-full h-10 text-xs" placeholder="Enter the advertisement"/>
                     </div>
                     <div className='col-span-3'>
-                     <Button className='h-10 w-full'>Mention</Button>
+                     <div className='h-10 w-full rounded-md text-sm  bg-blackDark text-center flex justify-center text-white items-center  '>Mention</div>
                     </div>
                 </div>
 

@@ -9,10 +9,44 @@ import { serviceData } from '@/utils/Data'
 import SliderButton from '@/components/ui/slider-button'
 import { Separator } from '@/components/ui/separator'
 import aboutImg from "../../../public/images/about.jpeg"
+import smart from "../../../public/images/smart.png"
+import bestChoice from "../../../public/images/bestChoice.png"
+import variousFields from "../../../public/images/variousFields.png"
+import beClose from "../../../public/images/beClose.png"
 import { useTranslation } from 'react-i18next'
+
+export const aboutStepData = [
+  {
+    id:1,
+    img:smart,
+    title:"Smart and Easy",
+    description:"You can create your campaign from anywhere through a smart platform that shows you the best options that suit your product or service, with carefully developed classifications and suggestions."
+  },
+  {
+    id:2,
+    img:bestChoice,
+    title:"Your right choice",
+    description:"The Moalan platform enables you to view an introductory overview of the influencers you choose, a model of their work, and account analyses, and choose what suits you."
+  },
+  {
+    id:3,
+    img:variousFields,
+    title:"One place... and multiple fields.",
+    description:"The Moalan platform provides you with many influencer options and social media platform ads in a smart arrangement through the categories that you choose and that suit your campaign."
+  },
+  {
+    id:4,
+    img:beClose,
+    title:"Get closer to your audience",
+    description:"The advertiser platform helps identify the different audience categories of the influencer and social media platforms and look at the extent of their interaction."
+  },
+]
 
 const About = () => {
   const {t} = useTranslation()
+
+  
+
   return (
     <div className="my-8 lg:my-14" >
       <div className=' flex justify-center items-center flex-col gap-2 px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44'>
@@ -28,6 +62,10 @@ const About = () => {
           )
         })}
       </div>
+      
+      
+
+
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 items-center lg:gap-12 mt-12 lg:mt-20 py-12 lg:py-24 px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44' style={{backgroundImage: "url('/images/in-section-shape12.svg')",objectFit:"cover" }}>
         <div className=' '>
           <Image src={aboutImg} alt='error' className="rounded-xl " />
@@ -84,6 +122,20 @@ const About = () => {
 
           </div>
         </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-20 lg:px-36 xl:px-48 2xl:px-60 mt-12">
+       {aboutStepData?.map((item,index)=>{
+        return(
+          <div key={index}>
+            <div className="relative flex justify-center ">
+            <p className="absolute top-14 left-[42%] text-4xl text-white" >0{item?.id}</p>
+             <Image src={item?.img} alt='E' className="h-[190px] w-[190px]"/>
+              </div>
+          <p className="text-center text-xl text-blackDark font-medium">{item.title}</p>
+          <p className=" text-blackLight mt-4 ">{item?.description}</p>
+        </div>
+        )
+       })}
 
       </div>
     </div>

@@ -32,7 +32,7 @@ const CustomFileUpload: React.FC = () => {
        
         <div onClick={handleClick} className="border cursor-pointer border-grayBorder p-8 rounded-md flex flex-col gap-4 w-full h-full items-center justify-center">
             <FaUpload />
-            <Button >Choose a picture</Button>
+            <Button className='bg-blackDark text-sm h-10' >Choose a picture</Button>
           </div>
        
       )}

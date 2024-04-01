@@ -14,19 +14,20 @@ import LoginModal from '@/components/modal/LoginModal'
 import PageLoadingPage from '@/components/common/PageLoading'
 
 
-type Props ={
+type Props ={ 
     id:number,
     data:any
 }
 const InfluencerProfile:FC<Props> = ({id,data}) => {
-    const { t } = useTranslation()
+    const { t ,i18n} = useTranslation();
+    const {language} = i18n;
     const {data:influencer,isLoading} = useInfluencer(id)
     const [isOpen,setIsOpen] = useState(false)
     let totalFollowers = influencer?.platforms?.reduce((acc: number, item: any) => {
         return acc + item?.followers_count;
       }, 0);
-     console.log(influencer,"influencer...")
-
+     
+   console.log({influencer})
 
     useEffect(()=>{
       if(data?.session){
@@ -36,7 +37,7 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
       }
     },[data?.session])
  
- 
+
   return (
     <div className='mb-6 lg:mb-12' >
        <Image src={profilebg} alt='B'/>
@@ -63,9 +64,9 @@ const InfluencerProfile:FC<Props> = ({id,data}) => {
                 </div>
             </div>
             <div className='lg:-mt-[77px] lg:flex lg:flex-col  lg:items-center flex-1'>
-                <Image  src={userImg} alt='B' className='h-[154px] w-[154px] rounded-full border-4 border-white shadow-custom ' />
-                <p className="mt-4 text-lg font-semibold text-blackMedium ">{influencer?.name}</p>
-                <p className=" text-sm font-normal text-grayLight mt-2 ">{t("profile.specialist")}</p>
+                <Image  src={influencer?.media?.avatar ||  "https://www.shutterstock.com/shutterstock/photos/548848999/display_1500/stock-vector-man-in-the-shirt-and-tie-businessman-avatar-or-male-face-icon-vector-illustration-548848999.jpg"} alt='B' width={154} height={154} className='h-[154px] w-[154px] rounded-full border-4 border-white shadow-custom ' />
+                <p className="mt-4 text-lg font-semibold text-blackMedium ">{language === "en" ?  influencer?.name_en || influencer?.name :influencer?.name_ar || influencer?.name}</p>
+                <p className=" text-sm font-normal text-grayLight mt-2 ">{language === "en" ?  influencer?.specialization_en || influencer?.specialization :influencer?.specialization_ar || influencer?.specialization}</p>
             </div>
             <div className='flex-1 mt-6 flex gap-6 justify-end'>
                 

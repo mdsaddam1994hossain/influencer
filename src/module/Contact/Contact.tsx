@@ -18,6 +18,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import SliderButton from '@/components/ui/slider-button'
+import { UseMutationContact } from '@/app/hook/useContact'
+import { toast } from "@/components/ui/use-toast"
+
 
 
 
@@ -31,16 +34,14 @@ const FormSchema = z.object({
     email: z.string().min(8, {
         message: "email must be at least 8 characters.",
     }),
-    subject: z.string().min(8, {
-        message: "subject must be at least 12 characters.",
-    }),
-    message: z.string().min(20, {
-        message: "message must be at least 20 characters.",
+    subject: z.string(),
+    message: z.string().min(10, {
+        message: "message must be at least 10 characters.",
     }),
 })
 
 const Contact = () => {
-
+    
     const { t} = useTranslation()
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -50,10 +51,24 @@ const Contact = () => {
         },
     })
 
+
+
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 
+       const result = await UseMutationContact(data)
 
-        console.log(data, "submit data...")
+       if(result){
+        toast({
+            duration:1000,
+             description: (
+                 <pre  >
+                  "Your message has been sent and you will be answered as soon as possible."
+                 </pre>
+             ),
+         })
+         form.reset();
+       }
+       console.log(result)
 
 
     }
