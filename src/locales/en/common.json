@@ -24,6 +24,7 @@
          "create_account":"Create Account",
          "not_found":"There are no influencers for this option, please try another option.",
          "confirm_password":"Confirm Password"
+         
         
     },
     "home":{
@@ -175,7 +176,7 @@
     },
     "signup":{
         "signup":"SignUp",
-        "first_name":"First Name",
+        "first_name":"Name",
         "last_name":"Last Name",
         "country":"Country",
         "address":"Address",
@@ -186,7 +187,14 @@
         "lname_error":"last name must be at least 6 characters.",
         "phone_error":"phone must be at least 11 characters.",
         "password_error": "password must be at least 6 characters.",
-        "confirm_password_error":"confirm password must be matched with the password"
+        "confirm_password_error":"confirm password must be matched with the password",
+        "comName_error":"company name must be at least 6 characters.",
+        "website_error":"website must be at least 6 characters.",
+        "company_name":"Company Name",
+        "website":"Website",
+        "type":"Type",
+        "company_field":"Company Field"
+       
         
     },
     "profile":{

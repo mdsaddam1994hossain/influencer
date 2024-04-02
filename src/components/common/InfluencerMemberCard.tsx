@@ -8,6 +8,12 @@ import { useRouter } from 'next/navigation'
 import star from "../../../public/images/Star.png"
 import user from "../../../public/images/userhart.png"
 import { TInfluencer } from '@/types/influencer'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 type Props = {
   // influencer : TInfluencer;
@@ -17,9 +23,9 @@ type Props = {
 const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
 
   const router = useRouter()
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { language } = i18n;
- 
+
 
   const onViewProfile = (id: any) => {
     router.push(`/influencer/${id}`);
@@ -28,23 +34,31 @@ const InfluencerMemberCard: FC<Props> = ({ influencer }) => {
   let totalFollowers = influencer?.platforms?.reduce((acc: number, item: any) => {
     return acc + item?.followers_count;
   }, 0);
-  
 
+  let specialization = language === "en" ? influencer?.specialization_en || influencer?.specialization : influencer?.specialization_ar || influencer?.specialization
 
-
- 
   return (
     <div className=' bg-white  transition duration-500 ease-in-out transform hover:-translate-y-3 group  ' >
       <div className={`rounded-lg w-full `}>
-        <Image src={influencer?.media?.avatar || "https://www.shutterstock.com/shutterstock/photos/548848999/display_1500/stock-vector-man-in-the-shirt-and-tie-businessman-avatar-or-male-face-icon-vector-illustration-548848999.jpg"}   height={250} width={276} alt='E' className=' w-full h-80 duration-300 object-cover   transition-transform transform ' />
+        <Image src={influencer?.media?.avatar || "https://www.shutterstock.com/shutterstock/photos/548848999/display_1500/stock-vector-man-in-the-shirt-and-tie-businessman-avatar-or-male-face-icon-vector-illustration-548848999.jpg"} height={250} width={276} alt='E' className=' w-full h-80 duration-300 object-cover   transition-transform transform ' />
 
       </div>
 
       <div className='p-4 border-x border-b border-grayBorder'>
         <p className='font-semibold text-blackMedium'>{language === "en" ? (influencer?.name_en || influencer?.name) : (influencer?.name_ar || influencer?.name)}</p>
-       
-        
-        <p className='font-normal text-grayLight text-sm mt-[2px]'>{language ==="en"? influencer?.specialization_en || influencer?.specialization : influencer?.specialization_ar || influencer?.specialization}</p>
+
+        {specialization?.length <= 30 ?<p className='font-normal text-grayLight text-sm mt-[2px]'>{specialization}</p>
+         : <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <p className='font-normal text-grayLight text-sm mt-[2px]'>{specialization.slice(0, 30)}..</p>
+            </TooltipTrigger>
+            <TooltipContent className=" flex flex-wrap ">
+              <p className='font-normal text-grayLight text-sm mt-[2px]'>{specialization}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>}
+
         <div className='flex justify-between items-center  mt-3'>
           <div className='flex gap-2 items-center'>
 

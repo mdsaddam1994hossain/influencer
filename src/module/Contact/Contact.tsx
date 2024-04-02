@@ -47,7 +47,10 @@ const Contact = () => {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             name: "",
-            phone: ""
+            phone: "",
+            email: "",
+            subject: "",
+            message: "",
         },
     })
 
@@ -59,17 +62,15 @@ const Contact = () => {
 
        if(result){
         toast({
-            duration:1000,
+            duration:2000,
              description: (
-                 <pre  >
-                  "Your message has been sent and you will be answered as soon as possible."
+                 <pre className="text-green-500" >
+                  Your message has been sent and you will be answered as soon as possible.
                  </pre>
              ),
          })
          form.reset();
        }
-       console.log(result)
-
 
     }
 

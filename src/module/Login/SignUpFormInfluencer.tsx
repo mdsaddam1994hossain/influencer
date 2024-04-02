@@ -13,15 +13,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectSeparator
-} from '@/components/ui/select';
+
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
@@ -29,27 +21,23 @@ import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
 import { signUpWithCradential } from '@/lib/actions'
 import useAppStore from '@/store'
+import PageLoading from '@/components/common/PageLoading'
 import PhoneInput from 'react-phone-input-2'
 
 
 
-const SignUpForm = () => {
+const  SignUpFormInfluencer = () => {
     const {t,i18n} = useTranslation()
     const {language} = i18n;
     const setIsLogin = useAppStore((state)=>state.setIsLogin)
     const isLoading = useAppStore((state)=>state.isLoading)
     const setIsLoading = useAppStore((state)=>state.setIsLoading)
+    const   userType = useAppStore((state)=> state.userType)
     const router = useRouter()
     const FormSchema = z.object({
 
-        name: z.string().min(4, {
+        fName: z.string().min(4, {
             message: `${t("signup.fname_error")}`,
-        }),
-        comName: z.string().min(4, {
-            message: `${t("signup.comName_error")}`,
-        }),
-        website: z.string().min(4, {
-            message: `${t("signup.website_error")}`,
         }),
         email: z.string().min(8, {
             message: `${t("login.email_error_message")}`,
@@ -72,9 +60,7 @@ const SignUpForm = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            name: "",
-            comName: "",
-            website: "",
+            fName: "",
             email:"",
             phone:"",
             password:"",
@@ -83,7 +69,7 @@ const SignUpForm = () => {
     })
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-
+       
         if(data?.password != data?.confirm_password){
             toast({
                 duration:2000,
@@ -116,7 +102,8 @@ const SignUpForm = () => {
        }
 
         }
-
+        
+       
 
     }
 
@@ -128,9 +115,11 @@ const SignUpForm = () => {
 
             <div className='col-span-2 grid grid-cols-2 mt-6 gap-6'>
                     <div className='col-span-2'>
+                       
+                        
                         <FormField
                         control={form.control}
-                        name="name"
+                        name="fName"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel className='text-blackDark text-base'>{t("signup.first_name")}</FormLabel>
@@ -142,60 +131,11 @@ const SignUpForm = () => {
                         )}
                     />
                     </div>
-                    <div className='col-span-2'>
-                        <FormField
-                        control={form.control}
-                        name="comName"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("signup.company_name")}</FormLabel>
-                                <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.company_name")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                    <div className='col-span-2'>
-                    <div className='col-span-2 md:col-span-1'>
-                        <p className="text-blackDark">{t("signup.type")}</p>
-                        <Select >
-                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
-                                <SelectValue defaultValue={"saudiarabia"} placeholder="Please choose" />
-                            </SelectTrigger>
-                            <SelectContent className='bg-white hover:bg-red-500 '>
-                                <SelectGroup className='my-2 w-full '>
-                                    <SelectItem className='p-4 text-center' value="company">Company</SelectItem>
-                                    <SelectItem className='p-4' value="agency">Agency</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-
-                </div>
-
-                    <div className='col-span-2'>
-                        <FormField
-                        control={form.control}
-                        name="website"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("signup.website")}</FormLabel>
-                                <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.website")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                   
+                    
                 </div>
 
                 <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
-                    <div className='col-span-2'>
-                       
+                    <div className='col-span-2 '>
                         <FormField
                         control={form.control}
                         name="email"
@@ -210,11 +150,11 @@ const SignUpForm = () => {
                         )}
                     />
                     </div>
-                    <div className='col-span-2'>
-                       
+                </div>
+                <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
+                    <div className='col-span-2 '>
                         <FormField
                         control={form.control}
-                        
                         name="phone"
                         render={({ field }) => (
                             <FormItem>
@@ -225,6 +165,7 @@ const SignUpForm = () => {
                                        {...field}
                                     
                                     />
+                                    
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -233,30 +174,14 @@ const SignUpForm = () => {
                     </div>
                 </div>
 
-                <div className='col-span-2 mt-6'>
-                    <div className='col-span-2 md:col-span-1'>
-                        <p className="text-blackDark">{t("signup.company_field")}</p>
-                        <Select >
-                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
-                                <SelectValue defaultValue={"saudiarabia"} placeholder="Saudi Arabia" />
-                            </SelectTrigger>
-                            <SelectContent className='bg-white hover:bg-red-500 '>
-                                <SelectGroup className='my-2 w-full '>
-                                    <SelectItem className='p-4 text-center' value="ar">Bangladesh</SelectItem>
-                                    <SelectItem className='p-4' value="saudiarabia">Saudi Arabia</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-
-                </div>
+             
                
 
-               
+            
 
                 <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
                     <div className='col-span-2 md:col-span-1'>
-                      
+                       
                         <FormField
                         control={form.control}
                         name="password"
@@ -315,4 +240,5 @@ const SignUpForm = () => {
   )
 }
 
-export default SignUpForm
+export default  SignUpFormInfluencer
+

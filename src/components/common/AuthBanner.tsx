@@ -7,7 +7,7 @@
  const AuthBanner = () => {
    return (
     <div className='col-span-2 lg:col-span-1 hidden lg:block' >
-    <div className='bg-red-300 flex justify-center items-center rounded-lg h-full bg-cover bg-center transform  ' style={{ backgroundImage: "url('/images/in-bread-bg.jpg')" }}>
+    <div className='bg-red-300 max-h-[800px] flex justify-center items-center rounded-lg h-full bg-cover bg-center transform  ' style={{ backgroundImage: "url('/images/in-bread-bg.jpg')" }}>
      <Image src={authImg}   className="" alt='l'/> 
     </div>
    </div>

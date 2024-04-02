@@ -6,6 +6,7 @@ import AuthBanner from '@/components/common/AuthBanner'
 import SignUpForm from './SignUpForm'
 import { useTranslation } from 'react-i18next'
 import useAppStore from '@/store'
+import SignUpFormInfluencer from './SignUpFormInfluencer'
 
 const Signup = () => {
    
@@ -32,7 +33,7 @@ const Signup = () => {
                     </div>
                 </div>
             {/* sign up form & login page route */}
-                <SignUpForm />
+           { userType === "advertiser" ?<SignUpForm /> : <SignUpFormInfluencer />}
             </div>
             <AuthBanner />
         </div>
