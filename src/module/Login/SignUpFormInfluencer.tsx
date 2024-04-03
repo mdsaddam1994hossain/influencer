@@ -33,6 +33,7 @@ const  SignUpFormInfluencer = () => {
     const isLoading = useAppStore((state)=>state.isLoading)
     const setIsLoading = useAppStore((state)=>state.setIsLoading)
     const   userType = useAppStore((state)=> state.userType)
+    console.log(userType,"..usert ype")
     const router = useRouter()
     const FormSchema = z.object({
 
@@ -81,7 +82,7 @@ const  SignUpFormInfluencer = () => {
              })
         }else{ 
             setIsLoading(true)
-            const result:any = await signUpWithCradential(data?.email,data?.password)
+            const result:any = await signUpWithCradential(data?.email,data?.password,userType)
        
        if(result.status === 400){
         setIsLoading(false)

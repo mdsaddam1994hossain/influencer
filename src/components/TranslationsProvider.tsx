@@ -5,6 +5,7 @@ import initTranslations from '@/app/i18n';
 import { createInstance } from 'i18next';
 import AOS from 'aos';
 import useAppStore from "@/store";
+import { browserClient } from "@/lib/supabase/brower";
 
 
 interface TranslationsProviderProps {
@@ -57,6 +58,22 @@ export default function TranslationsProvider({
       setMobile(false)
 
     }
+
+   
+      const supabase = browserClient()
+      const { data: authListener } = supabase.auth.onAuthStateChange((event:any, session) => {
+        console.log(event,"event..",session)
+          if (event === 'SIGNED_UP') {
+              
+              console.log(event,"if session",session)
+          }else if(event === 'SIGNED_IN'){
+            console.log(event,"else session",session)
+          }
+      });
+      // return () => {
+      //     authListener.unsubscribe();
+      // };
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);

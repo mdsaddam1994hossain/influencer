@@ -19,9 +19,7 @@ export  function useContact() {
 }
 
 export async function UseMutationContact(contactData:any) {
-  
-       
-       
+
             const supabase = browserClient();
             const { data, error } = await supabase
                 .from('contacts')

@@ -30,15 +30,26 @@ import { useTranslation } from 'react-i18next'
 import { signUpWithCradential } from '@/lib/actions'
 import useAppStore from '@/store'
 import PhoneInput from 'react-phone-input-2'
+import { useFields } from '@/app/hook/useFields'
 
 
 
 const SignUpForm = () => {
-    const {t,i18n} = useTranslation()
-    const {language} = i18n;
-    const setIsLogin = useAppStore((state)=>state.setIsLogin)
-    const isLoading = useAppStore((state)=>state.isLoading)
-    const setIsLoading = useAppStore((state)=>state.setIsLoading)
+    const { t, i18n } = useTranslation()
+    const { language } = i18n;
+    const setIsLogin = useAppStore((state) => state.setIsLogin)
+    const isLoading = useAppStore((state) => state.isLoading)
+    const setIsLoading = useAppStore((state) => state.setIsLoading)
+   
+    const { data }:any = useFields()
+    const companyFields =  data?.map((item: any) => {
+        if (language === "en") {
+            return item.name_en
+        } else {
+            return item.name_ar
+        }
+    })
+
     const router = useRouter()
     const FormSchema = z.object({
 
@@ -48,25 +59,27 @@ const SignUpForm = () => {
         comName: z.string().min(4, {
             message: `${t("signup.comName_error")}`,
         }),
+        accountType: z.enum(["company", "agency"]),
         website: z.string().min(4, {
             message: `${t("signup.website_error")}`,
         }),
-        email: z.string().min(8, {
+        email: z.string().email({
             message: `${t("login.email_error_message")}`,
         }),
         phone: z.string().min(6, {
             message: `${t("signup.phone_error")}`,
         }),
+        company_field: z.enum(companyFields),
         password: z.string().min(6, {
             message: `${t("signup.password_error")}`,
         }),
-        confirm_password: z.string().min(6, {
-            message: `${t("signup.confirm_password_error")}`,
-        }),
-        
+        confirm_password: z.string(),
 
-       
-    
+    }).refine((data) => {
+        return data.password === data.confirm_password
+    }, {
+        message: `${t("signup.confirm_password_error")}`,
+        path: ["confirm_password"]
     })
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -74,245 +87,289 @@ const SignUpForm = () => {
         defaultValues: {
             name: "",
             comName: "",
+            accountType: "" || undefined,
             website: "",
-            email:"",
-            phone:"",
-            password:"",
-            confirm_password:""
+            email: "",
+            phone: "",
+            password: "",
+            confirm_password: ""
         },
     })
 
+    const info =form.watch("company_field")
+    
+
+    const handleSelectChange = (selectedValue: string) => {
+        console.log({ selectedValue }); // Assuming 'type' is the name of the field in your form
+    };
+
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 
-        if(data?.password != data?.confirm_password){
+        if (data?.password != data?.confirm_password) {
             toast({
-                duration:2000,
-                 description: (
-                     <pre  >
-                      <p className='text-red-500 font-medium  text-center'>Password and confirm password not match</p>
-                     </pre>
-                 ),
-             })
-        }else{ 
+                duration: 2000,
+                description: (
+                    <pre  >
+                        <p className='text-red-500 font-medium  text-center'>Password and confirm password not match</p>
+                    </pre>
+                ),
+            })
+        } else {
             setIsLoading(true)
-            const result:any = await signUpWithCradential(data?.email,data?.password)
-       
-       if(result.status === 400){
-        setIsLoading(false)
-        toast({
-            duration:2000,
-             description: (
-                 <pre  >
-                  <p className='text-red-500 font-medium  text-center'>{result.message}</p>
-                 </pre>
-             ),
-         })
-         form.reset();
-       }else{
-        setIsLoading(false)
-        setIsLogin(true)
-        router.push("/")
-        form.reset();
-       }
+            const result: any = await signUpWithCradential(data?.email, data?.password)
+
+            if (result.status === 400) {
+                setIsLoading(false)
+                toast({
+                    duration: 2000,
+                    description: (
+                        <pre  >
+                            <p className='text-red-500 font-medium  text-center'>{result.message}</p>
+                        </pre>
+                    ),
+                })
+                form.reset();
+            } else {
+                setIsLoading(false)
+                setIsLogin(true)
+                router.push("/")
+                form.reset();
+            }
 
         }
 
-
     }
 
-   
-  return (
-    <div>
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
 
-            <div className='col-span-2 grid grid-cols-2 mt-6 gap-6'>
-                    <div className='col-span-2'>
-                        <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("signup.first_name")}</FormLabel>
-                                <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.first_name")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                    <div className='col-span-2'>
-                        <FormField
-                        control={form.control}
-                        name="comName"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("signup.company_name")}</FormLabel>
-                                <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.company_name")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                    <div className='col-span-2'>
-                    <div className='col-span-2 md:col-span-1'>
-                        <p className="text-blackDark">{t("signup.type")}</p>
-                        <Select >
-                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
-                                <SelectValue defaultValue={"saudiarabia"} placeholder="Please choose" />
-                            </SelectTrigger>
-                            <SelectContent className='bg-white hover:bg-red-500 '>
-                                <SelectGroup className='my-2 w-full '>
-                                    <SelectItem className='p-4 text-center' value="company">Company</SelectItem>
-                                    <SelectItem className='p-4' value="agency">Agency</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
+    return (
+        <div>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
 
-                </div>
+                    <div className='col-span-2 grid grid-cols-2 mt-6 gap-6'>
+                        <div className='col-span-2'>
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("signup.first_name")}</FormLabel>
+                                        <FormControl>
+                                            <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.first_name")}`} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className='col-span-2'>
+                            <FormField
+                                control={form.control}
+                                name="comName"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("signup.company_name")}</FormLabel>
+                                        <FormControl>
+                                            <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.company_name")}`} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className='col-span-2'>
+                            <div className='col-span-2 md:col-span-1'>
+                                {/* <p className="text-blackDark">{t("signup.type")}</p> */}
+                                <FormField
+                                    control={form.control}
+                                    name="accountType"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className='text-blackDark text-base'>{t("signup.type")}</FormLabel>
+                                            <Select onValueChange={field.onChange}>
+                                                <FormControl>
 
-                    <div className='col-span-2'>
-                        <FormField
-                        control={form.control}
-                        name="website"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("signup.website")}</FormLabel>
-                                <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.website")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                   
-                </div>
+                                                    <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                        <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                    </SelectTrigger>
 
-                <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
-                    <div className='col-span-2'>
-                       
-                        <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("common.email")}</FormLabel>
-                                <FormControl>
-                                    <Input className='my-2 focus:border-red-500' {...field} placeholder='infoyour@gmail.com' />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                    <div className='col-span-2'>
-                       
-                        <FormField
-                        control={form.control}
-                        
-                        name="phone"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("common.phone")}</FormLabel>
-                                <FormControl>
-                                <PhoneInput                              
-                                     country={'sa'}
-                                       {...field}
-                                    
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                </div>
 
-                <div className='col-span-2 mt-6'>
-                    <div className='col-span-2 md:col-span-1'>
-                        <p className="text-blackDark">{t("signup.company_field")}</p>
-                        <Select >
-                            <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
-                                <SelectValue defaultValue={"saudiarabia"} placeholder="Saudi Arabia" />
-                            </SelectTrigger>
-                            <SelectContent className='bg-white hover:bg-red-500 '>
-                                <SelectGroup className='my-2 w-full '>
-                                    <SelectItem className='p-4 text-center' value="ar">Bangladesh</SelectItem>
-                                    <SelectItem className='p-4' value="saudiarabia">Saudi Arabia</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
+                                                </FormControl>
+                                                <SelectContent className='bg-white hover:bg-red-500 '>
+
+                                                    <SelectItem className='p-4 text-center' value="company">Company</SelectItem>
+                                                    <SelectItem className='p-4' value="agency">Agency</SelectItem>
+
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                            </div>
+
+                        </div>
+
+                        <div className='col-span-2'>
+                            <FormField
+                                control={form.control}
+                                name="website"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("signup.website")}</FormLabel>
+                                        <FormControl>
+                                            <Input className='my-2 focus:border-red-500' {...field} placeholder={`${t("signup.website")}`} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
                     </div>
 
-                </div>
-               
+                    <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
+                        <div className='col-span-2'>
 
-               
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("common.email")}</FormLabel>
+                                        <FormControl>
+                                            <Input className='my-2 focus:border-red-500' {...field} placeholder='infoyour@gmail.com' />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className='col-span-2'>
 
-                <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
-                    <div className='col-span-2 md:col-span-1'>
-                      
-                        <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("common.password")}</FormLabel>
-                                <FormControl>
-                                    <Input type="password" className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.password")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                    <FormField
-                        control={form.control}
-                        name="confirm_password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='text-blackDark text-base'>{t("common.confirm_password")}</FormLabel>
-                                <FormControl>
-                                    <Input type="password" className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.confirm_password")}`} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    </div>
-                </div>
+                            <FormField
+                                control={form.control}
 
-                <div className='flex justify-between my-6 '>
-                    <div className='flex gap-2 justify-center'>
-                        <div className="flex items-center ">
-                            <Checkbox id="terms" className={`border-blackLight -mt-[2px] ${language === "en" ? "mr-2" : "ml-2"}`} />
-                            <label
-                                htmlFor="terms"
-                                className="text-blackLight "
-                            >
-                                {t("common.remember_me")}
-                            </label>
+                                name="phone"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("common.phone")}</FormLabel>
+                                        <FormControl>
+                                            <PhoneInput
+                                                country={'sa'}
+                                                {...field}
+
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                         </div>
                     </div>
-                    {/* <p className='text-red-500 '> {t("common.forgot_password")}</p> */}
-                </div>
-                {/* <Button className='bg-red-500 hover:bg-red-600 mt-4 font-medium text-lg w-full h-14'>Create Account</Button> */}
-                <SliderButton loading={isLoading} label="common.create_account" btnStyle="w-full mt-4 font-medium text-lg w-full h-14" />
 
-                <p className='mt-6 text-center text-blackLight'>{t("signup.already_account")} <span className=' text-blackDark cursor-pointer hover:text-red-500' onClick={() => router.push("/login")}>{t("login.login")}</span></p>
+                    <div className='col-span-2 mt-6'>
+                        <div className='col-span-2'>
 
-            </form>
+                            <FormField
+                                control={form.control}
+                                name="company_field"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel>
+                                        <Select onValueChange={field.onChange}>
+                                            <FormControl>
 
-        </Form>
-      
-    </div>
-  )
+                                                <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                    <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                </SelectTrigger>
+
+
+                                            </FormControl>
+                                            <SelectContent className='bg-white hover:bg-red-500 '>
+                                                {
+                                                    companyFields?.map((item: string, index: number) => {
+                                                        return (
+                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                        )
+                                                    })
+                                                }
+
+
+
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div className='col-span-2 grid grid-cols-2 gap-6 mt-6'>
+                        <div className='col-span-2 md:col-span-1'>
+
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("common.password")}</FormLabel>
+                                        <FormControl>
+                                            <Input type="password" className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.password")}`} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className='col-span-2 md:col-span-1'>
+                            <FormField
+                                control={form.control}
+                                name="confirm_password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className='text-blackDark text-base'>{t("common.confirm_password")}</FormLabel>
+                                        <FormControl>
+                                            <Input type="password" className='my-2 focus:border-red-500' {...field} placeholder={`${t("common.confirm_password")}`} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+
+                    <div className='flex justify-between my-6 '>
+                        <div className='flex gap-2 justify-center'>
+                            <div className="flex items-center ">
+                                <Checkbox id="terms" className={`border-blackLight -mt-[2px] ${language === "en" ? "mr-2" : "ml-2"}`} />
+                                <label
+                                    htmlFor="terms"
+                                    className="text-blackLight "
+                                >
+                                    {t("common.remember_me")}
+                                </label>
+                            </div>
+                        </div>
+                        {/* <p className='text-red-500 '> {t("common.forgot_password")}</p> */}
+                    </div>
+                    {/* <Button className='bg-red-500 hover:bg-red-600 mt-4 font-medium text-lg w-full h-14'>Create Account</Button> */}
+                    <SliderButton loading={isLoading} label="common.create_account" btnStyle="w-full mt-4 font-medium text-lg w-full h-14" />
+
+                    <p className='mt-6 text-center text-blackLight'>{t("signup.already_account")} <span className=' text-blackDark cursor-pointer hover:text-red-500' onClick={() => router.push("/login")}>{t("login.login")}</span></p>
+
+                </form>
+
+            </Form>
+
+        </div>
+    )
 }
 
 export default SignUpForm
