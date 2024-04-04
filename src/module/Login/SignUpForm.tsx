@@ -27,7 +27,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
-import { signUpWithCradential } from '@/lib/actions'
+import { insertDataAsInfluencerOrAdvertiser, signUpWithCradential } from '@/lib/actions'
 import useAppStore from '@/store'
 import PhoneInput from 'react-phone-input-2'
 import { useFields } from '@/app/hook/useFields'
@@ -38,6 +38,7 @@ const SignUpForm = () => {
     const { t, i18n } = useTranslation()
     const { language } = i18n;
     const setIsLogin = useAppStore((state) => state.setIsLogin)
+    const   userType = useAppStore((state)=> state.userType)
     const isLoading = useAppStore((state) => state.isLoading)
     const setIsLoading = useAppStore((state) => state.setIsLoading)
    
@@ -105,20 +106,11 @@ const SignUpForm = () => {
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 
-        if (data?.password != data?.confirm_password) {
-            toast({
-                duration: 2000,
-                description: (
-                    <pre  >
-                        <p className='text-red-500 font-medium  text-center'>Password and confirm password not match</p>
-                    </pre>
-                ),
-            })
-        } else {
+       
             setIsLoading(true)
             const result: any = await signUpWithCradential(data?.email, data?.password)
 
-            if (result.status === 400) {
+            if (result?.status === 400) {
                 setIsLoading(false)
                 toast({
                     duration: 2000,
@@ -130,13 +122,24 @@ const SignUpForm = () => {
                 })
                 form.reset();
             } else {
+
+                console.log(result,"eslse block...")
+        const verify:any =result && await insertDataAsInfluencerOrAdvertiser(result,userType)
+       
                 setIsLoading(false)
                 setIsLogin(true)
-                router.push("/")
                 form.reset();
+                if(verify[0]?.type){
+                    router.push("/")
+                }else if(verify[0]?.type != "individual" && verify[0]?.website === null ){
+                    router.push("/profileEdit")
+                }else{ 
+                    router.push("/")
+                }
+                
             }
 
-        }
+        
 
     }
 

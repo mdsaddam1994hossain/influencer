@@ -19,7 +19,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
-import { signUpWithCradential } from '@/lib/actions'
+import { insertDataAsInfluencerOrAdvertiser, signUpWithCradential } from '@/lib/actions'
 import useAppStore from '@/store'
 import PageLoading from '@/components/common/PageLoading'
 import PhoneInput from 'react-phone-input-2'
@@ -33,7 +33,6 @@ const  SignUpFormInfluencer = () => {
     const isLoading = useAppStore((state)=>state.isLoading)
     const setIsLoading = useAppStore((state)=>state.setIsLoading)
     const   userType = useAppStore((state)=> state.userType)
-    console.log(userType,"..usert ype")
     const router = useRouter()
     const FormSchema = z.object({
 
@@ -51,11 +50,13 @@ const  SignUpFormInfluencer = () => {
         }),
         confirm_password: z.string().min(6, {
             message: `${t("signup.confirm_password_error")}`,
-        }),
-        
-
-       
+        }),  
     
+    }).refine((data) => {
+        return data.password === data.confirm_password
+    }, {
+        message: `${t("signup.confirm_password_error")}`,
+        path: ["confirm_password"]
     })
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -71,20 +72,11 @@ const  SignUpFormInfluencer = () => {
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
        
-        if(data?.password != data?.confirm_password){
-            toast({
-                duration:2000,
-                 description: (
-                     <pre  >
-                      <p className='text-red-500 font-medium  text-center'>Password and confirm password not match</p>
-                     </pre>
-                 ),
-             })
-        }else{ 
-            setIsLoading(true)
-            const result:any = await signUpWithCradential(data?.email,data?.password,userType)
        
-       if(result.status === 400){
+            setIsLoading(true)
+            const result:any = await signUpWithCradential(data?.email,data?.password)
+       
+       if(result?.status === 400){
         setIsLoading(false)
         toast({
             duration:2000,
@@ -96,13 +88,21 @@ const  SignUpFormInfluencer = () => {
          })
          form.reset();
        }else{
+       console.log(result,"result...")
+        const verify:any = result && await insertDataAsInfluencerOrAdvertiser(result,userType)
         setIsLoading(false)
-        setIsLogin(true)
-        router.push("/")
-        form.reset();
+                setIsLogin(true)
+                form.reset();
+                if(verify[0]?.type === "individual"){
+                    router.push("/")
+                }else if(verify[0]?.type != "individual" && (verify[0]?.category_id === null || verify[0]?.country)  ){
+                    router.push("/profileEdit")
+                }else{ 
+                    router.push("/")
+                }
        }
 
-        }
+        
         
        
 
