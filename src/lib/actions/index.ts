@@ -27,32 +27,8 @@ export async function signInWithCradential(email:string,password:string) {
     if(error){
         return error
     }else{
-      // console.log("influencer",influencer)
-      //   return influencer
-    console.log(influencer,"influencer....")
-      if (influencer) {
-        // Step 2: Fetch the influencer data linked to the authenticated user
-        const { data: influencerData, error: dataError } = await supabase
-          .from('influencers')
-          .select('*')
-          .eq('user_id', influencer?.user?.id) // Use the user ID from the authentication step to filter
-          .single(); // Assuming one entry per user, modify as needed
-        if (dataError) {
-          console.error('Error fetching influencer data:', dataError.message);
-          return dataError;
-        }
-        // Combine user data and influencer data for easy access
-        const combinedData = {
-          ...influencer, // Authenticated user's data
-          influencerInfo: influencerData, // Associated influencer data
-        };
-        console.log(combinedData,"combine Data...")
-        return combinedData;
-      } else {
-       
-        console.log('User not authenticated or user data not available.');
-        return null;
-      }
+        return influencer
+  
     }
   }
 export async function signUpWithCradential(email:string,password:string) {
@@ -68,44 +44,27 @@ export async function signUpWithCradential(email:string,password:string) {
       return user
     }
 
-    // let tableToUpdate = userType === 'influencer' ? 'influencers' : 'users';
-    //  console.log(userType,"userType","tabledata",tableToUpdate)
-    // const { data:updateData, error:insertError } = await supabase.from(tableToUpdate).insert([
-    //     {
-    //       user_id: user?.user?.id,// Link to the Supabase Auth user's ID
-    //       email:email,
-    //       password:password
-    //     },
-    //   ]);
-    //   console.log("tabledata===",updateData)
-    //   if (insertError) {
-    //     console.error('Error inserting additional data:', insertError.message);
-    //     return insertError
-    //   } else {
-    //     console.log(user,'Additional data inserted successfully:', updateData);
-    //     return updateData
-    //   }
   }
 
   //testing api verity user as influencer or advertiser
 
-  export async function insertDataAsInfluencerOrAdvertiser(user:any,userType?:string){
-    console.log(user,"==============")
+  export async function insertDataAsInfluencerOrAdvertiser(data:any,userType?:string,user?:any){
     const supabase =  serverClient()
       let tableToUpdate = userType === 'influencer' ? 'influencers' : 'users';
     
     const { data:updateData, error:insertError } = await supabase.from(tableToUpdate).insert([
         {
-          user_id: user?.user?.id,// Link to the Supabase Auth user's ID
-          email:user?.user?.email
+          user_id: data?.user?.id,// Link to the Supabase Auth user's ID
+          email:data?.user?.email,
+          name:user.name,
+          password:user.password,
+          mobile:user.phone
         },
       ]).select("*")
  
-      if (insertError) {
-        console.error('Error inserting additional data:', insertError.message);
+      if (insertError) { 
         return insertError
       } else {
-        console.log(user,'Additional data inserted successfully:', updateData);
         return updateData
       }
 
@@ -130,3 +89,34 @@ export async function signUpWithCradential(email:string,password:string) {
     }
     
   }
+
+  export async function verifyUser(uuid:string){
+    const supabase =  serverClient()
+
+      const { data: userData, error: dataError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('user_id', uuid) // Use the user ID from the authentication step to filter
+        .single(); // Assuming one entry per user, modify as needed
+
+        console.log(userData,"and error",dataError)
+        if(dataError){
+
+          const { data: influencerData, error: influencerError } = await supabase
+          .from('influencers')
+          .select('*')
+          .eq('user_id', uuid) // Use the user ID from the authentication step to filter
+          .single();
+          if(influencerError){
+            return influencerError
+          }else{ 
+            return influencerData
+          }
+           
+        }else{ 
+          return userData
+        }
+
+  }
+
+

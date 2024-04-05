@@ -42,6 +42,7 @@ export default async function RootLayout({
   const { resources } = await initTranslations(locale, i18nNamespaces);
 
   const { data } = await readUserSession()
+  
 
 
   return (
@@ -54,7 +55,9 @@ export default async function RootLayout({
           <TranslationsProvider
             namespaces={i18nNamespaces}
             locale={locale}
-            resources={resources}>
+            resources={resources}
+            data={data}
+            >
             <>
               <Header data={data} />
               {children}

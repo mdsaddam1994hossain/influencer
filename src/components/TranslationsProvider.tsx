@@ -5,7 +5,8 @@ import initTranslations from '@/app/i18n';
 import { createInstance } from 'i18next';
 import AOS from 'aos';
 import useAppStore from "@/store";
-import { browserClient } from "@/lib/supabase/brower";
+import { verifyUser } from "@/lib/actions";
+import { useRouter } from 'next/navigation'
 
 
 interface TranslationsProviderProps {
@@ -13,6 +14,7 @@ interface TranslationsProviderProps {
   locale: string;
   namespaces: string[];
   resources: any;
+  data:any
 }
 
 
@@ -21,7 +23,8 @@ export default function TranslationsProvider({
   children,
   locale,
   namespaces,
-  resources
+  resources,
+  data
 }: TranslationsProviderProps) {
 
  
@@ -29,6 +32,7 @@ export default function TranslationsProvider({
   initTranslations(locale, namespaces, i18n, resources);
   const [resWidth, setResWidth] = useState(0);
   const setMobile = useAppStore((state) => state.setMobile)
+  const router = useRouter()
 
  
 
@@ -40,8 +44,6 @@ export default function TranslationsProvider({
       setResWidth(window?.innerWidth);
     }
   };
-
-
 
   useEffect(() => {
     AOS.init({
@@ -59,27 +61,16 @@ export default function TranslationsProvider({
 
     }
 
-   
-      const supabase = browserClient()
-      const { data: authListener } = supabase.auth.onAuthStateChange((event:any, session) => {
-        console.log(event,"event..",session)
-          if (event === 'SIGNED_UP') {
-              
-              console.log(event,"if session",session)
-          }else if(event === 'SIGNED_IN'){
-            console.log(event,"else session",session)
-          }
-      });
-      // return () => {
-      //     authListener.unsubscribe();
-      // };
-
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
 
+   
+
   }, [resWidth])
+
+
 
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;

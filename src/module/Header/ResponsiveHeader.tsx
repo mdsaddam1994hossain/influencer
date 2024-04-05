@@ -91,7 +91,7 @@ const ResponsiveHeader = ({ data }: any) => {
     setJoinus(true)
  }
 
-
+  
 
 
   return (

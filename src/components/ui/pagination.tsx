@@ -71,7 +71,7 @@ const PaginationPrevious = ({
     {...props}
   >
 
-    <ChevronLeft className="h-4 w-4  g "  strokeWidth={3}  />
+    <ChevronLeft className={`h-4 w-4 `}  strokeWidth={3}  />
     
   </PaginationLink>
 )

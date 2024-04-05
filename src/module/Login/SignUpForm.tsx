@@ -106,7 +106,7 @@ const SignUpForm = () => {
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 
-       
+      console.log(data,"d")
             setIsLoading(true)
             const result: any = await signUpWithCradential(data?.email, data?.password)
 
@@ -124,7 +124,7 @@ const SignUpForm = () => {
             } else {
 
                 console.log(result,"eslse block...")
-        const verify:any =result && await insertDataAsInfluencerOrAdvertiser(result,userType)
+        const verify:any =result && await insertDataAsInfluencerOrAdvertiser(result,userType,data)
        
                 setIsLoading(false)
                 setIsLogin(true)

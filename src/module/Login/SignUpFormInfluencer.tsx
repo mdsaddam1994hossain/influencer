@@ -36,7 +36,7 @@ const  SignUpFormInfluencer = () => {
     const router = useRouter()
     const FormSchema = z.object({
 
-        fName: z.string().min(4, {
+        name: z.string().min(4, {
             message: `${t("signup.fname_error")}`,
         }),
         email: z.string().min(8, {
@@ -62,7 +62,7 @@ const  SignUpFormInfluencer = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            fName: "",
+            name: "",
             email:"",
             phone:"",
             password:"",
@@ -71,12 +71,13 @@ const  SignUpFormInfluencer = () => {
     })
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-       
+  
        
             setIsLoading(true)
             const result:any = await signUpWithCradential(data?.email,data?.password)
+            console.log(result)
        
-       if(result?.status === 400){
+       if(result?.status === 422){
         setIsLoading(false)
         toast({
             duration:2000,
@@ -88,8 +89,7 @@ const  SignUpFormInfluencer = () => {
          })
          form.reset();
        }else{
-       console.log(result,"result...")
-        const verify:any = result && await insertDataAsInfluencerOrAdvertiser(result,userType)
+        const verify:any = result && await insertDataAsInfluencerOrAdvertiser(result,userType,data)
         setIsLoading(false)
                 setIsLogin(true)
                 form.reset();
@@ -120,7 +120,7 @@ const  SignUpFormInfluencer = () => {
                         
                         <FormField
                         control={form.control}
-                        name="fName"
+                        name="name"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel className='text-blackDark text-base'>{t("signup.first_name")}</FormLabel>
