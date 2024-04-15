@@ -1,19 +1,29 @@
 
 import React from 'react'
+
 import { redirect } from 'next/navigation'
-import readUserSession from '@/lib/actions'
+
+import readUserSession, { verifyUser } from '@/lib/actions'
 import InfluencerProfileEdit from '@/module/Influencer/InfluencerProfileEdit'
 
 const ProfileEditPage = async() => {
-
+ 
   const {data} = await readUserSession()
+  let user;
+  if(data){
+    const verify:any =  await verifyUser(data?.session?.user?.id as string)
+     user = verify;
+    console.log(verify,"============")
+  }
+
+  console.log(user,"============")
 
   if(!data?.session){
     redirect("/login")
   }
   return (
     <main>
-      <InfluencerProfileEdit />
+      <InfluencerProfileEdit user={user}/>
     </main>
   )
 }

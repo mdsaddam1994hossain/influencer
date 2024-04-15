@@ -100,13 +100,8 @@ const SignUpForm = () => {
     const info =form.watch("company_field")
     
 
-    const handleSelectChange = (selectedValue: string) => {
-        console.log({ selectedValue }); // Assuming 'type' is the name of the field in your form
-    };
-
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 
-      console.log(data,"d")
             setIsLoading(true)
             const result: any = await signUpWithCradential(data?.email, data?.password)
 

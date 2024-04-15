@@ -1,8 +1,19 @@
 "use client"
-import React from 'react'
+import React, { FC, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { FaYoutube,FaTiktok,FaSnapchatSquare,FaInstagram,FaTwitter} from "react-icons/fa";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
 
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -15,25 +26,108 @@ import {
   } from "@/components/ui/select"
 import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCategories'
 import CustomFileUpload from '@/components/common/CustomFileUpload';
+import { useTranslation } from 'react-i18next'
 
+ type Tuser={
+    user:any;
+ }
 
-const InfluencerProfileEdit = () => {
+const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
+    const { t, i18n } = useTranslation()
+    const {language} = i18n;
+    const [nickname, setNickname] = useState(user?.name || '');
     const {data:categorie}= useCategories()
     const {data:tags}= useTags()
     const {data:countries}= useCountry()
     const {data:regions}= useRegions()
-    console.log(tags,"tags")
+
+    const categoriesLabel = categorie?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
+    const tagsLabel = tags?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
+    const countriesLabel = countries?.map((item) =>  item?.name);
+    const regionsLabel = regions?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
+    
+
+    
+    
+    const FormSchema = z.object({
+
+        name: z.string().min(4, {
+            message: `${t("signup.fname_error")}`,
+        }),
+        overView: z.string().min(12, {
+            message: `${t("signup.comName_error")}`,
+        }),
+        gender: z.enum(["Male", "Female"]),
+        specialization: z.string().min(4, {
+            message: `${t("signup.website_error")}`,
+        }),
+        categories: z.enum(categoriesLabel as [string]),
+        tags: z.enum(tagsLabel as [string]),
+        countries: z.enum(countriesLabel as [string]),
+        regions: z.enum(regionsLabel as [string]),
+
+    })
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
+        defaultValues: {
+            name: user?.name,
+            overView: "",
+            gender: "" || undefined,
+            specialization: "",
+            categories: "" || undefined,
+            tags: "" || undefined,
+            countries: "" || undefined,
+            regions: "" || undefined,
+           
+        },
+    })
+
+    const onSubmit =  (data: z.infer<typeof FormSchema>) => {
+
+        console.log(data,"data form")
+    }
+
   return (
     <div className=' px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 my-12'>
+        <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+                   
 
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
             <div className="flex gap-3 items-center ">
                 <p className="flex-shrink basis-1/5">Nickame</p>
-                <Input className="flex-grow" />
+                {/* <Input value={nickname}   onChange={(e) => setNickname(e.target.value)}   className="flex-grow" /> */}
+                 <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem className="w-full">
+                                        {/* <FormLabel className='text-blackDark text-base flex-shrink basis-1/5'>{t("signup.first_name")}</FormLabel> */}
+                                        <FormControl>
+                                            <Input className='my-2 focus:border-red-500 flex-grow' {...field} placeholder={`${t("signup.first_name")}`} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
             </div>
             <div className="flex gap-3 items-center ">
                  <p className="flex-shrink basis-1/5">A brief overview of you</p>
-                 <Textarea className="flex-grow"/>
+                 {/* <Textarea className="flex-grow"/> */}
+                 <FormField
+                                control={form.control}
+                                name="overView"
+                                render={({ field }) => (
+                                    <FormItem className="w-full">
+                                        {/* <FormLabel className='text-blackDark text-base flex-shrink basis-1/5'>{t("signup.first_name")}</FormLabel> */}
+                                        <FormControl>
+                                            <Textarea className='my-2 focus:border-red-500 flex-grow' {...field}  />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
            
             </div>
        </div>
@@ -41,7 +135,7 @@ const InfluencerProfileEdit = () => {
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6  mt-4 lg:mt-6'>
             <div className="flex gap-3 items-center ">
                 <p className="flex-shrink basis-1/5">Gender</p>
-                <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
                     </SelectTrigger>
@@ -51,11 +145,56 @@ const InfluencerProfileEdit = () => {
                         <SelectItem className="p-4 py-4" value="female">Female</SelectItem>
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> */}
+
+<FormField
+                                control={form.control}
+                                name="gender"
+                                render={({ field }) => (
+                                    <FormItem className=" w-full">
+                                        {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
+                                        <Select onValueChange={field.onChange}>
+                                            <FormControl>
+
+                                                <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                    <SelectValue defaultValue={"male"} placeholder="Please choose" />
+                                                </SelectTrigger>
+
+
+                                            </FormControl>
+                                            <SelectContent className='bg-white hover:bg-red-500 '>
+                                                {
+                                                    ["Male","Female"]?.map((item: string, index: number) => {
+                                                        return (
+                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                        )
+                                                    })
+                                                }
+
+
+
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
             </div>
             <div className="flex gap-3 items-center ">
                  <p className="flex-shrink basis-1/5">Specialization</p>
-                 <Input className="flex-grow"/>
+                 <FormField
+                                control={form.control}
+                                name="specialization"
+                                render={({ field }) => (
+                                    <FormItem className="w-full">
+                                        {/* <FormLabel className='text-blackDark text-base flex-shrink basis-1/5'>{t("signup.first_name")}</FormLabel> */}
+                                        <FormControl>
+                                            <Input className='my-2 focus:border-red-500 flex-grow' {...field}  />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
            
             </div>
        </div>
@@ -63,7 +202,7 @@ const InfluencerProfileEdit = () => {
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
             <div className="flex gap-3 items-center ">
                 <p className="flex-shrink basis-1/5">Categories</p>
-                <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
                     </SelectTrigger>
@@ -78,11 +217,44 @@ const InfluencerProfileEdit = () => {
                      
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> */}
+
+<FormField
+                                control={form.control}
+                                name="categories"
+                                render={({ field }) => (
+                                    <FormItem className=" w-full">
+                                        {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
+                                        <Select onValueChange={field.onChange}>
+                                            <FormControl>
+
+                                                <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                    <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                </SelectTrigger>
+
+
+                                            </FormControl>
+                                            <SelectContent className='bg-white hover:bg-red-500 '>
+                                                {
+                                                    categoriesLabel?.map((item: string, index: number) => {
+                                                        return (
+                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                        )
+                                                    })
+                                                }
+
+
+
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
             </div>
             <div className="flex gap-3 items-center ">
                  <p className="flex-shrink basis-1/5">Tags</p>
-                 <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                 {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
                     </SelectTrigger>
@@ -96,14 +268,47 @@ const InfluencerProfileEdit = () => {
                         
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> */}
+
+<FormField
+                                control={form.control}
+                                name="tags"
+                                render={({ field }) => (
+                                    <FormItem className=" w-full">
+                                        {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
+                                        <Select onValueChange={field.onChange}>
+                                            <FormControl>
+
+                                                <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                    <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                </SelectTrigger>
+
+
+                                            </FormControl>
+                                            <SelectContent className='bg-white hover:bg-red-500 '>
+                                                {
+                                                    tagsLabel?.map((item: string, index: number) => {
+                                                        return (
+                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                        )
+                                                    })
+                                                }
+
+
+
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
            
             </div>
        </div>
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
             <div className="flex gap-3 items-center ">
                 <p className="flex-shrink basis-1/5">Country</p>
-                <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please select a country" />
                     </SelectTrigger>
@@ -116,12 +321,45 @@ const InfluencerProfileEdit = () => {
                             })}
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> */}
+
+<FormField
+                                control={form.control}
+                                name="countries"
+                                render={({ field }) => (
+                                    <FormItem className=" w-full">
+                                        {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
+                                        <Select onValueChange={field.onChange}>
+                                            <FormControl>
+
+                                                <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                    <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                </SelectTrigger>
+
+
+                                            </FormControl>
+                                            <SelectContent className='bg-white hover:bg-red-500 '>
+                                                {
+                                                    countriesLabel?.map((item: string, index: number) => {
+                                                        return (
+                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                        )
+                                                    })
+                                                }
+
+
+
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
             </div>
 
             <div className="flex gap-3 items-center ">
                  <p className="flex-shrink basis-1/5">Regions</p>
-                 <Select onValueChange={(v)=>console.log(v,"v.....")}>
+                 {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
                     </SelectTrigger>
@@ -134,7 +372,40 @@ const InfluencerProfileEdit = () => {
                             })}
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> */}
+
+<FormField
+                                control={form.control}
+                                name="regions"
+                                render={({ field }) => (
+                                    <FormItem className=" w-full">
+                                        {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
+                                        <Select onValueChange={field.onChange}>
+                                            <FormControl>
+
+                                                <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
+                                                    <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                </SelectTrigger>
+
+
+                                            </FormControl>
+                                            <SelectContent className='bg-white hover:bg-red-500 '>
+                                                {
+                                                    regionsLabel?.map((item: string, index: number) => {
+                                                        return (
+                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                        )
+                                                    })
+                                                }
+
+
+
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
            
             </div>
        </div>
@@ -550,7 +821,8 @@ const InfluencerProfileEdit = () => {
         </div>
       
       
-
+        </form>
+                    </Form>
 
 
 
