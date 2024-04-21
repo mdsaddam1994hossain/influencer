@@ -27,6 +27,7 @@ import {
 import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCategories'
 import CustomFileUpload from '@/components/common/CustomFileUpload';
 import { useTranslation } from 'react-i18next'
+import { IoClose } from "react-icons/io5";
 
  type Tuser={
     user:any;
@@ -40,11 +41,36 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const {data:tags}= useTags()
     const {data:countries}= useCountry()
     const {data:regions}= useRegions()
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedTags, setSelectedTags] = useState([]);
+    const [selectedRegions, setSelectedRegions] = useState([]); 
 
     const categoriesLabel = categorie?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
     const tagsLabel = tags?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
     const countriesLabel = countries?.map((item) =>  item?.name);
     const regionsLabel = regions?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
+
+
+    const handleSelectCategory = (item:any) => {
+
+        console.log(item,"iiiiiiiiitttteeeemmm")
+        setSelectedCategories((prev:any) =>
+          prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
+        );
+       
+      };
+      
+      const handleSelectTag = (item:string) => {
+        setSelectedTags((prev:any) =>
+          prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
+        );
+      };
+      
+      const handleSelectRegion = (item:any) => {
+        setSelectedRegions((prev:any) =>
+          prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
+        );
+      };
     
 
     
@@ -86,10 +112,11 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const onSubmit =  (data: z.infer<typeof FormSchema>) => {
 
         console.log(data,"data form")
+        console.log(selectedCategories)
     }
 
   return (
-    <div className=' px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 my-12'>
+    <div className='px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 my-12'>
         <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
                    
@@ -152,6 +179,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                                 name="gender"
                                 render={({ field }) => (
                                     <FormItem className=" w-full">
+                                        
                                         {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
                                         <Select onValueChange={field.onChange}>
                                             <FormControl>
@@ -200,8 +228,8 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
        </div>
 
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
-            <div className="flex gap-3 items-center ">
-                <p className="flex-shrink basis-1/5">Categories</p>
+            <div className="grid grid-cols-10 items-center  ">
+                <p className="col-span-2">Categories</p>
                 {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
@@ -218,14 +246,23 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                         </SelectGroup>
                     </SelectContent>
                 </Select> */}
-
-<FormField
+                
+                            {selectedCategories?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedCategories.map((category, index) => (
+                <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
+                    <span className="text-xs font-normal">{category}</span>
+                    <button onClick={() => handleSelectCategory(category)}><IoClose /></button>
+                </div>
+                ))}
+                </div>}
+                       <FormField
                                 control={form.control}
                                 name="categories"
                                 render={({ field }) => (
-                                    <FormItem className=" w-full">
+                                    <FormItem className=" w-full col-start-3 col-span-8">
                                         {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
-                                        <Select onValueChange={field.onChange}>
+                                        <Select  onValueChange={(value) =>{ handleSelectCategory(value)
+                                        field.onChange(value)}
+                                         }>
                                             <FormControl>
 
                                                 <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
@@ -252,8 +289,8 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                                 )}
                             />
             </div>
-            <div className="flex gap-3 items-center ">
-                 <p className="flex-shrink basis-1/5">Tags</p>
+            <div className="grid grid-cols-10 items-center ">
+                 <p className="col-span-2">Tags</p>
                  {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
@@ -270,13 +307,23 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                     </SelectContent>
                 </Select> */}
 
-<FormField
+{selectedTags?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedTags.map((tag, index) => (
+                <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
+                    <span className="text-xs font-normal">{tag}</span>
+                    <button onClick={() => handleSelectTag(tag)}><IoClose /></button>
+                </div>
+                ))}
+                </div>}
+
+                        <FormField
                                 control={form.control}
                                 name="tags"
                                 render={({ field }) => (
-                                    <FormItem className=" w-full">
+                                    <FormItem className=" w-full col-start-3 col-span-8 ">
                                         {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
-                                        <Select onValueChange={field.onChange}>
+                                        <Select onValueChange={(value) =>{ handleSelectTag(value)
+                                        field.onChange(value)}
+                                         }>
                                             <FormControl>
 
                                                 <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
@@ -357,8 +404,8 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                             />
             </div>
 
-            <div className="flex gap-3 items-center ">
-                 <p className="flex-shrink basis-1/5">Regions</p>
+            <div className="grid grid-cols-10 items-center ">
+                 <p className="col-span-2">Regions</p>
                  {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
                     <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
                         <SelectValue placeholder="Please Choose" />
@@ -374,13 +421,23 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                     </SelectContent>
                 </Select> */}
 
-<FormField
+{selectedRegions?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedRegions.map((rigion, index) => (
+                <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
+                    <span className="text-xs font-normal">{rigion}</span>
+                    <button onClick={() => handleSelectRegion(rigion)}><IoClose /></button>
+                </div>
+                ))}
+                </div>}
+
+                  <FormField
                                 control={form.control}
                                 name="regions"
                                 render={({ field }) => (
-                                    <FormItem className=" w-full">
+                                    <FormItem className=" w-full col-start-3 col-span-8 ">
                                         {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
-                                        <Select onValueChange={field.onChange}>
+                                        <Select  onValueChange={(value) =>{ handleSelectRegion(value)
+                                        field.onChange(value)}
+                                         }>
                                             <FormControl>
 
                                                 <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>

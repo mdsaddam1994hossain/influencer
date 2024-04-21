@@ -5,11 +5,11 @@ import NavBar from './NavBar';
 import ResponsiveHeader from './ResponsiveHeader';
 
 
-const Header = ({data}:any) => {
+const Header = ({data,user}:any) => {
 
     return (
         <div className='bg-white lg:bg-transparent'>
-            <ResponsiveHeader data={data} />
+            <ResponsiveHeader data={data} user={user} />
             {/* <NavBar  data={data}/>  */}
         </div>
 

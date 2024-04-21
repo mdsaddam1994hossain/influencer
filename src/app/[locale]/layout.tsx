@@ -7,7 +7,7 @@ import TranslationsProvider from "@/components/TranslationsProvider"
 import Header from "@/module/Header/Header";
 import Footer from "@/module/Footer/Footer";
 import QueryProvider from "@/components/query-provider";
-import readUserSession from "@/lib/actions";
+import readUserSession, { verifyUser } from "@/lib/actions";
 import { Toaster } from "@/components/ui/toaster"
 import initTranslations from "../i18n";
 
@@ -42,6 +42,12 @@ export default async function RootLayout({
   const { resources } = await initTranslations(locale, i18nNamespaces);
 
   const { data } = await readUserSession()
+  let user;
+  if(data){
+    const verify:any =  await verifyUser(data?.session?.user?.id as string)
+     user = verify;
+    
+  }
   
 
 
@@ -59,7 +65,7 @@ export default async function RootLayout({
             data={data}
             >
             <>
-              <Header data={data} />
+              <Header data={data} user={user} />
               {children}
               <Footer />
               <Toaster  />

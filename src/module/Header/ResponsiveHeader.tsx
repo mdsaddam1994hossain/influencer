@@ -34,9 +34,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import SearchComponent from './SearchComponent';
+import ProfileOption from './ProfileOption';
 
 
-const ResponsiveHeader = ({ data }: any) => {
+const ResponsiveHeader = ({ data,user }: any) => {
   
   
   const [visible, setVisible] = useState(false)
@@ -60,6 +61,7 @@ const ResponsiveHeader = ({ data }: any) => {
   }
 
   const handleLogOut = async () => {
+    console.log("click........")
     await userSignOut()
     setIsLogin(false)
     setVisible(false)
@@ -92,7 +94,7 @@ const ResponsiveHeader = ({ data }: any) => {
  }
 
   
-
+   console.log(user?.name,"user...")
 
   return (
     <div>
@@ -145,7 +147,10 @@ const ResponsiveHeader = ({ data }: any) => {
            <SearchComponent />
             <LanguageChanger />
              {
-              data?.session ? <Button onClick={handleLogOut} className="bg-blackDark rounded-md text-sm font-normal px-4 h-10">{t("nav.logout")}</Button>:
+              data?.session ?  
+              // <Button onClick={handleLogOut} className="bg-blackDark rounded-md text-sm font-normal px-4 h-10">{t("nav.logout")}</Button>
+              <ProfileOption user={user}/>
+              :
               <Button onClick={handleLogin} className="bg-blackDark rounded-md text-sm font-normal px-4 h-10">{t("nav.login")}</Button>
                
              }

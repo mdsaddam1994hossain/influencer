@@ -13,10 +13,10 @@ const ProfileEditPage = async() => {
   if(data){
     const verify:any =  await verifyUser(data?.session?.user?.id as string)
      user = verify;
-    console.log(verify,"============")
+    
   }
 
-  console.log(user,"============")
+
 
   if(!data?.session){
     redirect("/login")
