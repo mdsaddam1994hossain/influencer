@@ -45,20 +45,27 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const [selectedTags, setSelectedTags] = useState([]);
     const [selectedRegions, setSelectedRegions] = useState([]); 
 
-    const categoriesLabel = categorie?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
+    const categoriesLabel   = categorie?.map((item) => language ==="en" ? item?.name_en: item?.name_ar);
     const tagsLabel = tags?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
     const countriesLabel = countries?.map((item) =>  item?.name);
     const regionsLabel = regions?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
 
 
     const handleSelectCategory = (item:any) => {
-
-        console.log(item,"iiiiiiiiitttteeeemmm")
         setSelectedCategories((prev:any) =>
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
+
+        const category = categorie?.find(value => value.name_en === item);
+        console.log(category,"cc")
+        return category ? category.id : null;
        
       };
+      const handleCategoryClick = (item:any) => {
+        console.log(item,"iiiiiii")
+        // const filteredItems = selectedCategories.filter(item => item !== itemToDelete)
+        // setSelectedCategories(filteredItems);
+    }
       
       const handleSelectTag = (item:string) => {
         setSelectedTags((prev:any) =>
@@ -112,7 +119,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const onSubmit =  (data: z.infer<typeof FormSchema>) => {
 
         console.log(data,"data form")
-        console.log(selectedCategories)
+        console.log(selectedCategories,"tags",selectedTags,"rigions",selectedRegions)
     }
 
   return (
@@ -230,27 +237,12 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
             <div className="grid grid-cols-10 items-center  ">
                 <p className="col-span-2">Categories</p>
-                {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
-                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
-                        <SelectValue placeholder="Please Choose" />
-                    </SelectTrigger>
-                    <SelectContent className="flex-grow p-4 w-full">
-                        <SelectGroup >
-                            {categorie?.map((item,index)=>{
-                                return(
-                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
-                                )
-                            })}
-                        
-                     
-                        </SelectGroup>
-                    </SelectContent>
-                </Select> */}
+               
                 
                             {selectedCategories?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedCategories.map((category, index) => (
                 <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
                     <span className="text-xs font-normal">{category}</span>
-                    <button onClick={() => handleSelectCategory(category)}><IoClose /></button>
+                    <span onClick={() => handleSelectCategory(category)}><IoClose /></span>
                 </div>
                 ))}
                 </div>}
@@ -260,22 +252,23 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                                 render={({ field }) => (
                                     <FormItem className=" w-full col-start-3 col-span-8">
                                         {/* <FormLabel className='text-blackDark text-base'>{t("signup.company_field")}</FormLabel> */}
-                                        <Select  onValueChange={(value) =>{ handleSelectCategory(value)
-                                        field.onChange(value)}
-                                         }>
+                                        <Select  onValueChange={(value:any) =>{ handleSelectCategory(value)
+                                        field.onChange(value)
+                                       
+                                    }}>
                                             <FormControl>
 
                                                 <SelectTrigger className={`w-full  gap-1 px-2 mt-2  bg-transparent border h-14 `}>
-                                                    <SelectValue defaultValue={"company"} placeholder="Please choose" />
+                                                    <SelectValue  placeholder="Please choose" />
                                                 </SelectTrigger>
 
 
                                             </FormControl>
                                             <SelectContent className='bg-white hover:bg-red-500 '>
                                                 {
-                                                    categoriesLabel?.map((item: string, index: number) => {
+                                                    categorie?.map((category: any, index: number) => {
                                                         return (
-                                                            <SelectItem key={index} className='p-4 text-center' value={item}>{item}</SelectItem>
+                                                            <SelectItem onChange={()=>handleCategoryClick(category)} key={index} className='p-4 text-center' value={language ==="en" ? category?.name_en: category?.name_ar}>{language ==="en" ? category?.name_en: category?.name_ar}</SelectItem>
                                                         )
                                                     })
                                                 }
