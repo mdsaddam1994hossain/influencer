@@ -13,6 +13,7 @@ type Props ={id:number}
 const InfluencerProfile:FC<Props> = ({id}) => {
    
   const {data:influencer} = useInfluencer(id)
+  
 
   return (
     <div className='mb-12'>

@@ -17,7 +17,7 @@ export default async function Home({params: { locale }}: any) {
   if(data){
     const verify:any =  await verifyUser(data?.session?.user?.id as string)
     console.log({verify})
-    if(verify?.category_id === null ){
+    if(verify?.gender === null ){
        redirect("/profileEdit")
          
          }

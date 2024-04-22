@@ -17,36 +17,7 @@ export default function useInfluencers(category_id?: any) {
                 //   offset_param: null,
                 }
               );
-            // let query =  supabase
-            //   .from("influencers")
-            //   .select(`
-            //     name,
-            //     specialization,
-            //     specialization_en,
-            //     specialization_ar,
-            //     name_en,
-            //     name_ar,
-            //     id,
-            //     gender,
-            //     country,
-            //     nickname,
-            //     categories: category_influencer!inner(category_id(id,name)),
-            //     influencer_tag!inner(tags(*)),
-            //     influencer_platform(*,platforms(*))
-            //   `)
-            //   .not("specialization", "eq", null)
-            //   .not("specialization_ar", "eq", null)
-            //   .not("specialization_en", "eq", null)
-            
-            //     if (category_id) {
-               
-            //     query =  query.filter("category_influencer.category_id", "eq", category_id);
-            // }
-            
 
-            // const { data,error } = await query;
-          
-            
             return data 
         },
     });
@@ -82,4 +53,101 @@ export function useInfluencer(id: number) {
        
     });
 }
+
+export async function useMutationInfluencer(data:any,userId:number) {
+
+    const supabase = browserClient();
+    
+    const { data:influncer, error } = await supabase
+    .from('influencers')
+    .update([
+      {
+        // Add the influencer properties here
+        name: data.name,
+        specialization: data.specialization,
+        gender:data.gender,
+        country:data.country
+        // other fields as necessary
+      },
+    ]).eq("id",userId).select("*");
+
+    if(error){
+        return error
+    }else{
+        return influncer
+    }
+  };
+        
+
+
+export async function useMutationInfluencerCategories(influencerId:number,categoryIds:number[]) {
+
+    const supabase = browserClient();
+    const records = categoryIds?.map(categoryId => ({
+        influencer_id: influencerId,
+        category_id: categoryId,
+      }));
+      const { error,data } = await supabase.from('category_influencer').insert(records).select()
+        if(error){
+            return error
+        }else{
+            return data
+        }
+
+}
+
+export async function useMutationInfluencerTags(influencerId:number,tagIds:number[]) {
+
+    const supabase = browserClient();
+    const records = tagIds?.map(tagId => ({
+        influencer_id: influencerId,
+        tag_id: tagId,
+      }));
+      const { error,data } = await supabase.from('influencer_tag').insert(records).select()
+        if(error){
+            return error
+        }else{
+            return data
+        }
+
+}
+
+export async function useMutationInfluencerRegions(influencerId:number,regionsId:number[]) {
+
+    const supabase = browserClient();
+    const records = regionsId?.map(regionId => ({
+        influencer_id: influencerId,
+        region_id: regionId,
+      }));
+      const { error,data } = await supabase.from('influencer_region').insert(records).select()
+        if(error){
+            return error
+        }else{
+            return data
+        }
+
+}
+
+export function useSingleInfluencer(influencerId: number) {
+    
+    return useQuery({
+        queryKey: ["influencerCategory", influencerId],
+        queryFn: async () => {
+            const supabase = browserClient();
+
+            const { data,error } = await supabase
+            .from("influencers")
+            .select(`
+            *,
+            category_influencer !inner(categories(*)),
+            influencer_tag !inner(tags(*)),
+            influencer_region !inner(regions(*))
+            `).eq("id",influencerId)
+            console.log(data)
+           return data || null;
+        },
+    });
+}
+
+
 

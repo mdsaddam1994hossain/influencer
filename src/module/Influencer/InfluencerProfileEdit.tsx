@@ -1,5 +1,5 @@
 "use client"
-import React, { FC, useState } from 'react'
+import React, { FC, useState,useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { z } from "zod"
@@ -14,6 +14,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import { useQueryClient } from "@tanstack/react-query";
 
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -26,8 +27,11 @@ import {
   } from "@/components/ui/select"
 import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCategories'
 import CustomFileUpload from '@/components/common/CustomFileUpload';
+import { useMutationInfluencerCategories,useMutationInfluencerTags,useMutationInfluencerRegions,useMutationInfluencer } from '@/app/hook/useInfluencers'
 import { useTranslation } from 'react-i18next'
+import { useSingleInfluencer } from '@/app/hook/useInfluencers'
 import { IoClose } from "react-icons/io5";
+import {useRouter} from "next/navigation"
 
  type Tuser={
     user:any;
@@ -36,6 +40,8 @@ import { IoClose } from "react-icons/io5";
 const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const { t, i18n } = useTranslation()
     const {language} = i18n;
+    const router = useRouter()
+    const queryClient = useQueryClient()
     const [nickname, setNickname] = useState(user?.name || '');
     const {data:categorie}= useCategories()
     const {data:tags}= useTags()
@@ -44,7 +50,15 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [selectedRegions, setSelectedRegions] = useState([]); 
+    const [selectedcategoryId,setSelectedcategoryId] = useState<number[]>([])
+    const [selectedTagId,setSelectedTagId] = useState<number[]>([])
+    const [selectedRegionId,setSelectedRegionId] = useState<number[]>([])
+    const {data:influencerData }  = useSingleInfluencer(user.id)
 
+    // if(influencerData && influencerData?.length > 0){
+    //     router.push("/")
+    // }
+   
     const categoriesLabel   = categorie?.map((item) => language ==="en" ? item?.name_en: item?.name_ar);
     const tagsLabel = tags?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
     const countriesLabel = countries?.map((item) =>  item?.name);
@@ -56,29 +70,42 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
 
-        const category = categorie?.find(value => value.name_en === item);
-        console.log(category,"cc")
-        return category ? category.id : null;
+        const category = categorie?.find(value => value.name_en === item  || value.name_ar === item);
+        if(category){
+            setSelectedcategoryId((prev:any) =>
+            prev.includes(category?.id) ? prev.filter((i:any) => i !== category?.id) : [...prev, category?.id]
+        );
+        }
+       
+       // return category ? category.id : null;
        
       };
-      const handleCategoryClick = (item:any) => {
-        console.log(item,"iiiiiii")
-        // const filteredItems = selectedCategories.filter(item => item !== itemToDelete)
-        // setSelectedCategories(filteredItems);
-    }
-      
+
       const handleSelectTag = (item:string) => {
         setSelectedTags((prev:any) =>
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
+        const tag = tags?.find(value => value.name_en === item || value.name_ar === item);
+        if(tag){
+            setSelectedTagId((prev:any) =>
+            prev.includes(tag?.id) ? prev.filter((i:any) => i !== tag?.id) : [...prev, tag?.id]
+        );
+        }
       };
       
       const handleSelectRegion = (item:any) => {
         setSelectedRegions((prev:any) =>
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
+        const rigion = regions?.find(value => value.name_en === item || value.name_ar === item);
+        if(rigion){
+            setSelectedRegionId((prev:any) =>
+            prev.includes(rigion?.id) ? prev.filter((i:any) => i !== rigion?.id) : [...prev, rigion?.id]
+        );
+        }
       };
-    
+   
+ 
 
     
     
@@ -116,11 +143,36 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
         },
     })
 
-    const onSubmit =  (data: z.infer<typeof FormSchema>) => {
+    const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 
-        console.log(data,"data form")
-        console.log(selectedCategories,"tags",selectedTags,"rigions",selectedRegions)
+        const userData:any = {
+            name:data?.name,
+            specialization:data?.specialization,
+            gender:data?.gender,
+            country:data?.countries
+        }
+
+        const insertCategory = await useMutationInfluencerCategories(user?.id,selectedcategoryId)
+        const insertTags = await useMutationInfluencerTags(user?.id,selectedTagId)
+        const insertRigions = await useMutationInfluencerRegions(user?.id,selectedRegionId)
+        const insertInfluencer = await useMutationInfluencer(userData,user?.id)
+        console.log("insertInfluencer=",insertInfluencer,"insertCategory=",insertCategory,"insertTags=",insertTags,"insertRigions=",insertRigions)
+        if(insertInfluencer){
+            queryClient.invalidateQueries(["influencerCategory", user?.id] as any)
+            router.push("/")
+            
+        }
+
+        
+       
+       
     }
+
+    useEffect(()=>{
+
+    },[user?.id])
+
+    
 
   return (
     <div className='px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 my-12'>
@@ -268,7 +320,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                                                 {
                                                     categorie?.map((category: any, index: number) => {
                                                         return (
-                                                            <SelectItem onChange={()=>handleCategoryClick(category)} key={index} className='p-4 text-center' value={language ==="en" ? category?.name_en: category?.name_ar}>{language ==="en" ? category?.name_en: category?.name_ar}</SelectItem>
+                                                            <SelectItem  key={index} className='p-4 text-center' value={language ==="en" ? category?.name_en: category?.name_ar}>{language ==="en" ? category?.name_en: category?.name_ar}</SelectItem>
                                                         )
                                                     })
                                                 }
