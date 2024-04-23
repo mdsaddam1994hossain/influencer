@@ -1,14 +1,14 @@
 import React from 'react'
 
+import { FaUser } from "react-icons/fa";
+import { MdLock,MdLogout } from "react-icons/md";
+  import {  useRouter } from 'next/navigation';
+
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import {
     Separator
   } from "@/components/ui/separator"
@@ -20,24 +20,27 @@ import {
     {
         id:1,
         item:"Manage Account",
-        path:"/manage-account"
+        path:"/account",
+        icon:<FaUser />
     },
     {
         id:2,
         item:"Campaign Reports",
-        path:"/campain-reports"
+        path:"/campain-reports",
+        icon:<MdLock />
     },
     {
         id:3,
         item:"My Requests",
-        path:"/my-request"
+        path:"/my-request",
+        icon:<MdLock />
     }
   ]
 
 const ProfileOption = ({user}:any) => {
 
     const setIsLogin = useAppStore((state) => state.setIsLogin)
-
+    const router = useRouter()
     const handleLogOut = async () => {
         console.log("click........")
         await userSignOut()
@@ -47,30 +50,40 @@ const ProfileOption = ({user}:any) => {
 
       const handleClick = (path:string)=>{
         console.log(path,"pppppppp")
+        router.push(path)
       }
+
+      console.log(user,"user....")
   return (
     <div>
-       <Select>
-      <SelectTrigger className="w-[120px]">
-        <p>Hello, {user?.name} </p>
-      </SelectTrigger>
-      <SelectContent >
-        <SelectGroup  >
-          {profileData?.map((item,index)=>{
+       <Popover>
+      <PopoverTrigger className="w-[120px] border">
+        <p className="text-sm">Hello, {user?.name} </p>
+      </PopoverTrigger>
+      <PopoverContent className="p-0 " >
+        <div  >
+          {user?.type === "individual" && profileData?.map((item,index)=>{
             return(
-                <div >
-                    <SelectItem onChange={()=>handleClick(item?.path)} className="py-4 hover:!bg-blackDark hover:!text-white px-6 " key={index} value={item?.item}>{item?.item}</SelectItem>
-                    <Separator />
+                <div key={index}  className="px-6 group gap-1 z-30 hover:!bg-blackDark hover:!text-white">
+                    <div className="flex gap-2  items-center  w-full cursor-pointer">
+                      {item.icon}
+                      <p onClick={()=>handleClick(item?.path)} className="py-4 " key={index} >{item?.item}</p>
+                    </div>
+                    <Separator className="-z-20 group-hover:bg-blackDark" />
                 </div>
             )
           })}
 
-          <Button className="py-6 w-full rounded-none bg-white text-black hover:!bg-blackDark hover:!text-white px-6 "  onClick={handleLogOut}>Logout</Button>  
-        </SelectGroup>
+          <div className="flex gap-2 px-6 items-center hover:!bg-blackDark hover:!text-white w-full cursor-pointer">
+            <MdLogout />
+            <p className="py-4 w-full rounded-none  "  onClick={handleLogOut}>Logout</p>  
+          </div>
+         
+        </div>
          
 
-      </SelectContent>
-    </Select>
+      </PopoverContent>
+    </Popover>
     </div>
   )
 }

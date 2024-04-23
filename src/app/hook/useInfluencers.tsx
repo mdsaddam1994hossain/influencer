@@ -54,7 +54,7 @@ export function useInfluencer(id: number) {
     });
 }
 
-export async function useMutationInfluencer(data:any,userId:number) {
+export async function UseMutationInfluencer(data:any,userId:number) {
 
     const supabase = browserClient();
     
@@ -80,7 +80,7 @@ export async function useMutationInfluencer(data:any,userId:number) {
         
 
 
-export async function useMutationInfluencerCategories(influencerId:number,categoryIds:number[]) {
+export async function UseMutationInfluencerCategories(influencerId:number,categoryIds:number[]) {
 
     const supabase = browserClient();
     const records = categoryIds?.map(categoryId => ({
@@ -96,7 +96,7 @@ export async function useMutationInfluencerCategories(influencerId:number,catego
 
 }
 
-export async function useMutationInfluencerTags(influencerId:number,tagIds:number[]) {
+export async function UseMutationInfluencerTags(influencerId:number,tagIds:number[]) {
 
     const supabase = browserClient();
     const records = tagIds?.map(tagId => ({
@@ -112,7 +112,7 @@ export async function useMutationInfluencerTags(influencerId:number,tagIds:numbe
 
 }
 
-export async function useMutationInfluencerRegions(influencerId:number,regionsId:number[]) {
+export async function UseMutationInfluencerRegions(influencerId:number,regionsId:number[]) {
 
     const supabase = browserClient();
     const records = regionsId?.map(regionId => ({

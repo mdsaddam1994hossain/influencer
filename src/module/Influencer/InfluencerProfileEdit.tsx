@@ -27,7 +27,7 @@ import {
   } from "@/components/ui/select"
 import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCategories'
 import CustomFileUpload from '@/components/common/CustomFileUpload';
-import { useMutationInfluencerCategories,useMutationInfluencerTags,useMutationInfluencerRegions,useMutationInfluencer } from '@/app/hook/useInfluencers'
+import { UseMutationInfluencerCategories,UseMutationInfluencerTags,UseMutationInfluencerRegions,UseMutationInfluencer } from '@/app/hook/useInfluencers'
 import { useTranslation } from 'react-i18next'
 import { useSingleInfluencer } from '@/app/hook/useInfluencers'
 import { IoClose } from "react-icons/io5";
@@ -152,10 +152,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
             country:data?.countries
         }
 
-        const insertCategory = await useMutationInfluencerCategories(user?.id,selectedcategoryId)
-        const insertTags = await useMutationInfluencerTags(user?.id,selectedTagId)
-        const insertRigions = await useMutationInfluencerRegions(user?.id,selectedRegionId)
-        const insertInfluencer = await useMutationInfluencer(userData,user?.id)
+        const insertCategory = await UseMutationInfluencerCategories(user?.id,selectedcategoryId)
+        const insertTags = await UseMutationInfluencerTags(user?.id,selectedTagId)
+        const insertRigions = await UseMutationInfluencerRegions(user?.id,selectedRegionId)
+        const insertInfluencer = await UseMutationInfluencer(userData,user?.id)
         console.log("insertInfluencer=",insertInfluencer,"insertCategory=",insertCategory,"insertTags=",insertTags,"insertRigions=",insertRigions)
         if(insertInfluencer){
             queryClient.invalidateQueries(["influencerCategory", user?.id] as any)

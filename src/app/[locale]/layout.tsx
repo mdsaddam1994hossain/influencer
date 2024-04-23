@@ -42,6 +42,7 @@ export default async function RootLayout({
   const { resources } = await initTranslations(locale, i18nNamespaces);
 
   const { data } = await readUserSession()
+
   let user;
   if(data){
     const verify:any =  await verifyUser(data?.session?.user?.id as string)

@@ -37,7 +37,6 @@ export async function signUpWithCradential(email:string,password:string) {
         email: email,
         password: password,
       });
-      console.log(error,user)
     if(error){
         return error
     }else{ 
@@ -48,17 +47,21 @@ export async function signUpWithCradential(email:string,password:string) {
 
   //testing api verity user as influencer or advertiser
 
-  export async function insertDataAsInfluencerOrAdvertiser(data:any,userType?:string,user?:any){
+  export async function insertDataAsInfluencerOrAdvertiser(user:any,userType?:string,data?:any){
     const supabase =  serverClient()
       let tableToUpdate = userType === 'influencer' ? 'influencers' : 'users';
-    
+     
     const { data:updateData, error:insertError } = await supabase.from(tableToUpdate).insert([
         {
-          user_id: data?.user?.id,// Link to the Supabase Auth user's ID
-          email:data?.user?.email,
-          name:user.name,
-          password:user.password,
-          mobile:user.phone
+          user_id: user?.user?.id,// Link to the Supabase Auth user's ID
+          email:user?.user?.email,
+          name:data.name,
+          password:data.password,
+          mobile:data.phone,
+          company_name:data.comName,
+          company_type:data.accountType,
+          company_field:data.company_field,
+          website:data.website
         },
       ]).select("*")
  
@@ -98,10 +101,7 @@ export async function signUpWithCradential(email:string,password:string) {
         .select('*')
         .eq('user_id', uuid) // Use the user ID from the authentication step to filter
         .single(); // Assuming one entry per user, modify as needed
-
-        console.log(userData,"and error",dataError)
         if(dataError){
-
           const { data: influencerData, error: influencerError } = await supabase
           .from('influencers')
           .select('*')

@@ -45,11 +45,11 @@ const ResponsiveHeader = ({ data,user }: any) => {
   const router = useRouter()
   const [joinus,setJoinus] = useState(false)
   const [edit, setEdit] = useState(false);
-  const setUserType = useAppStore((state)=>state.setUserType)
+  const setUserType = useAppStore((state:any)=>state.setUserType)
 
   const path = pathname.startsWith("/en") ? pathname.slice(0, 1) + pathname.substring(4) : pathname;
   const { t, i18n } = useTranslation()
-  const setIsLogin = useAppStore((state) => state.setIsLogin)
+  const setIsLogin = useAppStore((state:any) => state.setIsLogin)
   const { language } = i18n
 
   const handleOpenDrawer = () => {
