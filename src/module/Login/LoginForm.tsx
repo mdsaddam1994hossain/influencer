@@ -55,7 +55,7 @@ const LoginForm = () => {
             toast({
                 duration:1000,
                  description: (
-                     <pre  >
+                     <pre className="text-red-500" >
                       {result.message}
                      </pre>
                  ),

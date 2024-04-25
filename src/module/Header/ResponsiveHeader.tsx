@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import LanguageChanger from './LanguageChanger';
 import { useTranslation } from 'react-i18next';
@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/popover"
 import SearchComponent from './SearchComponent';
 import ProfileOption from './ProfileOption';
+import { GetSingleInfluencer } from '@/app/hook/useInfluencers'
 
 
 const ResponsiveHeader = ({ data,user }: any) => {
@@ -43,14 +44,15 @@ const ResponsiveHeader = ({ data,user }: any) => {
   const [visible, setVisible] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const setLoginUser = useAppStore((state)=>state.setLoginUser)
   const [joinus,setJoinus] = useState(false)
-  const [edit, setEdit] = useState(false);
   const setUserType = useAppStore((state:any)=>state.setUserType)
-
   const path = pathname.startsWith("/en") ? pathname.slice(0, 1) + pathname.substring(4) : pathname;
   const { t, i18n } = useTranslation()
+  const { language } = i18n;
   const setIsLogin = useAppStore((state:any) => state.setIsLogin)
-  const { language } = i18n
+  const  {data:userData}   =  GetSingleInfluencer(user?.id)
+
 
   const handleOpenDrawer = () => {
     setVisible(true)
@@ -61,7 +63,6 @@ const ResponsiveHeader = ({ data,user }: any) => {
   }
 
   const handleLogOut = async () => {
-    console.log("click........")
     await userSignOut()
     setIsLogin(false)
     setVisible(false)
@@ -93,8 +94,9 @@ const ResponsiveHeader = ({ data,user }: any) => {
     setJoinus(true)
  }
 
-  
-   console.log(user?.name,"user...")
+ useEffect(()=>{
+  setLoginUser(user)
+ },[])
 
   return (
     <div>

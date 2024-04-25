@@ -6,13 +6,12 @@ import { serverClient } from "../supabase/server"
 
 
 export default async function readUserSession(){
-
-    const supabase = await serverClient()
-    return supabase.auth.getSession()
+    const supabase =  serverClient()
+    return await supabase.auth.getSession()
 }
 
 export  async function userSignOut(){
-    const supabase = await serverClient()
+    const supabase =  serverClient()
     await supabase.auth.signOut();
      redirect("/")
 }
@@ -47,11 +46,27 @@ export async function signUpWithCradential(email:string,password:string) {
 
   //testing api verity user as influencer or advertiser
 
-  export async function insertDataAsInfluencerOrAdvertiser(user:any,userType?:string,data?:any){
+  export async function insertDataAsInfluencer(user:any,data?:any){
     const supabase =  serverClient()
-      let tableToUpdate = userType === 'influencer' ? 'influencers' : 'users';
-     
-    const { data:updateData, error:insertError } = await supabase.from(tableToUpdate).insert([
+    const { data:updateData, error:insertError } = await supabase.from("influencers").insert([
+        {
+          user_id: user?.user?.id,// Link to the Supabase Auth user's ID
+          email:user?.user?.email,
+          name:data.name,
+          password:data.password,
+          mobile:data.phone,   
+        },
+      ]).select("*")
+      if (insertError) { 
+        return insertError
+      } else {
+        return updateData
+      }
+  }
+
+  export async function insertDataAdvertiser(user:any,data?:any){
+    const supabase =  serverClient() 
+    const { data:updateData, error:insertError } = await supabase.from("users").insert([
         {
           user_id: user?.user?.id,// Link to the Supabase Auth user's ID
           email:user?.user?.email,
@@ -64,13 +79,11 @@ export async function signUpWithCradential(email:string,password:string) {
           website:data.website
         },
       ]).select("*")
- 
       if (insertError) { 
         return insertError
       } else {
         return updateData
       }
-
   }
 
   export async function handleInfluencerSignup(user:any) {
@@ -95,7 +108,6 @@ export async function signUpWithCradential(email:string,password:string) {
 
   export async function verifyUser(uuid:string){
     const supabase =  serverClient()
-
       const { data: userData, error: dataError } = await supabase
         .from('users')
         .select('*')
@@ -111,11 +123,28 @@ export async function signUpWithCradential(email:string,password:string) {
             return influencerError
           }else{ 
             return influencerData
-          }
-           
+          }        
         }else{ 
           return userData
         }
+  }
+
+  export async function updateUserInformation(user_id:number,data?:any){
+    const supabase =  serverClient()
+    const { data:updateData, error:insertError } = await supabase.from("users").update([
+        {
+          name:data.name,
+          company_name:data.company_name,
+          company_type:data.type,
+          company_field:data.company_field,
+          website:data.website
+        },
+      ]).eq("id",user_id).select("*")
+      if (insertError) { 
+        return insertError
+      } else {
+        return updateData
+      }
 
   }
 

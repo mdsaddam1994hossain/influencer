@@ -27,7 +27,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
-import { insertDataAsInfluencerOrAdvertiser, signUpWithCradential } from '@/lib/actions'
+import { signUpWithCradential,insertDataAdvertiser } from '@/lib/actions'
 import useAppStore from '@/store'
 import PhoneInput from 'react-phone-input-2'
 import { useFields } from '@/app/hook/useFields'
@@ -118,8 +118,7 @@ const SignUpForm = () => {
                 form.reset();
             } else {
 
-                console.log(result,"eslse block...")
-        const verify:any =result && await insertDataAsInfluencerOrAdvertiser(result,userType,data)
+        const verify:any =result && await insertDataAdvertiser(result,data)
        
                 setIsLoading(false)
                 setIsLogin(true)

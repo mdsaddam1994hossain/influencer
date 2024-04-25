@@ -29,7 +29,6 @@ import { useCategories ,useTags,useCountry,useRegions} from '@/app/hook/useCateg
 import CustomFileUpload from '@/components/common/CustomFileUpload';
 import { UseMutationInfluencerCategories,UseMutationInfluencerTags,UseMutationInfluencerRegions,UseMutationInfluencer } from '@/app/hook/useInfluencers'
 import { useTranslation } from 'react-i18next'
-import { useSingleInfluencer } from '@/app/hook/useInfluencers'
 import { IoClose } from "react-icons/io5";
 import {useRouter} from "next/navigation"
 
@@ -53,7 +52,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const [selectedcategoryId,setSelectedcategoryId] = useState<number[]>([])
     const [selectedTagId,setSelectedTagId] = useState<number[]>([])
     const [selectedRegionId,setSelectedRegionId] = useState<number[]>([])
-    const {data:influencerData }  = useSingleInfluencer(user.id)
+    
 
     // if(influencerData && influencerData?.length > 0){
     //     router.push("/")
@@ -158,7 +157,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
         const insertInfluencer = await UseMutationInfluencer(userData,user?.id)
         console.log("insertInfluencer=",insertInfluencer,"insertCategory=",insertCategory,"insertTags=",insertTags,"insertRigions=",insertRigions)
         if(insertInfluencer){
-            queryClient.invalidateQueries(["influencerCategory", user?.id] as any)
+            queryClient.invalidateQueries(["singleInfluencer", user?.id] as any)
             router.push("/")
             
         }
@@ -168,11 +167,6 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
        
     }
 
-    useEffect(()=>{
-
-    },[user?.id])
-
-    
 
   return (
     <div className='px-4 md:px-20 lg:px-24 xl:px-36 2xl:px-44 my-12'>

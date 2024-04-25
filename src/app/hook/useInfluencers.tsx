@@ -128,13 +128,12 @@ export async function UseMutationInfluencerRegions(influencerId:number,regionsId
 
 }
 
-export function useSingleInfluencer(influencerId: number) {
-    
+export function GetSingleInfluencer(influencerId: number) {    
     return useQuery({
-        queryKey: ["influencerCategory", influencerId],
+        queryKey: ["singleInfluencer", influencerId],
+        enabled: influencerId ? true :false,
         queryFn: async () => {
             const supabase = browserClient();
-
             const { data,error } = await supabase
             .from("influencers")
             .select(`
@@ -143,8 +142,11 @@ export function useSingleInfluencer(influencerId: number) {
             influencer_tag !inner(tags(*)),
             influencer_region !inner(regions(*))
             `).eq("id",influencerId)
-            console.log(data)
-           return data || null;
+           if(error){
+            return error
+           }else{
+            return data
+           }
         },
     });
 }

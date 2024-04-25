@@ -13,7 +13,6 @@ import {
     Separator
   } from "@/components/ui/separator"
   import { userSignOut } from '@/lib/actions';
-  import { Button } from '@/components/ui/button';
   import useAppStore from '@/store';
 
   const profileData = [
@@ -26,7 +25,7 @@ import {
     {
         id:2,
         item:"Campaign Reports",
-        path:"/campain-reports",
+        path:"/campaign_report",
         icon:<MdLock />
     },
     {
@@ -40,25 +39,23 @@ import {
 const ProfileOption = ({user}:any) => {
 
     const setIsLogin = useAppStore((state) => state.setIsLogin)
+    const setLoginUser = useAppStore((state) => state.setLoginUser)
+    const loginUser = useAppStore((state)=> state.loginUser)
     const router = useRouter()
     const handleLogOut = async () => {
-        console.log("click........")
         await userSignOut()
-        setIsLogin(false)
-       
+        setIsLogin(false) 
+        setLoginUser(null)
       }
-
       const handleClick = (path:string)=>{
-        console.log(path,"pppppppp")
         router.push(path)
       }
 
-      console.log(user,"user....")
   return (
     <div>
        <Popover>
       <PopoverTrigger className="w-[120px] border">
-        <p className="text-sm">Hello, {user?.name} </p>
+        <p className="text-sm">Hello, {loginUser?.name} </p>
       </PopoverTrigger>
       <PopoverContent className="p-0 " >
         <div  >

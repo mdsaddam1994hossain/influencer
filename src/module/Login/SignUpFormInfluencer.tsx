@@ -19,7 +19,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import SliderButton from '@/components/ui/slider-button'
 import { useTranslation } from 'react-i18next'
-import { insertDataAsInfluencerOrAdvertiser, signUpWithCradential } from '@/lib/actions'
+import { insertDataAsInfluencer, signUpWithCradential } from '@/lib/actions'
 import useAppStore from '@/store'
 import PageLoading from '@/components/common/PageLoading'
 import PhoneInput from 'react-phone-input-2'
@@ -75,7 +75,7 @@ const  SignUpFormInfluencer = () => {
        
             setIsLoading(true)
             const result:any = await signUpWithCradential(data?.email,data?.password)
-            console.log(result)
+            console.log(result,"create or register.")
        
        if(result?.status === 422){
         setIsLoading(false)
@@ -89,13 +89,14 @@ const  SignUpFormInfluencer = () => {
          })
          form.reset();
        }else{
-        const verify:any = result && await insertDataAsInfluencerOrAdvertiser(result,userType,data)
+        const verify:any = result && await insertDataAsInfluencer(result,data)
+        console.log("veryfi the uer",verify)
         setIsLoading(false)
                 setIsLogin(true)
                 form.reset();
                 if(verify[0]?.type === "individual"){
                     router.push("/")
-                }else if(verify[0]?.type != "individual" && (verify[0]?.category_id === null || verify[0]?.country)  ){
+                }else if(verify[0]?.type != "individual" && (verify[0]?.gender === null)  ){
                     router.push("/profileEdit")
                 }else{ 
                     router.push("/")
