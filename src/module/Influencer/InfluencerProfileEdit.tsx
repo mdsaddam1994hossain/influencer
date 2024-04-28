@@ -103,22 +103,18 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
         );
         }
       };
-   
- 
 
-    
-    
     const FormSchema = z.object({
 
         name: z.string().min(4, {
             message: `${t("signup.fname_error")}`,
         }),
         overView: z.string().min(12, {
-            message: `${t("signup.comName_error")}`,
+            message: `${t("common.input_field_error")}`,
         }),
         gender: z.enum(["Male", "Female"]),
         specialization: z.string().min(4, {
-            message: `${t("signup.website_error")}`,
+            message: `${t("common.input_field_error")}`,
         }),
         categories: z.enum(categoriesLabel as [string]),
         tags: z.enum(tagsLabel as [string]),
@@ -176,8 +172,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
 
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
             <div className="flex gap-3 items-center ">
-                <p className="flex-shrink basis-1/5">Nickame</p>
-                {/* <Input value={nickname}   onChange={(e) => setNickname(e.target.value)}   className="flex-grow" /> */}
+                <p className="flex-shrink basis-1/5">{t("profileEdit.nickname")}</p>
                  <FormField
                                 control={form.control}
                                 name="name"
@@ -193,14 +188,12 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                             />
             </div>
             <div className="flex gap-3 items-center ">
-                 <p className="flex-shrink basis-1/5">A brief overview of you</p>
-                 {/* <Textarea className="flex-grow"/> */}
+                 <p className="flex-shrink basis-1/5">{t("profileEdit.brief_overview")}</p>
                  <FormField
                                 control={form.control}
                                 name="overView"
                                 render={({ field }) => (
                                     <FormItem className="w-full">
-                                        {/* <FormLabel className='text-blackDark text-base flex-shrink basis-1/5'>{t("signup.first_name")}</FormLabel> */}
                                         <FormControl>
                                             <Textarea className='my-2 focus:border-red-500 flex-grow' {...field}  />
                                         </FormControl>
@@ -214,20 +207,8 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
 
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6  mt-4 lg:mt-6'>
             <div className="flex gap-3 items-center ">
-                <p className="flex-shrink basis-1/5">Gender</p>
-                {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
-                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
-                        <SelectValue placeholder="Please Choose" />
-                    </SelectTrigger>
-                    <SelectContent className="flex-grow">
-                        <SelectGroup >
-                        <SelectItem className="px-4 pt-4" value="male">Male</SelectItem>
-                        <SelectItem className="p-4 py-4" value="female">Female</SelectItem>
-                        </SelectGroup>
-                    </SelectContent>
-                </Select> */}
-
-<FormField
+                <p className="flex-shrink basis-1/5">{t("profileEdit.gender")}</p>
+                <FormField
                                 control={form.control}
                                 name="gender"
                                 render={({ field }) => (
@@ -262,7 +243,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                             />
             </div>
             <div className="flex gap-3 items-center ">
-                 <p className="flex-shrink basis-1/5">Specialization</p>
+                 <p className="flex-shrink basis-1/5">{t("profileEdit.specialization")}</p>
                  <FormField
                                 control={form.control}
                                 name="specialization"
@@ -282,10 +263,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
 
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
             <div className="grid grid-cols-10 items-center  ">
-                <p className="col-span-2">Categories</p>
+                <p className="col-span-2">{t("profileEdit.categories")}</p>
                
                 
-                            {selectedCategories?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedCategories.map((category, index) => (
+                {selectedCategories?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedCategories.map((category, index) => (
                 <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
                     <span className="text-xs font-normal">{category}</span>
                     <span onClick={() => handleSelectCategory(category)}><IoClose /></span>
@@ -319,8 +300,6 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                                                     })
                                                 }
 
-
-
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />
@@ -329,24 +308,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                             />
             </div>
             <div className="grid grid-cols-10 items-center ">
-                 <p className="col-span-2">Tags</p>
-                 {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
-                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
-                        <SelectValue placeholder="Please Choose" />
-                    </SelectTrigger>
-                    <SelectContent className="flex-grow p-4">
-                        <SelectGroup >
-                        {tags?.map((item,index)=>{
-                                return(
-                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
-                                )
-                            })}
-                        
-                        </SelectGroup>
-                    </SelectContent>
-                </Select> */}
+                 <p className="col-span-2">{t("profileEdit.tags")}</p>
+                
 
-{selectedTags?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedTags.map((tag, index) => (
+              {selectedTags?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedTags.map((tag, index) => (
                 <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
                     <span className="text-xs font-normal">{tag}</span>
                     <button onClick={() => handleSelectTag(tag)}><IoClose /></button>
@@ -393,23 +358,9 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
        </div>
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
             <div className="flex gap-3 items-center ">
-                <p className="flex-shrink basis-1/5">Country</p>
-                {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
-                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
-                        <SelectValue placeholder="Please select a country" />
-                    </SelectTrigger>
-                    <SelectContent className="flex-grow p-4">
-                        <SelectGroup >
-                        {countries?.map((item,index)=>{
-                                return(
-                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
-                                )
-                            })}
-                        </SelectGroup>
-                    </SelectContent>
-                </Select> */}
-
-<FormField
+                <p className="flex-shrink basis-1/5">{t("profileEdit.country")}</p>
+                
+             <FormField
                                 control={form.control}
                                 name="countries"
                                 render={({ field }) => (
@@ -444,21 +395,8 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
             </div>
 
             <div className="grid grid-cols-10 items-center ">
-                 <p className="col-span-2">Regions</p>
-                 {/* <Select onValueChange={(v)=>console.log(v,"v.....")}>
-                    <SelectTrigger className="flex-grow border border-grayBorder px-4 h-14 ">
-                        <SelectValue placeholder="Please Choose" />
-                    </SelectTrigger>
-                    <SelectContent className="flex-grow p-4">
-                        <SelectGroup >
-                        {regions?.map((item,index)=>{
-                                return(
-                                    <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
-                                )
-                            })}
-                        </SelectGroup>
-                    </SelectContent>
-                </Select> */}
+                 <p className="col-span-2">{t("profileEdit.regions")}</p>
+                
 
 {selectedRegions?.length > 0 && <div className="flex gap-2 flex-wrap col-span-8">   {selectedRegions.map((rigion, index) => (
                 <div key={index} className="flex gap-2  px-2 py-1 bg-blackMedium text-white rounded-full ">
@@ -507,7 +445,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
        </div>
        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-6'>
             <div className="flex gap-3 items-center ">
-                <p className="flex-shrink basis-1/5">Cover</p>
+                <p className="flex-shrink basis-1/5">{t("profileEdit.cover")}</p>
                
                 <div className="flex-grow   rounded-md flex w-full  items-center justify-center " >
                   <div className="w-full h-full mt-6">
@@ -516,7 +454,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                 </div>
             </div>
             <div className="flex gap-3 items-center ">
-                 <p className="flex-shrink basis-1/5">Sample content</p>
+                 <p className="flex-shrink basis-1/5">{t("profileEdit.sample_content")}</p>
                  <div className="flex-grow grid grid-cols-2 lg:grid-cols-3 gap-4 " >
                   <CustomFileUpload />
 
@@ -529,9 +467,9 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
 
 
        <div className="flex mt-6 gap-6">
-          <p className="  text-center lg:text-left">Platforms</p>
+          <p className="  text-center lg:text-left">{t("profileEdit.platforms")}</p>
           <div className="flex-grow mt-6">
-           <p className="text-blackDark text-center">Please choose the platform through which you want to receive advertisements and fill out all the required data</p>
+           <p className="text-blackDark text-center">{t("profileEdit.plat_description")}</p>
  
                             {/* Youtype section */}
            <div className="grid grid-cols-1 lg:grid-cols-2 justify-between   gap-6 mt-6 ">
@@ -539,10 +477,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
              <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
                 <div className="flex items-center justify-center gap-6">
                    <FaYoutube size={36} className="text-red-500 text-lg" />
-                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                    <Input className="w-40 h-10 text-xs" placeholder={`${t("profileEdit.followers_number")}`}/>
                 </div>
-                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
-                <p className='text-center mt-6'>Publication type and price</p>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder={`${t("profileEdit.account_link")}`}/>
+                <p className='text-center mt-6'>{t("profileEdit.publication_type")}</p>
 
                 <div className="grid grid-cols-4 mt-4 gap-4">
                     <div className='col-span-1'>
@@ -583,10 +521,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
             <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
               <div className="flex items-center justify-center gap-6">
                    <FaTiktok  size={36} className="text-blackDark  text-lg" />
-                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                    <Input className="w-40 h-10 text-xs" placeholder={`${t("profileEdit.followers_number")}`}/>
                 </div>
-                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
-                <p className='text-center mt-6'>Publication type and price</p>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder={`${t("profileEdit.account_link")}`}/>
+                <p className='text-center mt-6'>{t("profileEdit.publication_type")}</p>
 
                 <div className="grid grid-cols-4 mt-4 gap-4">
                     <div className='col-span-1'>
@@ -636,10 +574,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
             <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
               <div className="flex items-center justify-center gap-6">
                    <FaSnapchatSquare  size={36} className="text-yellow-300  text-lg" />
-                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                    <Input className="w-40 h-10 text-xs" placeholder={`${t("profileEdit.followers_number")}`}/>
                 </div>
-                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
-                <p className='text-center mt-6'>Publication type and price</p>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder={`${t("profileEdit.account_link")}`}/>
+                <p className='text-center mt-6'>{t("profileEdit.publication_type")}</p>
 
                 <div className="grid grid-cols-4 mt-4 gap-4">
                     <div className='col-span-1'>
@@ -785,10 +723,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
             <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
               <div className="flex items-center justify-center gap-6">
                    <FaInstagram  size={36} className="text-pink-600" />
-                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                    <Input className="w-40 h-10 text-xs" placeholder={`${t("profileEdit.followers_number")}`}/>
                 </div>
-                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
-                <p className='text-center mt-6'>Publication type and price</p>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder={`${t("profileEdit.account_link")}`}/>
+                <p className='text-center mt-6'>{t("profileEdit.publication_type")}</p>
 
                 <div className="grid grid-cols-4 mt-4 gap-4">
                     <div className='col-span-1'>
@@ -837,10 +775,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
              <div className='bg-white px-8 py-12 shadow-custom rounded-lg w-full '>
               <div className="flex items-center justify-center gap-6">
                    <FaTwitter  size={32} className="text-sky-500  text-lg" />
-                    <Input className="w-40 h-10 text-xs" placeholder="State the number of followers"/>
+                    <Input className="w-40 h-10 text-xs" placeholder={`${t("profileEdit.followers_number")}`}/>
                 </div>
-                <Input className="w-40 h-10 text-xs mt-6" placeholder="Add your account link"/>
-                <p className='text-center mt-6'>Publication type and price</p>
+                <Input className="w-40 h-10 text-xs mt-6" placeholder={`${t("profileEdit.account_link")}`}/>
+                <p className='text-center mt-6'>{t("profileEdit.publication_type")}</p>
 
                 <div className="grid grid-cols-4 mt-4 gap-4">
                     <div className='col-span-1'>

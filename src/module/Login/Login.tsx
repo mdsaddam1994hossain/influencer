@@ -21,13 +21,9 @@ const Login = () => {
             <p className='font-montserrat font-semibold text-4xl  text-blackDark'>{t("login.login")}</p>
             <p className="my-3 lg:mt-3 text-blackLight">{t("common.welcome_moalen")}</p>
           </div>
-          {/* <div className='col-span-6 md:col-span-3 flex lg:justify-end '>
-            <Button className={`bg-blue-600 hover:bg-blue-600 h-11 px-8 font-montserrat text-lg font-medium ${language === "en" ? "mr-4" :"ml-4"}`}>{t("common.client")}</Button>
-            <Button variant="outline" className='h-11 px-6 font-montserrat text-lg text-blackDark'>{t("common.influencer")}</Button>
-
-          </div> */}
+         
         </div>
-        {/* login form */}
+      {/* login form */}
          <LoginForm />
         <div className="my-8 flex justify-center gap-2 items-center">
           <Separator className='w-20' />

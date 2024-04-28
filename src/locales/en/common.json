@@ -23,8 +23,9 @@
          "donot_account":"Don't have an account?",
          "create_account":"Create Account",
          "not_found":"There are no influencers for this option, please try another option.",
-         "confirm_password":"Confirm Password"
-         
+         "confirm_password":"Confirm Password",
+         "input_field_error":"Please fill this field!"
+        
         
     },
     "home":{
@@ -167,8 +168,8 @@
         "button_label":"Log In",
         "signin_google":"Sign In with Google",
         "signin_facebook":"Sign In with Facebook",
-        "email_error_message":"email must be at least 8 characters.",
-        "password_error_message":"password must be at least 6 characters.",
+        "email_error_message":"Email is required",
+        "password_error_message":"Password is required",
         "title":"Log in to your account",
         "password_forgot":"Forgot your password?"
        
@@ -183,13 +184,13 @@
         "town":"Town/City",
         "post":"Post Code",
         "already_account":"Already have an account?" ,
-        "fname_error":"first name must be at least 6 characters.",
+        "fname_error":"first name is required",
         "lname_error":"last name must be at least 6 characters.",
         "phone_error":"phone must be at least 11 characters.",
         "password_error": "password must be at least 6 characters.",
         "confirm_password_error":"confirm password must be matched with the password",
-        "comName_error":"company name must be at least 6 characters.",
-        "website_error":"website must be at least 6 characters.",
+        "comName_error":"company is required",
+        "website_error":"website is required",
         "company_name":"Company Name",
         "website":"Website",
         "type":"Type",
@@ -207,14 +208,28 @@
         "follow_up":"Follow",
         "share":"Share",
         "block":"Block the user",
-        "report":"Report"
-       
+        "report":"Report"   
+
+    },
+    "profileEdit":{
+        "nickname":"Nickname",
+        "brief_overview":"A brief overview of you",
+        "specialization":"Specialization",
+        "gender":"Gender",
+        "tags":"Tags",
+        "categories":"Categories",
+        "regions":"Regions",
+        "country":"Country",
+        "cover":"Cover",
+        "sample_content":"Sample content",
+        "choose_picture":"Choose a picture",
+        "platforms":"Platforms",
+        "plat_description":"Please choose the platform through which you want to receive advertisements and fill out all the required data",
+        "followers_number":"State the number of followers",
+        "account_link":"Add your account link",
+        "publication_type":"Publication type and price",
+        "enter_advertisment":"Enter the advertisement"    
         
-       
-       
-        
-        
-       
     }
 
 }

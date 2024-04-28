@@ -23,7 +23,8 @@
          "donot_account":"ليس لديك حساب؟",
          "create_account":"إنشاء حساب",
          "not_found":"لا يوجد أي مؤثرين لهذا الخيار، يرجى تجربة خيار آخر.",
-         "confirm_password":"تأكيد كلمة المرور"
+         "confirm_password":"تأكيد كلمة المرور",
+         "input_field_error":"من فضلك املأ هذا الحقل!"
          
 
     },
@@ -160,8 +161,8 @@
         "button_label":"يسجل دخول",
         "signin_google":"تسجيل الدخول مع جوجل",
         "signin_facebook":"قم بتسجيل الدخول باستخدام الفيسبوك",
-        "email_error_message":"يجب أن يتكون البريد الإلكتروني من 8 أحرف على الأقل.",
-        "password_error_message":"يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
+        "email_error_message": "البريد الالكتروني مطلوب",
+        "password_error_message":"كلمة المرور مطلوبة",
         "title":"تسجيل دخول الى حسابك",
         "password_forgot":"نسيت كلمة السر؟"
      
@@ -175,13 +176,13 @@
         "town":"بلدة/مدينة",
         "post":"الرمز البريدي"  ,  
         "already_account":"لديك بالفعل حساب؟",
-        "fname_error":"يجب أن يتكون الاسم الأول من 6 أحرف على الأقل.",
+        "fname_error":"الإسم الأول مطلوب",
         "lname_error":"يجب أن يتكون الاسم الأخير من 6 أحرف على الأقل.",
         "phone_error":"يجب أن يتكون الهاتف من 11 حرفًا على الأقل.",
         "password_error": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
         "confirm_password_error":"تأكيد كلمة المرور يجب أن تكون متطابقة مع كلمة المرور",
         "comName_error":"يجب أن يتكون اسم الشركة من 6 أحرف على الأقل.",
-        "website_error":"يجب أن يتكون موقع الويب من 6 أحرف على الأقل.",
+        "website_error":"مطلوب الموقع",
         "company_name":"اسم الشركة",
         "website":"موقع إلكتروني",
         "type":"نوع",
@@ -198,6 +199,26 @@
         "share":"مشاركة",
         "block":"حظر المستخدم",
         "report":"تبليغ"
+    },
+    "profileEdit":{
+        "nickname":"كنية",
+        "brief_overview":"نبذة مختصرة عنك",
+        "specialization":"التخصص",
+        "gender":"جنس",
+        "tags":"العلامات",
+        "categories":"فئات",
+        "regions":"المناطق",
+        "country":"بلد",
+        "cover":"غطاء",
+        "sample_content":"محتوى العينة",
+        "choose_picture":"اختيار صورة",
+        "platforms":"المنصات",
+        "plat_description":"الرجاء اختيار المنصة التي تريد استقبال الإعلانات من خلالها وتعبئة كافة البيانات المطلوبة",
+        "followers_number":"اذكر عدد المتابعين",
+        "account_link":"أضف رابط حسابك",
+        "publication_type":"نوع النشر وسعره",
+        "enter_advertisment":"أدخل الإعلان"
+        
     }
     
 

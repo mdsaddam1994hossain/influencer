@@ -54,14 +54,14 @@ const SignUpForm = () => {
     const router = useRouter()
     const FormSchema = z.object({
 
-        name: z.string().min(4, {
+        name: z.string().min(1, {
             message: `${t("signup.fname_error")}`,
         }),
-        comName: z.string().min(4, {
+        comName: z.string().min(1, {
             message: `${t("signup.comName_error")}`,
         }),
         accountType: z.enum(["company", "agency"]),
-        website: z.string().min(4, {
+        website: z.string().min(1, {
             message: `${t("signup.website_error")}`,
         }),
         email: z.string().email({
