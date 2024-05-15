@@ -56,7 +56,7 @@ export default function LanguageChanger() {
     return (
 
         <Popover >
-            <PopoverTrigger className={`w-full flex items-center gap-2   bg-transparent ${currentLocale == "en" && "flex-row-reverse"} `}>   
+            <PopoverTrigger className={`w-full flex items-center gap-2 flex-start  bg-transparent flex-row-reverse`}>   
                
                 {
                     currentLocale === "en" ?  <Image objectFit="cover" src={arabic} height={28} width={28} className="h-[28px] w-[28px] rounded-full" alt='l' />:
@@ -76,7 +76,7 @@ export default function LanguageChanger() {
                     
                     <div className="flex items-center gap-4 bg-transparent mt-4 cursor-pointer" onClick={()=>{handleChange("en")}}>
                       <Image src={english} height={28} width={28} objectFit="cover" className="h-[28px] w-[28px] rounded-full" alt='l' />
-                       <span  className='w-full ' >English</span>
+                       <span  className='w-full' >English</span>
                     </div>
                     
                 

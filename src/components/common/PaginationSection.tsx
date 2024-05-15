@@ -8,6 +8,8 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
+import { useTranslation } from 'react-i18next';
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 type Props = {
     totalItems: number | undefined;
@@ -25,6 +27,8 @@ const PaginationSection: FC<Props> = ({
     pageRangeDisplayed // Default to 10 if not provided
 }) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const { t, i18n } = useTranslation()
+    const { language } = i18n;
     let pages = [];
     for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
@@ -51,7 +55,9 @@ const PaginationSection: FC<Props> = ({
         <Pagination className='flex justify-center lg:justify-start mt-6 lg:mt-12'>
             <PaginationContent className="gap-3">
                 <PaginationItem>
-                    <PaginationPrevious onClick={handlePrevPage} className={`text-blackDark border border-blackDark ${currentPage === 1 ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-blackDark hover:text-white hover:bg-blackDark cursor-pointer'}`} />
+                    <PaginationPrevious onClick={handlePrevPage} className={`text-blackDark  border border-blackDark ${currentPage === 1 ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-blackDark hover:text-white hover:bg-blackDark cursor-pointer'}`} >
+                     <ChevronLeft className={`h-4 w-4 ${language === "ar" && "-rotate-180"} `}  strokeWidth={3}  />
+                    </PaginationPrevious>
                 </PaginationItem>
 
                 {pages.slice(startPage - 1, endPage).map((page) => (
@@ -63,8 +69,8 @@ const PaginationSection: FC<Props> = ({
                 ))}
 
                 <PaginationItem>
-                    <PaginationNext onClick={handleNextPage} className={`text-blackDark border border-blackDark ${currentPage === totalPages ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-blackDark hover:text-white hover:bg-blackDark cursor-pointer'}`}>
-                        next
+                    <PaginationNext onClick={handleNextPage} className={`text-blackDark border border-blackDark ${currentPage === totalPages ? ' border-opacity-50 text-opacity-50 hover:bg-white hover:text-red  ' : 'border-blackDark hover:text-white hover:bg-blackDark cursor-pointer'}`} >
+                     <ChevronRight className={`h-4 w-4 ${language === "ar" && "-rotate-180"} `} strokeWidth={3}  />
                     </PaginationNext>
                 </PaginationItem>
             </PaginationContent>

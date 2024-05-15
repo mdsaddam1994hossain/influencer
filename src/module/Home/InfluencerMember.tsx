@@ -63,8 +63,8 @@ const InfluencerMember = () => {
 
       {/* <p className="lg:text-2xl text-blackDark font-medium ">{t("home.influencers")}</p> */}
 
-      <div className="flex gap-4 lg:gap-8 items-center flex-wrap">
-        <div className="flex-grow flex gap-4 flex-wrap">
+      <div className="flex  gap-4 lg:gap-8 items-center flex-wrap">
+        <div className="flex-grow flex gap-2 lg:gap-4 flex-wrap">
           <Button onClick={handleReset} className={`group rounded-full border-grayBorder h-[50px] focus:bg-blackDark hover:bg-blackDark hover:text-white px-5 font-normal ${categoriesId != null && ' bg-transparent text-blackDark border rounded-full border-grayBorder '}`}>
             {/* <Image src={widget} alt='W' className="px-1" /> */}
             <RxDashboard className={`${categoriesId === null ? ' text-white' : "text-blackDark" } h-4 w-4 group-hover:text-white`}/>
@@ -81,11 +81,7 @@ const InfluencerMember = () => {
 
          
         </div>
-        <div className=" flex-shrink ">
-          {/* <Button className='bg-[#F5F5F5] hover:bg-[#F5F5F5] h-[50px] w-[50px] rounded-full '>
-               <Image src={filter} alt="F" />
-               </Button> */}
-
+        <div className="flex-shrink ">
           <FilterOptions />
         </div>
 
