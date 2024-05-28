@@ -29,7 +29,7 @@ const Categories: FC<Props> = ({ categories }) => {
   const { language } = i18n;
   const isMobile = useAppStore((state) => state.isMobile)
   const setCategoriesId = useAppStore((state)=>state.setCategoriesId)
-  const {data:categorie}= useCategories()
+  const {data:categorie}:any= useCategories()
 
   const handleCategorySelect = (id:number) => {
     setCategoriesId(id)   
@@ -49,7 +49,7 @@ const Categories: FC<Props> = ({ categories }) => {
         <DropdownMenuContent  className="w-full mr-0 px-0 gap-8 max-h-[500px]  overflow-y-scroll no-scrollbar">
           <DropdownMenuGroup  dir={`${language === "en" ? 'ltr' : 'rtl'}`}>
 
-            {categorie?.map((item, index) => {
+            {categorie?.map((item:any, index:number) => {
               return (
                 <DropdownMenuItem onClick={()=>handleCategorySelect(item?.id)}  key={index} className='p-5 focus:bg-yellow-500 focus:rounded-none focus:text-white '>
                   <div className={`${language === "en" ? 'mr-3' : 'ml-3'}`}>

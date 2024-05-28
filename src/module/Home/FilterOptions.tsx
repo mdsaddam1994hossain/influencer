@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 import { useTranslation } from 'react-i18next'
 import Image from "next/image"
@@ -20,7 +20,17 @@ import star from "../../../public/images/star_rating.png"
 
 const FilterOptions = () => {
     const { t,i18n } = useTranslation()
+    const [minFollowers,setMinFollowers]= useState(10)
+    const [maxFollowers,setMaxFollowers]= useState(1500)
     const {language} = i18n;
+
+    const handleMinValueChange = (e:any) => {
+        setMinFollowers(e.target.value);
+      };
+    
+      const handleMaxValueChange = (e:any) => {
+        setMaxFollowers(e.target.value);
+      };
    
     return (
         <Popover >
@@ -65,9 +75,9 @@ const FilterOptions = () => {
                     <div className='mt-4'>
                         <p className='text-sm text-blackMedium'>{t("home.followers")}</p>
                         <div className="mt-4 flex gap-4 justify-between items-center">
-                            <Input value={10}  className="h-45px border border=[#F5F5F5] rounded-none text-center"/>
+                            <Input value={minFollowers}  onChange={handleMinValueChange}  className="h-45px border border=[#F5F5F5] rounded-none text-center"/>
                             <p>{t("filter.to")}</p>
-                            <Input value={1500} className="h-45px border border=[#F5F5F5] rounded-none text-center"/>
+                            <Input value={maxFollowers}  onChange={handleMaxValueChange} className="h-45px border border=[#F5F5F5] rounded-none text-center"/>
                         </div>
                     </div>
                 </div>

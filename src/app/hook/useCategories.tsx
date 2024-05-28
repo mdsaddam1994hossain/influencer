@@ -1,16 +1,18 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { browserClient } from "@/lib/supabase/brower";
 
 export  function useCategories() {
-    const queryClient = useQueryClient();
-
     return useQuery({
         queryKey: ["categories"],
         queryFn: async () => {
             const supabase = browserClient();
-            const { data } = await supabase.from("categories").select("*").not('name', 'is', null).neq('icon', 'not null') 
-            return data || null;
+            const { data,error } = await supabase.from("categories").select("*").not('name', 'is', null).neq('icon', 'not null') 
+            if(data){
+                return data
+            }else{
+                return error
+            }
         },
        
     });
@@ -24,7 +26,11 @@ export  function useTags() {
         queryFn: async () => {
             const supabase = browserClient();
             const { data,error } = await supabase.from("tags").select("*").not('name_en', 'is', null).not("name_ar","is",null)
-            return data || null;
+            if(data){
+                return data
+            }else{
+                return error
+            }
         },
        
     });
@@ -37,7 +43,11 @@ export  function useCountry() {
         queryFn: async () => {
             const supabase = browserClient();
             const { data,error } = await supabase.from("countries").select("*").not('name', 'is', null)
-            return data || null;
+            if(data){
+                return data
+            }else{
+                return error
+            }
         },
        
     });
@@ -50,7 +60,11 @@ export  function useRegions() {
         queryFn: async () => {
             const supabase = browserClient();
             const { data,error } = await supabase.from("regions").select("*").not('name_ar', 'is', null).not("name_ar","is",null)
-            return data || null;
+            if(data){
+                return data
+            }else{
+                return error
+            }
         },
        
     });

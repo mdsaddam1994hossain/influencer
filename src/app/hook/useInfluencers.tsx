@@ -18,7 +18,11 @@ export default function useInfluencers(category_id?: any) {
                 }
               );
 
-            return data 
+          if(error){
+            return error
+          }else{
+            return data
+          }
         },
     });
 }

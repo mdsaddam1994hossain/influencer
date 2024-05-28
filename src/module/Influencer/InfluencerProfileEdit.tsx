@@ -42,10 +42,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     const router = useRouter()
     const queryClient = useQueryClient()
     const [nickname, setNickname] = useState(user?.name || '');
-    const {data:categorie}= useCategories()
-    const {data:tags}= useTags()
-    const {data:countries}= useCountry()
-    const {data:regions}= useRegions()
+    const {data:categorie}:any= useCategories()
+    const {data:tags}:any= useTags()
+    const {data:countries}:any= useCountry()
+    const {data:regions}:any= useRegions()
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [selectedRegions, setSelectedRegions] = useState([]); 
@@ -58,10 +58,10 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
     //     router.push("/")
     // }
    
-    const categoriesLabel   = categorie?.map((item) => language ==="en" ? item?.name_en: item?.name_ar);
-    const tagsLabel = tags?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
-    const countriesLabel = countries?.map((item) =>  item?.name);
-    const regionsLabel = regions?.map((item) => language ==="en" ? item?.name_en : item?.name_ar);
+    const categoriesLabel   = categorie?.map((item:any) => language ==="en" ? item?.name_en: item?.name_ar);
+    const tagsLabel = tags?.map((item:any) => language ==="en" ? item?.name_en : item?.name_ar);
+    const countriesLabel = countries?.map((item:any) =>  item?.name);
+    const regionsLabel = regions?.map((item:any) => language ==="en" ? item?.name_en : item?.name_ar);
 
 
     const handleSelectCategory = (item:any) => {
@@ -69,7 +69,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
 
-        const category = categorie?.find(value => value.name_en === item  || value.name_ar === item);
+        const category = categorie?.find((value:any) => value.name_en === item  || value.name_ar === item);
         if(category){
             setSelectedcategoryId((prev:any) =>
             prev.includes(category?.id) ? prev.filter((i:any) => i !== category?.id) : [...prev, category?.id]
@@ -84,7 +84,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
         setSelectedTags((prev:any) =>
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
-        const tag = tags?.find(value => value.name_en === item || value.name_ar === item);
+        const tag = tags?.find((value:any) => value.name_en === item || value.name_ar === item);
         if(tag){
             setSelectedTagId((prev:any) =>
             prev.includes(tag?.id) ? prev.filter((i:any) => i !== tag?.id) : [...prev, tag?.id]
@@ -96,7 +96,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
         setSelectedRegions((prev:any) =>
           prev.includes(item) ? prev.filter((i:any) => i !== item) : [...prev, item]
         );
-        const rigion = regions?.find(value => value.name_en === item || value.name_ar === item);
+        const rigion = regions?.find((value:any) => value.name_en === item || value.name_ar === item);
         if(rigion){
             setSelectedRegionId((prev:any) =>
             prev.includes(rigion?.id) ? prev.filter((i:any) => i !== rigion?.id) : [...prev, rigion?.id]
@@ -652,7 +652,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4">
                         <SelectGroup >
-                        {countries?.map((item,index)=>{
+                        {countries?.map((item:any,index:number)=>{
                                 return(
                                     <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
@@ -678,7 +678,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4 ">
                         <SelectGroup >
-                        {tags?.map((item,index)=>{
+                        {tags?.map((item:any,index:number)=>{
                                 return(
                                     <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )
@@ -699,7 +699,7 @@ const InfluencerProfileEdit:FC<Tuser> = ({user}) => {
                     </SelectTrigger>
                     <SelectContent className="flex-grow p-4">
                         <SelectGroup >
-                        {tags?.map((item,index)=>{
+                        {tags?.map((item:any,index:number)=>{
                                 return(
                                     <SelectItem key={index} className="py-1" value={item.name}>{item.name}</SelectItem>
                                 )

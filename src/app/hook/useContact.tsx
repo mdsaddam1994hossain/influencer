@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {useQuery,useMutation } from "@tanstack/react-query";
 
 import { browserClient } from "@/lib/supabase/brower";
 
@@ -35,4 +35,6 @@ export async function UseMutationContact(contactData:any) {
         }
    
 }
+
+
 

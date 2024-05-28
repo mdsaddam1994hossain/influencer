@@ -6,11 +6,7 @@ import PaginationSection from '@/components/common/PaginationSection'
 import useInfluencers from '@/app/hook/useInfluencers'
 import useAppStore from '@/store'
 import SkeletonCard from '@/components/common/SkeletonCard'
-import { TInfluencer } from '@/types/influencer'
-import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
-import filter from "../../../public/images/filter.png"
-import widget from "../../../public/images/widget.png"
 import { Button } from '@/components/ui/button'
 import FilterOptions from './FilterOptions'
 import { useCategories } from '@/app/hook/useCategories'
@@ -22,7 +18,7 @@ const InfluencerMember = () => {
   const [numberOfDisplayPages, setNumberOfDisplayPages] = useState(4)
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(8)
-  const {data:categorie}= useCategories()
+  const {data:categorie}:any= useCategories()
   const influencerGender = useAppStore((state) => state.influencerGender)
   const setCategoriesId = useAppStore((state)=>state.setCategoriesId)
   const categoriesId = useAppStore((state) => state.categoriesId)
@@ -70,7 +66,7 @@ const InfluencerMember = () => {
             <RxDashboard className={`${categoriesId === null ? ' text-white' : "text-blackDark" } h-4 w-4 group-hover:text-white`}/>
             {t("categories.all_categories")}
           </Button>
-          {categorie?.slice(0,5)?.map((item,index)=>{
+          {categorie?.slice(0,5)?.map((item:any,index:number)=>{
             return(
               <Button onClick={()=>handleCategorySelect(item?.id)} key={index} variant="outline" className={`border rounded-full border-grayBorder h-[50px] hover:bg-blackDark px-5 font-normal ${categoriesId === item?.id && 'bg-blackDark text-white'} `}>
             {language === "en" ? item?.name_en || item?.name : item?.name_ar|| item?.name }
@@ -114,11 +110,6 @@ const InfluencerMember = () => {
             
             }
 
-            {/* {data && data?.length > 8 && <div className='my-6 lg:my-8 flex justify-center items-center' data-aos={"fade-up"}
-              data-aos-anchor-placement="center-bottom"
-              data-aos-duration="2500">
-              <Button  variant="outline" className="rounded-full border border-blackDark h-[45px] hover:bg-blackDark text-blackDark font-medium text-sm px-4"> {t("home.show_more")}</Button>
-            </div>} */}
                { data && data?.length > 8 && <PaginationSection
                       totalItems={totalItems}
                       itemsPerPage={itemsPerPage}
