@@ -75,7 +75,7 @@ const  SignUpFormInfluencer = () => {
        
             setIsLoading(true)
             const result:any = await signUpWithCradential(data?.email,data?.password)
-            console.log(result,"create or register.")
+            // console.log(result,"create or register.")
        
        if(result?.status === 422){
         setIsLoading(false)
@@ -90,7 +90,7 @@ const  SignUpFormInfluencer = () => {
          form.reset();
        }else{
         const verify:any = result && await insertDataAsInfluencer(result,data)
-        console.log("veryfi the uer",verify)
+        // console.log("veryfi the uer",verify)
         setIsLoading(false)
                 setIsLogin(true)
                 form.reset();
